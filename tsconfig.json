@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/layout.jsx", "src/components/Footer.jsx", "src/components/Header.jsx", "src/components/HomeVitor.jsx", "src/components/Servico.jsx", "src/app/page.jsx", "src/app/pesquisa/page.jsx", "src/app/servicos/page.jsx", "src/app/perfil/page.jsx", "src/app/login/page.jsx", "src/app/detalhes/page.jsx", "src/app/cadastro/page.jsx"],
+  "exclude": ["node_modules"]
+}
