@@ -1,14 +1,11 @@
+import Link from 'next/link';
+
 export default function login() {
   return (
-    <main className="bg-[url('../../public/imagem_profissional.png')]  bg-no-repeat bg-right-bottom   ">
-
-
+    <main className="bg-[url('../../public/imagem_profissional.png')] bg-no-repeat bg-right-bottom">
       <div className="background-image"></div>
-
       <div className="flex justify-center items-center min-h-screen p-4">
-
         <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-
           <h2 className="text-gray-200 text-center text-2xl font-bold mb-6">
             Mão na Roda
           </h2>
@@ -29,8 +26,9 @@ export default function login() {
               <label className="text-gray-200 flex items-center">
                 <input type="checkbox" className="mr-2" /> Lembrar-me por 14 dias
               </label>
-              <a href="#" className="text-yellow-600 text-sm hover:text-yellow-500"
-              >Esqueceu a senha?</a            >
+              <Link href="/esqueceuSenha" className="text-yellow-600 text-sm hover:text-yellow-500">
+                Esqueceu a senha?
+              </Link>
             </div>
             <button
               type="submit"
@@ -41,16 +39,14 @@ export default function login() {
           </form>
           <div className="text-center mt-8">
             <p className="text-gray-200">
-              Não tem uma conta?
-              <a
-                href="cadastro.html"
-                className="text-yellow-600 text-sm hover:text-yellow-500"
-              >Cadastre-se aqui</a            >
+              Não tem uma conta?{' '}
+              <Link href="/cadastro" className="text-yellow-600 text-sm hover:text-yellow-500">
+                Cadastre-se aqui
+              </Link>
             </p>
           </div>
         </div>
       </div>
-
     </main>
-  )
+  );
 }

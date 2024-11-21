@@ -1,3 +1,4 @@
+import Link from 'next/link';
 
 export default function cadastro() {
   return (
@@ -59,10 +60,9 @@ export default function cadastro() {
         <div className="text-center mt-4">
           <p className="text-gray-200">
             Já tem uma conta?
-            <a
-              href="index.html"
-              className="text-yellow-600 text-sm hover:text-yellow-500"
-              >Login </a>
+            <Link href="/login" className="text-yellow-600 text-sm hover:text-yellow-500">
+                Login
+              </Link>
           </p>
         </div>
       </div>
