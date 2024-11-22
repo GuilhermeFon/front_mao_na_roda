@@ -1,129 +1,204 @@
+"use client"
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useClienteStore } from "@/context/cliente";
+import { useEffect } from "react";
+
+
 
 export default function perfil() {
+
+  const { cliente } = useClienteStore()
+  
+
+  useEffect(() => {
+
+    async function buscaCliente() {
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/usuarios/${cliente.id}`,{
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${cliente.token}` 
+        },
+        method: "GET",
+      })
+      console.log(response.status)
+      if (response.status == 200) {
+        const dados = await response.json()
+        
+      }
+    }
+    
+    buscaCliente()
+  }, []);
+
+
+
+  
+
   return (
-    <div className="bg-gray-50 min-h-screen py-12">
-      <div className="container mx-auto px-4">
-        <div className="bg-white shadow-lg rounded-lg p-8 flex flex-col lg:flex-row gap-8">
-          <div className="lg:w-1/3 flex justify-center">
-            <img src="./profissionais_2.png" className="rounded-lg w-[300px] h-[300]" alt="foto do usuário">
+    <main>
+      <section className="max-w-screen-xl mt-20 mx-auto grid grid-cols-[50%_50%] ">
+        <div className=" min-h-[100vh]  ">
+          <div className="w-full flex flex-col  mx-auto h-[430px] bg-Cinza2 shadow rounded-lg">
+
+            <form className="max-w-full flex flex-col justify-between max-h-full flex-wrap ms-5 ">
+              <h1 className="font-bold mb-2 text-white mt-5 text-xl">Informações da conta</h1>
+              <div className="mb-5 max-w-[50%]">
+                <label htmlFor="name" className="block mb-2 text-sm font-medium text-white dark:text-white">{cliente.nome}</label>
+                <input type="name" id="name" className="bg-Azul2 border border-Azul2  text-sm rounded-lg focus:ring-Azul2 focus:border-Azul2 block w-full p-2.5 " placeholder="Seu nome" required />
+              </div>
+              <div className="mb-5 max-w-[50%]">
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-white dark:text-white">{}</label>
+                <input type="email" id="email" className="bg-Azul2 border border-Azul2  text-sm rounded-lg focus:ring-Azul2 focus:border-Azul2 block w-full p-2.5 " placeholder="seu_email@exemplo.com" required />
+              </div>
+              <div className="mb-5 max-w-[50%]">
+                <label htmlFor="telefone" className="block mb-2 text-sm font-medium text-white dark:text-white">{}</label>
+                <input type="telefone" id="telefone" className="bg-Azul2 border border-Azul2  text-sm rounded-lg focus:ring-Azul2 focus:border-Azul2 block w-full p-2.5 " placeholder="(00) 00000-0000" required />
+              </div>
+              <div className="mb-5 max-w-[50%]">
+                <label htmlFor="nascimento" className="block mb-2 text-sm font-medium text-white dark:text-white">{}</label>
+                <input type="nascimento" id="nascimento" className="bg-Azul2 border border-Azul2  text-sm rounded-lg focus:ring-Azul2 focus:border-Azul2 block w-full p-2.5 " placeholder="06/03/1990" required />
+              </div>
+
+              <div className="max-w-[45%] flex flex-col justify-between py-5  h-full ">
+                <div>
+                  <label htmlFor="desc" className="block mb-2 text-sm font-medium text-white dark:text-white">{}</label>
+                  <textarea id="desc" rows={6} className="bg-Azul2 border border-Azul2  text-sm rounded-lg focus:ring-Azul2 focus:border-Azul2 block w-full p-2.5 " placeholder="Diga algo sobre você aos seus clientes..."></textarea>
+                </div>
+                <button type="submit" className="text-black font-bold mt-5 min-w-[50%] mx-auto bg-Amarelo hover:bg-AzulMaisForte focus:ring-4 focus:outline-none focus:ring-blue-300  rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Salvar</button>
+              </div>
 
 
-            </img>
+
+            </form>
+
 
           </div>
-          <div className="lg:w-2/3">
-            <div className="flex flex-col lg:flex-row items-start justify-between mb-6">
-              <div>
-                <h2 className="text-3xl font-bold text-gray-800">
-                  Pedro Sampaio
-                </h2>
-                <p className="text-blue-500 font-medium">Encanador</p>
+          {/* <div className="h-fit max-w-[90%] mx-auto flex flex-col my-8 justify-evenly"> */}
+
+
+        </div>
+
+
+        <div className="col-start-2 h-fit">
+          <div className="rounded-xl w-[90%] flex flex-col justify-between bg-Cinza2   mx-auto shadow h-64">
+            <div className="w-[85%] mt-5 mx-auto flex justify-between">
+              <div className="">
+                <img className="rounded-full w-36  h-36 " src="/img181.jpg" alt="" />
+              </div>
+              <div className="flex flex-col mt-2 justify-around items-end h-36 me-5 w-fit">
+                <h1 className="text-white text-4xl font-bold">{cliente.nome}</h1>
+                <div className="flex h-7 w-fit">
+                  <img className="mx-1 w-10 h-10" src="/icones/icone_star40px.svg" alt="" />
+                  <img className="mx-1 w-10 h-10" src="/icones/icone_star40px.svg" alt="" />
+                  <img className="mx-1 w-10 h-10" src="/icones/icone_star40px.svg" alt="" />
+                  <img className="mx-1 w-10 h-10" src="/icones/icone_star40px.svg" alt="" />
+                  <img className="mx-1 w-10 h-10" src="/icones/icone_halfstar40px.svg" alt="" />
+                  
+                  
+                </div>
+                
+
+                  <p className="text-white text-sm">50 serviços</p>
+                
               </div>
 
-              <div className="flex gap-3 mt-4 lg:mt-0">
-                <a href="#" className="text-gray-600 hover:text-blue-500">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" className="text-gray-600 hover:text-blue-500">
-                  <i className="fab fa-twitter"></i>
-                </a>
-                <a href="#" className="text-gray-600 hover:text-blue-500">
-                  <i className="fab fa-instagram"></i>
-                </a>
-                <a href="#" className="text-gray-600 hover:text-blue-500">
-                  <i className="fab fa-linkedin"></i>
-                </a>
-              </div>
+            </div>
+            <div className="w-[90%] mb-2 mx-auto">
+              <p className="text-white text-sm">Plano: Ouro</p>
             </div>
 
-            <p className="text-gray-600 mb-6">
-              Tenho mais de 10 anos de experiência
-            </p>
 
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-gray-800">
-                Qualificações:
-              </h3>
-              <ul className="mt-4 space-y-3">
 
-                <li className="text-gray-600">
-                  <strong># 2013 :</strong> Curso de Manutenção Predial (Instituto Mix)
-                </li>
-                <li className="text-gray-600">
-                  <strong># 2016 :</strong> Certificação em Segurança no Trabalho (Senac-rs)
-                </li>
-                <li className="text-gray-600">
-                  <strong># 2019 :</strong> Formação em Hidráulica (Senai)
-                </li>
-              </ul>
-            </div>
+
+
           </div>
-        </div>
 
-        <div className="bg-white shadow-lg rounded-lg p-8 mt-8">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">
-            Experiências:
-          </h3>
-          <p className="text-gray-600 mb-6">
-          Com mais de 10 anos de atuação no Sanep, meus serviços de encanamento garantem soluções rápidas e eficazes para qualquer tipo de instalação ou reparo hidráulico.
-          </p>
-          <ul className="list-disc list-inside space-y-2 text-gray-600">
-            <li>Especialista em conserto de vazamentos e substituição de tubulações.</li>
-            <li>Experiência em instalação de sistemas de água quente e fria.</li>
-            <li>Manutenção preventiva de redes hidráulicas para evitar emergências.</li>
-            <li>Atendimento emergencial 24 horas, com resposta rápida e precisa.</li>
-          </ul>
-        </div>
+          <div className="rounded-xl w-[90%] flex flex-col bg-AzulMaisForte  justify-evenly items-center  mt-14 mx-auto shadow h-fit">
+            <div className="w-[90%] flex justify-around flex-col h-[360px] items-center pt-2 pb-6">
+              <div className=" h-14 w-[90%] flex  flex-col justify-center text-center  bg-Amarelo rounded-full">
+                {" "}
+                <h2 className="font-bold">Avaliação Geral</h2>
 
-        <div className="bg-white shadow-lg rounded-lg p-8 mt-8">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">
-            Serviços concluídos:
-          </h3>
-          <div className="space-y-6">
-            <div>
-              <div className="flex justify-between mb-1">
-                <span className="text-gray-600">Chamados Concluídos</span>
-                <span className="text-gray-600">90%</span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-4">
-                <div
-                  className="bg-yellow-500 h-4 rounded-full"
-                  style={{ width: "90%" }}
-                ></div>
+              {/* avaliações estrelas */}
+              <div className=" flex flex-col items-center">
+
+                <div className="text-center text-white">
+                  <p className="text-xs">4,5 de 5</p>
+                  <p className="text-sm">50 avaliações</p>
+
+                </div>
+              </div>
+
+              <div className="flex  justify-between w-[90%]  ">
+                <div className="flex flex-col px-2 w-20 text-center items-center">
+                  <img
+                    className="max-w-9"
+                    src="./icones/icone_docu_check_branco.svg"
+                    alt=""
+                  />
+                  <p className="text-[12px] text-white leading-relaxed">
+                    Qualificações verificadas
+                  </p>
+                </div>
+                <div className="flex flex-col text-center px-2 w-20 items-center">
+                  <img
+                    className="max-w-9"
+                    src="./icones/icone_50_branco.svg"
+                    alt=""
+                  />
+                  <p className="text-[12px] text-white leading-relaxed">
+                    50 Serviços
+                  </p>
+                </div>
+                <div className="flex flex-col text-center px-2 w-20 items-center">
+                  <img
+                    className="max-w-9"
+                    src="./icones/icone_perfil_branco.svg"
+                    alt=""
+                  />
+                  <p className="text-[12px] text-white leading-relaxed">
+                    Perfil verificado
+                  </p>
+                </div>
               </div>
             </div>
-            <div>
-              <div className="flex justify-between mb-1">
-                <span className="text-gray-600">
-                  Habilidades de encanamento
-                </span>
-                <span className="text-gray-600">95%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-4">
-                <div
-                  className="bg-yellow-500 h-4 rounded-full"
-                  style={{ width: "95%" }}
-                ></div>
-              </div>
-            </div>
-            <div>
-              <div className="flex justify-between mb-1">
-                <span className="text-gray-600">Confiável e trabalhador</span>
-                <span className="text-gray-600">85%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-4">
-                <div
-                  className="bg-yellow-500 h-4 rounded-full"
-                  style={{ width: "85%" }}
-                ></div>
-              </div>
-            </div>
+
           </div>
+          <div className="rounded-xl w-[90%] flex flex-col bg-CinzaBg  justify-evenly items-center  mt-14 mx-auto shadow h-fit">
+            <div className="w-[90%] flex justify-around flex-col h-fit items-center pt-2 pb-6">
+              <Link
+                href="/buy"
+                className="bg-AzulMaisForte h-11 my-7 w-[80%] px-0 rounded-full hover:text-blue-700 text-white text-base text-center font-bold  py-2"
+              >
+                Galeria
+              </Link>
+              <Link
+                href="/buy"
+                className="bg-AzulMaisForte h-11 w-[80%] px-0 rounded-full hover:text-blue-700 text-white text-base text-center font-bold  py-2"
+              >
+                Avaliações
+              </Link>
+              {/* <Link
+                href="/buy"
+                className="bg-AzulMaisForte h-11 w-[80%] px-0 rounded-full hover:text-blue-700 text-white text-base text-center font-bold  py-2"
+              >
+                Ver horários disponíveis
+              </Link> */}
+
+
+
+
+            </div>
+
+          </div>
+
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

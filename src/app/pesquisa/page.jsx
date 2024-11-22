@@ -1,9 +1,55 @@
-import React from "react";
+"use client"
+import { PropostaI } from "@/utils/types/proposta"
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Header } from "@/components/Header";
 
-export default function pesquisa()  {
+export default function Pesquisa() {
+  const searchParams = useSearchParams();
+  const termo = searchParams.get('termo');
+  const [servicos, setServicos] = useState<PropostaI[]>([])
+  const router = useRouter();
+
+  // const {termo} = router.query || {}
+  let listaProdutos
+  
+    const listaServico = servicos?.map(servico =>
+      <div className="flex flex-col justify-evenly items-center text-center border p-8 rounded-lg shadow-md h-full">
+        <img className="rounded-lg" src="./maria_encanadora.png" alt="" />
+        <h3 className="text-xl font-semibold mb-4">{servico.nome} </h3>
+        <p className="text-gray-600 mb-4">{servico.descricao}</p>
+        <h3 className="text-xl font-semibold mb-4">{servico.preco} </h3>
+        <Link href="/detalhes" className="bg-Amarelo w-[90%] px-0 rounded-full hover:text-blue-700 text-black text-xl text-center font-bold  py-2">
+          Ver anúncio
+        </Link>
+      </div>
+
+    )
+  
+  useEffect(() => {
+
+    async function buscaServicos() {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/propostas?nome=${termo}`)
+
+      if (response.status == 200) {
+        const dados = await response.json()
+        // console.log(dados)
+        setServicos(dados)
+
+      }
+    }
+
+
+    buscaServicos()
+  }, []);
+  
+  // if (termo){
+  //   console.log("!!!!")
+  // }
   return (
+    
     <main className="flex mt-5 max-w-screen-xl mx-auto">
       {/* Sidebar de Filtros */}
       <aside className="w-1/4 p-4 h-fit rounded-t-md bg-gray-100">
@@ -40,46 +86,21 @@ export default function pesquisa()  {
 
       {/* Área de Produtos */}
       <section className="w-3/4 p-4">
-        <h2 className="text-lg font-bold mb-4">Resultados para: encanador</h2>
+        <h2 className="text-lg font-bold mb-4">Resultados para: {termo}</h2>
         <div className="grid grid-cols-3 gap-4">
           {/* Cards de produtos prontos */}
-          <div className="flex flex-col justify-evenly items-center text-center border p-8 rounded-lg shadow-md h-full">
-            <img className="rounded-lg" src="./maria_encanadora.png" alt="" />
-            <h3 className="text-xl font-semibold mb-4">Maria Ana </h3>
-            <p className="text-gray-600 mb-4">Soluções rápidas para vazamentos e instalações</p>
-            <Link href="/detalhes" className="bg-Amarelo w-[90%] px-0 rounded-full hover:text-blue-700 text-black text-xl text-center font-bold  py-2">
-              Ver anúncio
-            </Link>
-          </div>
-          <div className="flex flex-col justify-evenly items-center text-center border p-8 rounded-lg shadow-md h-full">
-            <img className="rounded-lg min-h-[272.2px]" src="./profissionais_1.png" alt="" />
-            <h3 className="text-xl font-semibold mb-4">José Paulo </h3>
-            <p className="text-gray-600 mb-4">O melhor preço</p>
-            <Link href="/detalhes" className="bg-Amarelo w-[90%] px-0 rounded-full hover:text-blue-700 text-black text-xl text-center font-bold  py-2">
-              Ver anúncio
-            </Link>
-          </div>
-          <div className="flex flex-col justify-evenly items-center text-center border p-8 rounded-lg shadow-md h-full">
-            <img className="rounded-lg" src="./profissionais_2.png" alt="" />
-            <h3 className="text-xl font-semibold mb-4">Pedro Sampaio</h3>
-            <p className="text-gray-600 mb-4">10 anos de experiência</p>
-            <Link href="/detalhes" className="bg-Amarelo w-[90%] px-0 rounded-full hover:text-blue-700 text-black text-xl text-center font-bold  py-2">
-              Ver anúncio
-            </Link>
-          </div>
-          <div className="flex flex-col justify-evenly items-center text-center border min-h-[497.2px] p-8 rounded-lg shadow-md h-full">
-            <img className="rounded-lg" src="./profissionais_3.png" alt="" />
-            <h3 className="text-xl font-semibold mb-4">Sebastião Silva </h3>
-            <p className="text-gray-600 mb-4">Sebastião Silva</p>
-            <Link href="/detalhes" className="bg-Amarelo w-[90%] px-0 rounded-full hover:text-blue-700 text-black text-xl text-center font-bold  py-2">
-              Ver anúncio
-            </Link>
-          </div>
-          
-         
+          {/* {listaServico} */}
+          {listaServico}
+
+
+
+
+
+
         </div>
       </section>
     </main>
+    
   );
 };
 
