@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import EncanadorImage from "@/assets/encanador.png";
+import CasalImage from "@/assets/casal.png";
+import EncanadorTuboImage from "@/assets/encanador_com_tubo.png";
+import PersonImage from "@/assets/perfil.jpg";
+import DocumentIcon from "@/assets/icones/icone_docu_check_branco.svg";
+import ProfileIcon from "@/assets/icones/icone_perfil_check.svg";
+
 export function Main() {
   return (
     <main className="w-screen h-fit">
@@ -14,7 +21,7 @@ export function Main() {
             </h1>{" "}
             <Image
               className="max-w-full mx-auto h-auto rounded-3xl"
-              src="/encanador.png"
+              src={EncanadorImage}
               alt=""
               width={500}
               height={500}
@@ -60,14 +67,14 @@ export function Main() {
           <div className="max-w-[90%] container mx-auto max-h-64 flex justify-evenly">
             <Image
               className="max-w-[45%] h-auto rounded-3xl"
-              src="/casal.png"
+              src={CasalImage}
               alt=""
               width={500}
               height={500}
             />{" "}
             <Image
               className="max-w-[45%] h-auto rounded-3xl"
-              src="/encanador_com_tubo.png"
+              src={EncanadorTuboImage}
               alt=""
               width={500}
               height={500}
@@ -78,7 +85,7 @@ export function Main() {
           <div className="rounded-md w-[90%] flex flex-col justify-evenly items-center  mt-14 mx-auto shadow h-96">
             <Image
               className="rounded-full max-w-20"
-              src="/img181.jpg"
+              src={PersonImage}
               alt=""
               width={80}
               height={80}
@@ -89,44 +96,6 @@ export function Main() {
                 João Silva{" "}
               </h5>
               <p className="text-base text-gray-600 ">Encanador</p>
-            </div>
-            <div className="w-[60%] p-1 h-fit flex items-center justify-evenly">
-              <a href="">
-                <Image
-                  className="w-5 h-[18px]"
-                  src="/icones/icone_facebook.svg"
-                  alt=""
-                  width={20}
-                  height={18}
-                />
-              </a>
-              <a href="">
-                <Image
-                  className="w-6"
-                  src="/icones/icone_youtube.svg"
-                  alt=""
-                  width={24}
-                  height={24}
-                />
-              </a>
-              <a href="">
-                <Image
-                  className="w-5 h-[18px]"
-                  src="/icones/icone_instagram.svg"
-                  alt=""
-                  width={20}
-                  height={18}
-                />
-              </a>
-              <a href="">
-                <Image
-                  className="w-5 h-[18px]"
-                  src="/icones/icone_twitter.svg"
-                  alt=""
-                  width={20}
-                  height={18}
-                />
-              </a>
             </div>
 
             <Link
@@ -141,7 +110,7 @@ export function Main() {
               <div className="flex flex-col px-2 w-fit items-center">
                 <Image
                   className="max-w-7"
-                  src="/icones/icone_docu_check.svg"
+                  src={DocumentIcon}
                   alt=""
                   width={28}
                   height={28}
@@ -153,7 +122,7 @@ export function Main() {
               <div className="flex flex-col px-2 w-fit items-center">
                 <Image
                   className="max-w-7"
-                  src="/icones/icone_perfil_check.svg"
+                  src={ProfileIcon}
                   alt=""
                   width={28}
                   height={28}

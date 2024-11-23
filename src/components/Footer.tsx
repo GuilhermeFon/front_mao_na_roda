@@ -1,5 +1,11 @@
 import Image from "next/image";
 
+import InverseLogoImage from "@/assets/icones/logo_azul_escuro_e_nome.svg";
+import MailIcon from "@/assets/icones/icone_mail.svg";
+import LocationIcon from "@/assets/icones/icone_localizacao.svg";
+import WhatsIcon from "@/assets/icones/icone_whats.svg";
+import EncanadorFooterImage from "@/assets/encanador_footer.png";
+
 export function Footer() {
   return (
     <footer className="bg-AzulForte ">
@@ -11,12 +17,7 @@ export function Footer() {
               <div className="flex flex-col col-start h-full justify-evenly">
                 <div className=" max-w-72">
                   {" "}
-                  <Image
-                    src="/icones/logo_azul_escuro_e_nome.svg"
-                    alt=""
-                    width={72}
-                    height={72}
-                  />
+                  <Image src={InverseLogoImage} alt="" width={72} height={72} />
                 </div>
                 <div className=" max-w-72 text-gray-200 row-start-2">
                   {" "}
@@ -25,64 +26,17 @@ export function Footer() {
                     rápidos e confiáveis. Seu lar em boas mãos!
                   </p>
                 </div>
-                <div className=" max-w-56 flex  container justify-between">
-                  <a className="" href="#" aria-label="Facebook">
-                    <Image
-                      src="/icones/facebook_branco_circulo.svg"
-                      alt=""
-                      width={24}
-                      height={24}
-                    />
-                  </a>
-                  <a href="#" aria-label="Twitter">
-                    <Image
-                      src="/icones/twitter_branco_circulo.svg"
-                      alt=""
-                      width={24}
-                      height={24}
-                    />
-                  </a>
-                  <a href="#" aria-label="YouTube">
-                    <Image
-                      src="/icones/youtube_branco_circulo.svg"
-                      alt=""
-                      width={24}
-                      height={24}
-                    />
-                  </a>
-                  <a href="#" aria-label="Instagram">
-                    <Image
-                      src="/icones/instagram_branco_circulo.svg"
-                      alt=""
-                      width={24}
-                      height={24}
-                    />
-                  </a>
-                  <a className="" href="#" aria-label="LinkedIn">
-                    <Image
-                      src="/icones/linkedin_branco_circulo.svg"
-                      alt=""
-                      width={24}
-                      height={24}
-                    />
-                  </a>
-                </div>
               </div>
               <div className="col-start-2 flex flex-col col-start text-gray-200 h-full justify-evenly">
                 <div className="w-60 flex flex-row justify-start items-center ">
                   {" "}
-                  <Image
-                    src="/icones/icone_mail.svg"
-                    alt=""
-                    width={24}
-                    height={24}
-                  />{" "}
+                  <Image src={MailIcon} alt="" width={24} height={24} />{" "}
                   <p className="ps-2">suporte@maonaroda.com</p>
                 </div>
                 <div className="w-60 flex flex-row justify-start items-center">
                   {" "}
                   <Image
-                    src="/icones/icone_localizacao.svg"
+                    src={LocationIcon}
                     alt=""
                     width={24}
                     height={24}
@@ -91,12 +45,7 @@ export function Footer() {
                 </div>
                 <div className="w-60 flex flex-row justify-start text-wrap items-center">
                   {" "}
-                  <Image
-                    src="/icones/icone_whats.svg"
-                    alt=""
-                    width={24}
-                    height={24}
-                  />{" "}
+                  <Image src={WhatsIcon} alt="" width={24} height={24} />{" "}
                   <div className="flex flex-col text-center">
                     {" "}
                     <p className="">Whats App </p>{" "}
@@ -114,7 +63,7 @@ export function Footer() {
           <div className="w-1/3 h-full">
             <Image
               className="max-h-96"
-              src="/encanador_footer.png"
+              src={EncanadorFooterImage}
               alt=""
               width={384}
               height={384}

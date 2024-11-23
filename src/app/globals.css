@@ -25,3 +25,7 @@ body {
     text-wrap: balance;
   }
 }
+
+background-profissional {
+  background-image: url('../assets/imagem_profissional.png');
+}

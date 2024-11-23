@@ -2,6 +2,15 @@ import React from "react";
 import Link from "next/link"; // Uso de Link do Next.js
 import Image from "next/image";
 
+import ProfissionalImage from "@/assets/imagem_profissional.png";
+import EncanamentoIcon from "@/assets/icones/icone_encanamento.svg";
+import FaxinaIcon from "@/assets/icones/icone_faxina.svg";
+import PinturaIcon from "@/assets/icones/icone_pintura.svg";
+import EletricistaIcon from "@/assets/icones/icone_eletrecista.svg";
+import MarceneiroIcon from "@/assets/icones/icone_martelo.svg";
+import JardinagemIcon from "@/assets/icones/icone_pa.svg";
+import FerramentasIcon from "@/assets/icones/icone_ferramentas.svg";
+
 export function Home() {
   return (
     <main>
@@ -24,7 +33,7 @@ export function Home() {
 
           <div className="">
             <Image
-              src="/imagem_profissional.png"
+              src={ProfissionalImage}
               alt="Profissional"
               width={210}
               height={210}
@@ -53,7 +62,7 @@ export function Home() {
               Soluções rápidas para vazamentos e instalações
             </p>
             <Image
-              src="/icones/icone_encanamento.svg"
+              src={EncanamentoIcon}
               alt="Icone de Encanamento"
               width={48}
               height={48}
@@ -68,7 +77,7 @@ export function Home() {
               Limpeza detalhada de residências e comércios
             </p>
             <Image
-              src="/icones/icone_faxina.svg"
+              src={FaxinaIcon}
               alt="Icone de Limpeza"
               width={48}
               height={48}
@@ -83,7 +92,7 @@ export function Home() {
               Transforme seu ambiente com pintura profissional
             </p>
             <Image
-              src="/icones/icone_pintura.svg"
+              src={PinturaIcon}
               alt="Icone de Pintura"
               width={48}
               height={48}
@@ -100,7 +109,7 @@ export function Home() {
               Instalações e reparos elétricos seguros
             </p>
             <Image
-              src="/icones/icone_eletrecista.svg"
+              src={EletricistaIcon}
               alt="Icone de eletrecista"
               width={48}
               height={48}
@@ -117,7 +126,7 @@ export function Home() {
               Móveis sob medida e reparos em madeira
             </p>
             <Image
-              src="/icones/icone_martelo.svg"
+              src={MarceneiroIcon}
               alt="Icone de Manutenção"
               width={48}
               height={48}
@@ -132,7 +141,7 @@ export function Home() {
             </h3>
             <p className="text-gray-600 mb-4">Deixe seu jardim sempre bonito</p>
             <Image
-              src="/icones/icone_pa.svg"
+              src={JardinagemIcon}
               alt="Icone de Manutenção"
               width={56}
               height={56}
@@ -149,7 +158,7 @@ export function Home() {
               Reparos gerais e para sua casa ou empresa
             </p>
             <Image
-              src="/icones/icone_ferramentas.svg"
+              src={FerramentasIcon}
               alt="Icone de Manutenção"
               width={48}
               height={48}

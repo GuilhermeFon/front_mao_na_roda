@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 
+import EncanadorImage from "@/assets/encanador_com_mulher.png";
+
 export default function servicoDetalhes() {
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -13,15 +15,19 @@ export default function servicoDetalhes() {
             João Silva Serviços de reforma residencial
           </h2>
           <Image
-            src="/encanador_com_mulher.png"
+            src={EncanadorImage}
             className="rounded-lg mb-6 w-[500] h-[300]"
             alt="João Silva Serviços de reforma residencial"
             width={500}
             height={300}
           />
           <div className="flex flex-col bg-white justify-evenly border p-8 rounded-lg shadow-lg max-h-40">
-            <h3 className="text-xl font-semibold mb-4">Fale com João Silva através do whats</h3>
-            <p className="text-lg font-semibold mb-4">(53) 99643 - 0964, ou mande uma mensagem para ele</p>
+            <h3 className="text-xl font-semibold mb-4">
+              Fale com João Silva através do whats
+            </h3>
+            <p className="text-lg font-semibold mb-4">
+              (53) 99643 - 0964, ou mande uma mensagem para ele
+            </p>
           </div>
         </div>
         <div className="bg-white shadow-lg rounded-lg p-8">

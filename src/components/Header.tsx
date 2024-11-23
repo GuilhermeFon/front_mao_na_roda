@@ -1,50 +1,24 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import WhatsappLogo from "@/assets/icones/Whatsapp_azul.svg";
+import Logo from "@/assets/icones/logo_azul_e_cinzas_e_nome.svg";
+
 export function Header() {
   return (
     <header>
-      {/* Top Bar */}
-      <div className="bg-AzulForte w-[100%] flex items-center justify-center mx-auto p-4">
-        <div className="container max-w-screen-xl mx-auto flex justify-end">
-          <div className="flex max-w-44 container justify-between">
-            <a className="px-2" href="#" aria-label="Facebook">
-              <Image src="/icones/facebook_branco.svg" alt="" width={24} height={24} />
-            </a>
-            <a href="#" aria-label="Twitter">
-              <Image src="/icones/twitter_branco.svg" alt="" width={24} height={24} />
-            </a>
-            <a href="#" aria-label="YouTube">
-              <Image src="/icones/youtube_branco.svg" alt="" width={24} height={24} />
-            </a>
-            <a href="#" aria-label="Instagram">
-              <Image src="/icones/instagram_branco.svg" alt="" width={24} height={24} />
-            </a>
-            <a className="px-2" href="#" aria-label="LinkedIn">
-              <Image src="/icones/linkedin_branco.svg" alt="" width={24} height={24} />
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main Header */}
       <nav className="bg-white border-gray-200 shadow-lg">
         <div className="max-w-screen-xl flex flex-wrap justify-between items-center mx-auto py-4">
           {/* Logo */}
           <Link href="/" className="flex items-center rtl:space-x-reverse">
-            <Image
-              src="/icones/logo_azul_e_cinzas_e_nome.svg"
-              className=""
-              alt="logo"
-              width={100}
-              height={50}
-            />
+            <Image src={Logo} className="" alt="logo" width={100} height={50} />
             <span className="text-3xl font-semibold whitespace-nowrap dark:text-black"></span>
           </Link>
 
           {/* login cadastro e whats */}
           <div className="flex max-w-xl justify-between container items-center">
-            <Image src="/icones/whatsapp_azul.svg" alt="" width={24} height={24} />
+            <Image src={WhatsappLogo} alt="" width={24} height={24} />
 
             <div className="flex flex-col text-center w-fit">
               <span className="text-gray-500">DISPONÍVEL NO WHATS-APP</span>
@@ -125,9 +99,9 @@ export function Header() {
                   >
                     <path
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                     />
                   </svg>

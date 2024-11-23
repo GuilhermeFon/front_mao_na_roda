@@ -4,6 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import {useClienteStore} from "@/context/cliente";
 
+import PersonImage from "@/assets/perfil.jpg";
+import StarImage from "@/assets/icones/full_star.svg";
+import HalfStarImage from "@/assets/icones/half_star.svg";
+import DocumentImage from "@/assets/icones/icone_docu_check_branco.svg";
+import FiftyImage from "@/assets/icones/icone_50_branco.svg";
+import ProfileImage from "@/assets/icones/icone_perfil_branco.svg";
+
 export default function Perfil() {
   const {cliente} = useClienteStore();
 
@@ -131,7 +138,7 @@ export default function Perfil() {
               <div className="">
                 <Image
                   className="rounded-full w-36  h-36 "
-                  src="/img181.jpg"
+                  src={PersonImage}
                   alt=""
                   width={144}
                   height={144}
@@ -144,35 +151,35 @@ export default function Perfil() {
                 <div className="flex h-7 w-fit">
                   <Image
                     className="mx-1 w-10 h-10"
-                    src="/icones/icone_star40px.svg"
+                    src={StarImage}
                     alt=""
                     width={40}
                     height={40}
                   />
                   <Image
                     className="mx-1 w-10 h-10"
-                    src="/icones/icone_star40px.svg"
+                    src={StarImage}
                     alt=""
                     width={40}
                     height={40}
                   />
                   <Image
                     className="mx-1 w-10 h-10"
-                    src="/icones/icone_star40px.svg"
+                    src={StarImage}
                     alt=""
                     width={40}
                     height={40}
                   />
                   <Image
                     className="mx-1 w-10 h-10"
-                    src="/icones/icone_star40px.svg"
+                    src={StarImage}
                     alt=""
                     width={40}
                     height={40}
                   />
                   <Image
                     className="mx-1 w-10 h-10"
-                    src="/icones/icone_halfstar40px.svg"
+                    src={HalfStarImage}
                     alt=""
                     width={40}
                     height={40}
@@ -201,7 +208,7 @@ export default function Perfil() {
                 <div className="flex flex-col px-2 w-20 text-center items-center">
                   <Image
                     className="max-w-9"
-                    src="./icones/icone_docu_check_branco.svg"
+                    src={DocumentImage}
                     alt=""
                     width={36}
                     height={36}
@@ -213,7 +220,7 @@ export default function Perfil() {
                 <div className="flex flex-col text-center px-2 w-20 items-center">
                   <Image
                     className="max-w-9"
-                    src="./icones/icone_50_branco.svg"
+                    src={FiftyImage}
                     alt=""
                     width={36}
                     height={36}
@@ -225,7 +232,7 @@ export default function Perfil() {
                 <div className="flex flex-col text-center px-2 w-20 items-center">
                   <Image
                     className="max-w-9"
-                    src="./icones/icone_perfil_branco.svg"
+                    src={ProfileImage}
                     alt=""
                     width={36}
                     height={36}

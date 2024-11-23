@@ -1,6 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import PersonImage from "@/assets/perfil.jpg";
+import EncanadorImage from "@/assets/encanador.png";
+import StarImage from "@/assets/icones/full_star.svg";
+import HalfStarImage from "@/assets/icones/half_star.svg";
+import DocumentImage from "@/assets/icones/icone_docu_check_branco.svg";
+import FiftyImage from "@/assets/icones/icone_50_branco.svg";
+import ProfileImage from "@/assets/icones/icone_perfil_branco.svg";
+import CasalImage from "@/assets/casal.png";
+import EncanadorComTuboImage from "@/assets/encanador_com_tubo.png";
+
 export default function servicos() {
   return (
     <main className="w-screen h-fit pb-10">
@@ -9,7 +19,7 @@ export default function servicos() {
           <div className="max-w-[90%] mx-auto h-fit rounded-3xl">
             <Image
               className="max-w-full mx-auto h-auto rounded-3xl"
-              src="/encanador.png"
+              src={EncanadorImage}
               alt=""
               width={500}
               height={500}
@@ -56,7 +66,7 @@ export default function servicos() {
           <div className="rounded-xl w-[90%] flex flex-col justify-evenly items-center  mx-auto shadow h-96">
             <Image
               className="rounded-full max-w-20"
-              src="/img181.jpg"
+              src={PersonImage}
               alt=""
               width={80}
               height={80}
@@ -67,44 +77,6 @@ export default function servicos() {
                 João Silva{" "}
               </h1>
               <p className="text-base text-gray-600 ">Encanador</p>
-            </div>
-            <div className="w-[60%] p-1 h-fit flex items-center justify-evenly">
-              <a href="">
-                <Image
-                  className="w-8 h-8"
-                  src="/icones/icone_facebook.svg"
-                  alt=""
-                  width={32}
-                  height={32}
-                />
-              </a>
-              <a href="">
-                <Image
-                  className="w-8"
-                  src="/icones/icone_youtube.svg"
-                  alt=""
-                  width={32}
-                  height={32}
-                />
-              </a>
-              <a href="">
-                <Image
-                  className="w-8"
-                  src="/icones/icone_instagram.svg"
-                  alt=""
-                  width={32}
-                  height={32}
-                />
-              </a>
-              <a href="">
-                <Image
-                  className="w-8"
-                  src="/icones/icone_twitter.svg"
-                  alt=""
-                  width={32}
-                  height={32}
-                />
-              </a>
             </div>
 
             <Link
@@ -125,35 +97,35 @@ export default function servicos() {
                 <div className="flex h-7 w-fit">
                   <Image
                     className="mx-1"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={24}
                     height={24}
                   />
                   <Image
                     className="mx-1"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={24}
                     height={24}
                   />
                   <Image
                     className="mx-1"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={24}
                     height={24}
                   />
                   <Image
                     className="mx-1"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={24}
                     height={24}
                   />
                   <Image
                     className="mx-1"
-                    src="/icones/icone_halfstar.png"
+                    src={HalfStarImage}
                     alt=""
                     width={24}
                     height={24}
@@ -169,7 +141,7 @@ export default function servicos() {
                 <div className="flex flex-col px-2 w-20 text-center items-center">
                   <Image
                     className="max-w-9"
-                    src="/icones/icone_docu_check_branco.svg"
+                    src={DocumentImage}
                     alt=""
                     width={36}
                     height={36}
@@ -181,7 +153,7 @@ export default function servicos() {
                 <div className="flex flex-col text-center px-2 w-20 items-center">
                   <Image
                     className="max-w-9"
-                    src="/icones/icone_50_branco.svg"
+                    src={FiftyImage}
                     alt=""
                     width={36}
                     height={36}
@@ -193,7 +165,7 @@ export default function servicos() {
                 <div className="flex flex-col text-center px-2 w-20 items-center">
                   <Image
                     className="max-w-9"
-                    src="/icones/icone_perfil_branco.svg"
+                    src={ProfileImage}
                     alt=""
                     width={36}
                     height={36}
@@ -238,42 +210,42 @@ export default function servicos() {
         <div className="max-w-[90%] my-5 flex-wrap container mx-auto h-3/5 flex justify-evenly">
           <Image
             className="w-64 my-3 h-auto rounded-sm "
-            src="/casal.png"
+            src={CasalImage}
             alt=""
             width={256}
             height={256}
           />
           <Image
             className="w-64 my-3 h-auto rounded-sm "
-            src="/encanador_com_tubo.png"
+            src={EncanadorComTuboImage}
             alt=""
             width={256}
             height={256}
           />
           <Image
             className="w-64 my-3 h-auto rounded-sm "
-            src="/encanador_com_tubo.png"
+            src={EncanadorComTuboImage}
             alt=""
             width={256}
             height={256}
           />
           <Image
             className="w-64 my-3 h-auto rounded-sm "
-            src="/encanador_com_tubo.png"
+            src={EncanadorComTuboImage}
             alt=""
             width={256}
             height={256}
           />
           <Image
             className="w-64 my-3 h-auto rounded-sm "
-            src="/encanador_com_tubo.png"
+            src={EncanadorComTuboImage}
             alt=""
             width={256}
             height={256}
           />
           <Image
             className="w-64 my-3 h-auto rounded-sm "
-            src="/encanador_com_tubo.png"
+            src={EncanadorComTuboImage}
             alt=""
             width={256}
             height={256}
@@ -298,7 +270,7 @@ export default function servicos() {
               <div className="w-[40%] flex items-center justify-between flex-col">
                 <Image
                   className="rounded-full max-w-20"
-                  src="/img181.jpg"
+                  src={PersonImage}
                   alt=""
                   width={80}
                   height={80}
@@ -306,28 +278,28 @@ export default function servicos() {
                 <div className=" flex items-center">
                   <Image
                     className="w-4 mx-[2px] h-auto"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={16}
                     height={16}
                   />
                   <Image
                     className="w-4 mx-[2px] h-auto"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={16}
                     height={16}
                   />
                   <Image
                     className="w-4 mx-[2px] h-auto"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={16}
                     height={16}
                   />
                   <Image
                     className="w-4 mx-[2px] h-auto"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={16}
                     height={16}
@@ -362,7 +334,7 @@ export default function servicos() {
               <div className="w-[40%] flex items-center justify-between flex-col">
                 <Image
                   className="rounded-full max-w-20"
-                  src="/img181.jpg"
+                  src={PersonImage}
                   alt=""
                   width={80}
                   height={80}
@@ -370,28 +342,28 @@ export default function servicos() {
                 <div className=" flex items-center">
                   <Image
                     className="w-4 mx-[2px] h-auto"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={16}
                     height={16}
                   />
                   <Image
                     className="w-4 mx-[2px] h-auto"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={16}
                     height={16}
                   />
                   <Image
                     className="w-4 mx-[2px] h-auto"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={16}
                     height={16}
                   />
                   <Image
                     className="w-4 mx-[2px] h-auto"
-                    src="/icones/icone_star.png"
+                    src={StarImage}
                     alt=""
                     width={16}
                     height={16}

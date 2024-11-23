@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
+import {useState, useEffect} from "react";
+import {useSearchParams} from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+
+import EncanadoraImage from "@/assets/maria_encanadora.png";
 
 interface Servico {
   id: number;
@@ -22,7 +24,7 @@ export default function Pesquisa() {
     >
       <Image
         className="rounded-lg"
-        src="/maria_encanadora.png"
+        src={EncanadoraImage}
         alt=""
         width={500}
         height={500}
@@ -87,9 +89,7 @@ export default function Pesquisa() {
       {/* Área de Produtos */}
       <section className="w-3/4 p-4">
         <h2 className="text-lg font-bold mb-4">Resultados para: {termo}</h2>
-        <div className="grid grid-cols-3 gap-4">
-          {listaServico}
-        </div>
+        <div className="grid grid-cols-3 gap-4">{listaServico}</div>
       </section>
     </main>
   );
