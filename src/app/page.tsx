@@ -1,7 +1,7 @@
 // import { useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import {Home} from "./home/page";
-import WhatsappLogo from "@/assets/icones/Whatsapp_azul.svg";
+// import WhatsappLogo from "@/assets/icones/Whatsapp_azul.svg";
 
 // import { useClienteStore } from "@/context/cliente";
 // import  SocialMediaLinks from "@/components/SocialMediaLinks"
