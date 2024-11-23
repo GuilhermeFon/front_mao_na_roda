@@ -1,5 +1,8 @@
 // import { useState } from "react";
+import Image from "next/image";
 import {Home} from "./home/page";
+import WhatsappLogo from "@/assets/icones/Whatsapp_azul.svg";
+
 // import { useClienteStore } from "@/context/cliente";
 // import  SocialMediaLinks from "@/components/SocialMediaLinks"
 // import { useEffect } from "react";
@@ -36,6 +39,7 @@ export default function Page() {
   return (
     <main>
       <Home />
+      {/* <Image src={WhatsappLogo} alt="" width={24} height={24} /> */}
     </main>
   );
 }

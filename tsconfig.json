@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/layout.tsx", "src/components/Footer.tsx", "src/components/Header.tsx", "src/components/HomeVitor.jsx", "src/components/Servico.tsx", "src/app/page.tsx", "src/app/pesquisa/page.tsx", "src/app/servicos/page.tsx", "src/app/perfil/page.tsx", "src/app/login/page.tsx", "src/app/detalhes/page.tsx", "src/app/cadastro/page.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

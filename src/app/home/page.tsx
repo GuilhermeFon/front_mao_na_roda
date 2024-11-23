@@ -15,8 +15,8 @@ export function Home() {
   return (
     <main>
       {/* Seção Hero */}
-      <section className="bg-blue-900 h-fit  text-white text-center ">
-        <div className="container flex justify-evenly items-center max-w-screen-xl mx-auto">
+      <section className="bg-blue-900 h-fit  text-white text-start ">
+        <div className="container flex justify-between items-center mx-auto">
           <div className="">
             <h1 className="text-5xl font-bold mb-4">
               Conectando <span className="text-yellow-400">clientes</span> a
@@ -26,7 +26,7 @@ export function Home() {
               Tenha mais confiança e rapidez na sua reforma, reparo, pintura ou
               muito mais
             </p>
-            <button className="bg-yellow-500 text-black py-3 px-8 rounded-full font-semibold hover:bg-yellow-600">
+            <button className="bg-yellow-400 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600">
               SAIBA MAIS
             </button>
           </div>
@@ -46,7 +46,7 @@ export function Home() {
       </section>
 
       {/* Seção de Serviços */}
-      <section className="py-16 max-w-screen-lg mx-auto text-center">
+      <section className="py-16 mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">
           Conheça os serviços que oferecemos a você!
         </h2>
