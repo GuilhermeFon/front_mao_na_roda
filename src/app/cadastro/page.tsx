@@ -16,7 +16,7 @@ export default function Cadastro() {
   const [NomeCompleto, setNomeCompleto] = useState("");
   const [tipo, setTipo] = useState("CLIENTE");
 
-   async function enviaDados (e:inputs) {
+   async function enviaDados () {
     
     if (senha !== confirmarSenha) {
       alert("As senhas não coincidem.");

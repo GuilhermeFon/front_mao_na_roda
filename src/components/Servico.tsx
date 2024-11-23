@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Main() {
   return (
@@ -11,10 +12,12 @@ export function Main() {
               {" "}
               Joâo Silva - Encanador
             </h1>{" "}
-            <img
+            <Image
               className="max-w-full mx-auto h-auto rounded-3xl"
-              src="./encanador.png"
+              src="/encanador.png"
               alt=""
+              width={500}
+              height={500}
             />
           </div>
           <div className="h-fit max-w-[90%] mx-auto flex flex-col my-8 justify-evenly">
@@ -55,21 +58,31 @@ export function Main() {
             </div>
           </div>
           <div className="max-w-[90%] container mx-auto max-h-64 flex justify-evenly">
-            <img
+            <Image
               className="max-w-[45%] h-auto rounded-3xl"
-              src="./casal.png"
+              src="/casal.png"
               alt=""
+              width={500}
+              height={500}
             />{" "}
-            <img
+            <Image
               className="max-w-[45%] h-auto rounded-3xl"
-              src="./encanador_com_tubo.png"
+              src="/encanador_com_tubo.png"
               alt=""
+              width={500}
+              height={500}
             />
           </div>
         </div>
         <div className="col-start-2 h-fit">
           <div className="rounded-md w-[90%] flex flex-col justify-evenly items-center  mt-14 mx-auto shadow h-96">
-            <img className="rounded-full max-w-20" src="./img181.jpg" alt="" />
+            <Image
+              className="rounded-full max-w-20"
+              src="/img181.jpg"
+              alt=""
+              width={80}
+              height={80}
+            />
 
             <div className=" container flex flex-col justify-between max-w-fit items-center max-h-20">
               <h5 className="text-xl font-semibold text-gray-700 mb-2">
@@ -79,27 +92,39 @@ export function Main() {
             </div>
             <div className="w-[60%] p-1 h-fit flex items-center justify-evenly">
               <a href="">
-                <img
+                <Image
                   className="w-5 h-[18px]"
-                  src="./icones/icone_facebook.svg"
+                  src="/icones/icone_facebook.svg"
                   alt=""
+                  width={20}
+                  height={18}
                 />
               </a>
               <a href="">
-                <img className="w-6" src="./icones/icone_youtube.svg" alt="" />
-              </a>
-              <a href="">
-                <img
-                  className="w-5 h-[18px]"
-                  src="./icones/icone_instagram.svg"
+                <Image
+                  className="w-6"
+                  src="/icones/icone_youtube.svg"
                   alt=""
+                  width={24}
+                  height={24}
                 />
               </a>
               <a href="">
-                <img
+                <Image
                   className="w-5 h-[18px]"
-                  src="./icones/icone_twitter.svg"
+                  src="/icones/icone_instagram.svg"
                   alt=""
+                  width={20}
+                  height={18}
+                />
+              </a>
+              <a href="">
+                <Image
+                  className="w-5 h-[18px]"
+                  src="/icones/icone_twitter.svg"
+                  alt=""
+                  width={20}
+                  height={18}
                 />
               </a>
             </div>
@@ -114,20 +139,24 @@ export function Main() {
           <div className="rounded-md w-[90%] flex flex-col  justify-evenly items-center  mt-14 mx-auto shadow h-fit">
             <div className="flex w-fit pt-6 pb-4 ">
               <div className="flex flex-col px-2 w-fit items-center">
-                <img
+                <Image
                   className="max-w-7"
-                  src="./icones/icone_docu_check.svg"
+                  src="/icones/icone_docu_check.svg"
                   alt=""
+                  width={28}
+                  height={28}
                 />
                 <p className="text-[12px] text-gray-600 leading-relaxed">
                   Certificações verificadas
                 </p>
               </div>
               <div className="flex flex-col px-2 w-fit items-center">
-                <img
+                <Image
                   className="max-w-7"
-                  src="./icones/icone_perfil_check.svg"
+                  src="/icones/icone_perfil_check.svg"
                   alt=""
+                  width={28}
+                  height={28}
                 />
                 <p className="text-[12px] text-gray-600 leading-relaxed">
                   Perfil verificado

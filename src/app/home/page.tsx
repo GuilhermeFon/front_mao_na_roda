@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link"; // Uso de Link do Next.js
-import {Header} from "@/components/Header";
+import Image from "next/image";
 
 export function Home() {
   return (
@@ -23,10 +23,11 @@ export function Home() {
           </div>
 
           <div className="">
-            <img
-              src="./imagem_profissional.png"
+            <Image
+              src="/imagem_profissional.png"
               alt="Profissional"
-              style={{width: "210px", height: "auto"}}
+              width={210}
+              height={210}
               className="object-cover"
             />
           </div>
@@ -51,9 +52,11 @@ export function Home() {
             <p className="text-gray-600 mb-4">
               Soluções rápidas para vazamentos e instalações
             </p>
-            <img
-              src="./icones/icone_encanamento.svg"
+            <Image
+              src="/icones/icone_encanamento.svg"
               alt="Icone de Encanamento"
+              width={48}
+              height={48}
               className="w-12 h-12 mx-auto mb-4"
             />
           </div>
@@ -64,9 +67,11 @@ export function Home() {
             <p className="text-gray-600 mb-4">
               Limpeza detalhada de residências e comércios
             </p>
-            <img
-              src="./icones/icone_faxina.svg"
+            <Image
+              src="/icones/icone_faxina.svg"
               alt="Icone de Limpeza"
+              width={48}
+              height={48}
               className="w-12 h-12 mx-auto mb-4"
             />
           </div>
@@ -77,9 +82,11 @@ export function Home() {
             <p className="text-gray-600 mb-4">
               Transforme seu ambiente com pintura profissional
             </p>
-            <img
-              src="./icones/icone_pintura.svg"
+            <Image
+              src="/icones/icone_pintura.svg"
               alt="Icone de Pintura"
+              width={48}
+              height={48}
               className="w-12 h-12 mx-auto mb-4"
             />
           </div>
@@ -92,9 +99,11 @@ export function Home() {
             <p className="text-gray-600 mb-4">
               Instalações e reparos elétricos seguros
             </p>
-            <img
-              src="./icones/icone_eletrecista.svg"
+            <Image
+              src="/icones/icone_eletrecista.svg"
               alt="Icone de eletrecista"
+              width={48}
+              height={48}
               className="w-12 h-12 mx-auto mb-4"
             />
           </div>
@@ -107,9 +116,11 @@ export function Home() {
             <p className="text-gray-600 mb-4">
               Móveis sob medida e reparos em madeira
             </p>
-            <img
-              src="./icones/icone_martelo.svg"
+            <Image
+              src="/icones/icone_martelo.svg"
               alt="Icone de Manutenção"
+              width={48}
+              height={48}
               className="w-12 h-12 mx-auto mb-4"
             />
           </div>
@@ -120,9 +131,11 @@ export function Home() {
               Serviço de Jardinagem
             </h3>
             <p className="text-gray-600 mb-4">Deixe seu jardim sempre bonito</p>
-            <img
-              src="./icones/icone_pa.svg"
+            <Image
+              src="/icones/icone_pa.svg"
               alt="Icone de Manutenção"
+              width={56}
+              height={56}
               className="w-14 h-14 mx-auto mb-4"
             />
           </div>
@@ -135,9 +148,11 @@ export function Home() {
             <p className="text-gray-600 mb-4">
               Reparos gerais e para sua casa ou empresa
             </p>
-            <img
-              src="./icones/icone_ferramentas.svg"
+            <Image
+              src="/icones/icone_ferramentas.svg"
               alt="Icone de Manutenção"
+              width={48}
+              height={48}
               className="w-12 h-12 mx-auto mb-4"
             />
           </div>

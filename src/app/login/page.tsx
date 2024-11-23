@@ -3,18 +3,20 @@ import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
 import { useClienteStore } from "@/context/cliente"
 
-type Inputs = {
-  email: string
-  senha: string
-  manter: boolean
+
+
+interface LoginFormInputs {
+  email: string;
+  senha: string;
+  manter?: boolean;
 }
 
-export default function login() {
-  const { register, handleSubmit } = useForm<Inputs>()
+export default function Login() {
+  const { register, handleSubmit } = useForm<LoginFormInputs>()
   const { logaCliente } = useClienteStore()
   const router = useRouter()
 
-  async function verificaLogin(data: Inputs) {
+  async function verificaLogin(data: { email: string; senha: string; manter?: boolean }) {
     // console.log(data)
     const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/usuarios/login`, {
       headers: {

@@ -1,11 +1,24 @@
-import React, { useState, useEffect } from "react";
-import axios, { AxiosError } from "axios";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
+import Image from "next/image";
 
-const AnunciosFiltro: React.FC = () => {
-  const [categoria, setCategoria] = useState("todos");
-  const [preco, setPreco] = useState(50);
-  const [descricaoVisible, setDescricaoVisible] = useState<Record<number, boolean>>({});
-  const [anuncios, setAnuncios] = useState<any[]>([]);
+interface Anuncio {
+  titulo: string;
+  descricao: string;
+  imagem: string;
+}
+
+interface DescricaoVisible {
+  [key: number]: boolean;
+}
+
+const AnunciosFiltro = () => {
+  const [categoria, setCategoria] = useState<string>("todos");
+  const [preco, setPreco] = useState<number>(50);
+  const [descricaoVisible, setDescricaoVisible] = useState<DescricaoVisible>(
+    {}
+  );
+  const [anuncios, setAnuncios] = useState<Anuncio[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleCategoriaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -27,16 +40,19 @@ const AnunciosFiltro: React.FC = () => {
     const fetchAnuncios = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("https://api-mao-na-roda.vercel.app/anuncios", {
-          params: {
-            categoria: categoria !== "todos" ? categoria : undefined,
-            preco,
-          },
-        });
-        setAnuncios(response.data);
+        const response = await axios.get(
+          "https://api-mao-na-roda.vercel.app/anuncios",
+          {
+            params: {
+              categoria: categoria !== "todos" ? categoria : undefined,
+              preco,
+            },
+          }
+        );
+        setAnuncios(response.data as Anuncio[]);
         setDescricaoVisible({});
-      } catch (error: AxiosError | any) {
-        console.error("Erro ao carregar os anúncios:", error?.message || error);
+      } catch (error: unknown) {
+        console.error("Erro ao carregar os anúncios:", error);
       } finally {
         setLoading(false);
       }
@@ -45,7 +61,7 @@ const AnunciosFiltro: React.FC = () => {
     fetchAnuncios();
   }, [categoria, preco]);
 
-  const anunciosExemplo = [
+  const anunciosExemplo: Anuncio[] = [
     {
       titulo: "Encanador Profissional",
       descricao:
@@ -110,11 +126,13 @@ const AnunciosFiltro: React.FC = () => {
               key={index}
               className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full"
             >
-              <div className="relative w-full" style={{ height: "410px" }}>
-                <img
+              <div className="relative w-full" style={{height: "410px"}}>
+                <Image
                   src={anuncio.imagem}
                   alt="Anúncio"
-                  className="object-cover w-full h-full rounded-t-lg"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-t-lg"
                 />
               </div>
               <div className="text-center mt-4">
@@ -139,11 +157,13 @@ const AnunciosFiltro: React.FC = () => {
               key={index}
               className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full"
             >
-              <div className="relative w-full" style={{ height: "410px" }}>
-                <img
+              <div className="relative w-full" style={{height: "410px"}}>
+                <Image
                   src={anuncio.imagem}
                   alt="Anúncio"
-                  className="object-cover w-full h-full rounded-t-lg"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-t-lg"
                 />
               </div>
               <div className="text-center mt-4">

@@ -1,16 +1,19 @@
-'use client';
+"use client";
 
-import React, { useState } from "react";
+import React, {useState} from "react";
+import Image from "next/image";
+
+interface Avaliacao {
+  tempo: number;
+  preco: number;
+  limpeza: number;
+}
 
 interface CardHistoricoProps {
   nome: string;
   fotoUsuario: string;
   servico: string;
-  avaliacao: {
-    tempo: number;
-    preco: number;
-    limpeza: number;
-  };
+  avaliacao: Avaliacao;
   comentario: string;
 }
 
@@ -27,7 +30,10 @@ const CardHistorico: React.FC<CardHistoricoProps> = ({
     return Array(5)
       .fill(0)
       .map((_, i) => (
-        <span key={i} className={i < count ? "text-yellow-400" : "text-gray-400"}>
+        <span
+          key={i}
+          className={i < count ? "text-yellow-400" : "text-gray-400"}
+        >
           ★
         </span>
       ));
@@ -39,10 +45,12 @@ const CardHistorico: React.FC<CardHistoricoProps> = ({
 
       {/* Nome e foto do profissional */}
       <div className="flex flex-col items-center">
-        <img
+        <Image
           src={fotoUsuario}
-          alt={nome}  // Usa o nome como alt da imagem
+          alt={nome} // Usa o nome como alt da imagem
           className="w-24 h-24 rounded-full object-cover mb-2"
+          width={96}
+          height={96}
         />
         {/* Aqui, removi a palavra "Usuário" e estou exibindo apenas o nome do profissional */}
         <p className="text-xl font-bold">{nome}</p>
@@ -59,9 +67,15 @@ const CardHistorico: React.FC<CardHistoricoProps> = ({
             <p>Limpeza</p>
           </div>
           <div className="flex flex-col items-start">
-            <div className="flex items-center">{renderStars(avaliacao.tempo)}</div>
-            <div className="flex items-center">{renderStars(avaliacao.preco)}</div>
-            <div className="flex items-center">{renderStars(avaliacao.limpeza)}</div>
+            <div className="flex items-center">
+              {renderStars(avaliacao.tempo)}
+            </div>
+            <div className="flex items-center">
+              {renderStars(avaliacao.preco)}
+            </div>
+            <div className="flex items-center">
+              {renderStars(avaliacao.limpeza)}
+            </div>
           </div>
         </div>
       </div>
@@ -90,25 +104,25 @@ const ListaCards: React.FC = () => {
   const cardsData = [
     {
       nome: "Encanador Profissional",
-      fotoUsuario: "maria_encanadora.png", // Caminho para a imagem
+      fotoUsuario: "/maria_encanadora.png", // Caminho para a imagem
       servico: "SERVIÇO DE ENCANADOR",
-      avaliacao: { tempo: 5, preco: 5, limpeza: 5 },
+      avaliacao: {tempo: 5, preco: 5, limpeza: 5},
       comentario:
         "Excelente trabalho! O serviço foi feito com rapidez e muito cuidado, sem bagunça e sem causar nenhum transtorno. Recomendo para quem busca qualidade e eficiência!",
     },
     {
       nome: "Eletricista Qualificado",
-      fotoUsuario: "profissionais_2.png", // Caminho para a imagem
+      fotoUsuario: "/profissionais_2.png", // Caminho para a imagem
       servico: "SERVIÇO DE ELETRICISTA",
-      avaliacao: { tempo: 4, preco: 5, limpeza: 4 },
+      avaliacao: {tempo: 4, preco: 5, limpeza: 4},
       comentario:
         "Ótimo serviço! O profissional foi eficiente e o preço foi justo. Recomendo para qualquer serviço elétrico!",
     },
     {
       nome: "Serviços de Limpeza",
-      fotoUsuario: "profissionais_3.png", // Caminho para a imagem
+      fotoUsuario: "/profissionais_3.png", // Caminho para a imagem
       servico: "SERVIÇO DE LIMPEZA",
-      avaliacao: { tempo: 5, preco: 4, limpeza: 5 },
+      avaliacao: {tempo: 5, preco: 4, limpeza: 5},
       comentario:
         "A equipe de limpeza foi muito cuidadosa e atenciosa. Excelente para quem procura um ambiente bem cuidado e higienizado.",
     },
