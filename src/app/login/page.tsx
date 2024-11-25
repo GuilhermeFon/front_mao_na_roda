@@ -2,6 +2,7 @@
 import {useForm} from "react-hook-form";
 import {useRouter} from "next/navigation";
 import {useClienteStore} from "@/context/cliente";
+import Link from 'next/link';
 
 interface LoginFormInputs {
   email: string;
@@ -110,12 +111,9 @@ export default function Login() {
                 />{" "}
                 Lembrar-me por 14 dias
               </label>
-              <a
-                href="#"
-                className="text-yellow-600 text-sm hover:text-yellow-500"
-              >
+              <Link href="esqueceuSenha" className="text-yellow-600 text-sm hover:text-yellow-500">
                 Esqueceu a senha?
-              </a>
+              </Link>
             </div>
             <button
               type="submit"
@@ -127,12 +125,9 @@ export default function Login() {
           <div className="text-center mt-8">
             <p className="text-gray-200">
               Não tem uma conta?
-              <a
-                href="cadastro.html"
-                className="text-yellow-600 text-sm hover:text-yellow-500"
-              >
-                Cadastre-se aqui
-              </a>
+              <Link href="cadastro" className="text-yellow-600 text-sm hover:text-yellow-500 ml-2">
+              Cadastre-se aqui
+              </Link>
             </p>
           </div>
         </div>
