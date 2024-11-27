@@ -83,6 +83,14 @@ export function Header() {
             </li>
             <li>
               <Link
+                href="/quemSomos"
+                className="text-black hover:text-yellow-400"
+              >
+                Quem Somos
+              </Link>
+            </li>
+            <li>
+              <Link
                 href="/login"
                 className="bg-yellow-400 rounded-lg  hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4 "
               >

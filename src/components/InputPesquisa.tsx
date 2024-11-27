@@ -30,7 +30,7 @@ export function InputPesquisa({setCarros}: InputPesquisaProps) {
 
     setCarros(dados);
 
-    if (dados.length == 0) {
+    if (dados.length === 0) {
       // toast.error("Não há produtos com o termo pesquisado")
       reset({termo: ""});
       return;
