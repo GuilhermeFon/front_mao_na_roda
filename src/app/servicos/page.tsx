@@ -197,7 +197,7 @@ export default function servicos() {
       </section>
       <section className="flex max-w-screen-lg items-center bg-CinzaBg mt-6 mx-auto h-fit flex-col">
         <div className="flex w-24 my-5 h-5">
-          <div className="w-5 h-[10px] mx-[2px] border-AzulMaisForte border-b-[1px]"></div>
+          <div className="w-5 h-[10px] mx-[2px] border-AzulMaisForte border-b-[1px]" />
           <p className="text-sm  mx-[2px] font-semibold text-AzulMaisForte">
             Galeria
           </p>
@@ -254,7 +254,7 @@ export default function servicos() {
       </section>
       <section className="flex max-w-screen-lg items-center mt-6 mx-auto h-screen flex-col">
         <div className="flex w-24 my-5 h-5">
-          <div className="w-5 h-[10px] mx-[2px] border-AzulMaisForte border-b-[1px]"></div>
+          <div className="w-5 h-[10px] mx-[2px] border-AzulMaisForte border-b-[1px]"/>
           <p className="text-sm  mx-[2px] font-semibold text-AzulMaisForte">
             Avaliações
           </p>

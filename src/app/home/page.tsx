@@ -173,7 +173,7 @@ export function Home() {
             <h3 className="text-xl font-semibold mb-4">
             Somos os melhores neste ramo de serviços.
             </h3>
-            <Link href="/services">
+            <Link href="contato">
             <button
 						type="submit"
 						className="bg-AzulForte py-2 px-6 rounded-lg hover:bg-blue-700">
