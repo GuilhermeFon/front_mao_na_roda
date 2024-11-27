@@ -69,7 +69,7 @@ export function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/" className="text-black hover:text-yellow-400">
+            <Link href="perfil" className="text-black hover:text-yellow-400">
                 Perfil
               </Link>
             </li>
