@@ -3,6 +3,7 @@ import {useState} from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation"
 import axios from "axios";
+import Link from "next/link";
 
 type inputs = {
   termo: string
@@ -115,6 +116,12 @@ export default function Cadastro() {
               Registrar
             </button>
           </form>
+          <Link
+              href="login"
+              className="text-yellow-600 text-sm hover:text-yellow-500"
+            >
+              Voltar ao login
+            </Link>
         </div>
       </div>
     </main>

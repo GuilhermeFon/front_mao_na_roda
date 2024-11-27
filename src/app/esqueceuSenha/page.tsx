@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 export default function esqueceuSenha() {
   return (
     <main
-      className={`background-profissional bg-no-repeat bg-right-bottom min-h-screen flex justify-center items-center`}
+      className={"background-profissional bg-no-repeat bg-right-bottom min-h-screen flex justify-center items-center"}
     >
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-gray-200 text-center text-2xl font-bold mb-6">
@@ -27,12 +29,12 @@ export default function esqueceuSenha() {
         <div className="text-center mt-8">
           <p className="text-gray-200">
             Lembrou a senha?{" "}
-            <a
-              href="/login"
+            <Link
+              href="login"
               className="text-yellow-600 text-sm hover:text-yellow-500"
             >
               Voltar ao login
-            </a>
+            </Link>
           </p>
         </div>
       </div>
