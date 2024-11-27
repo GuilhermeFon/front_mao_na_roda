@@ -105,7 +105,7 @@ export default function Cadastro() {
                     onChange={(e) => setTipo(e.target.value)}
                     className="mr-2"
                   />
-                  Prestador
+                  Profissional
                 </label>
               </div>
             </div>

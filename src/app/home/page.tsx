@@ -26,9 +26,11 @@ export function Home() {
               Tenha mais confiança e rapidez na sua reforma, reparo, pintura ou
               muito mais
             </p>
-            <button className="bg-yellow-400 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600">
+            <button
+						type="submit"
+						className="bg-yellow-400 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600">
               SAIBA MAIS
-            </button>
+					</button>
           </div>
 
           <div className="">
@@ -169,12 +171,15 @@ export function Home() {
           {/* Card especial */}
           <div className="border p-8 rounded-lg flex flex-col justify-evenly bg-yellow-500 text-white shadow-md h-full">
             <h3 className="text-xl font-semibold mb-4">
-              Não encontrou o que procurava?
+            Somos os melhores neste ramo de serviços.
             </h3>
             <Link href="/services">
-              <button className="bg-AzulForte py-2 px-6 rounded-lg hover:bg-blue-700">
-                Todos serviços
-              </button>
+            <button
+						type="submit"
+						className="bg-AzulForte py-2 px-6 rounded-lg hover:bg-blue-700">
+                Contrate-nos agora
+
+					</button>
             </Link>
           </div>
         </div>
