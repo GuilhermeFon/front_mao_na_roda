@@ -1,15 +1,15 @@
-import React from "react";
-import Link from "next/link"; // Uso de Link do Next.js
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import ProfissionalImage from "@/assets/imagem_profissional.png";
-import EncanamentoIcon from "@/assets/icones/icone_encanamento.svg";
-import FaxinaIcon from "@/assets/icones/icone_faxina.svg";
-import PinturaIcon from "@/assets/icones/icone_pintura.svg";
-import EletricistaIcon from "@/assets/icones/icone_eletrecista.svg";
-import MarceneiroIcon from "@/assets/icones/icone_martelo.svg";
-import JardinagemIcon from "@/assets/icones/icone_pa.svg";
-import FerramentasIcon from "@/assets/icones/icone_ferramentas.svg";
+import ProfissionalImage from '@/assets/imagem_profissional.png';
+import EncanamentoIcon from '@/assets/icones/icone_encanamento.svg';
+import FaxinaIcon from '@/assets/icones/icone_faxina.svg';
+import PinturaIcon from '@/assets/icones/icone_pintura.svg';
+import EletricistaIcon from '@/assets/icones/icone_eletrecista.svg';
+import MarceneiroIcon from '@/assets/icones/icone_martelo.svg';
+import JardinagemIcon from '@/assets/icones/icone_pa.svg';
+import FerramentasIcon from '@/assets/icones/icone_ferramentas.svg';
 
 export function Home() {
   return (
@@ -18,7 +18,7 @@ export function Home() {
       <section className="bg-blue-900 h-fit  text-white text-start ">
         <div className="container flex justify-between items-center mx-auto">
           <div className="">
-            <h1 className="text-5xl font-bold mb-4">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-4">
               Conectando <span className="text-yellow-400">clientes</span> a
               profissionais
             </h1>
@@ -27,13 +27,14 @@ export function Home() {
               muito mais
             </p>
             <button
-						type="submit"
-						className="bg-yellow-400 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600">
+              type="submit"
+              className="bg-yellow-400 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600"
+            >
               SAIBA MAIS
-					</button>
+            </button>
           </div>
 
-          <div className="">
+          <div className="hidden lg:block">
             <Image
               src={ProfissionalImage}
               alt="Profissional"
@@ -171,15 +172,15 @@ export function Home() {
           {/* Card especial */}
           <div className="border p-8 rounded-lg flex flex-col justify-evenly bg-yellow-500 text-white shadow-md h-full">
             <h3 className="text-xl font-semibold mb-4">
-            Somos os melhores neste ramo de serviços.
+              Somos os melhores neste ramo de serviços.
             </h3>
             <Link href="contato">
-            <button
-						type="submit"
-						className="bg-AzulForte py-2 px-6 rounded-lg hover:bg-blue-700">
+              <button
+                type="submit"
+                className="bg-AzulForte py-2 px-6 rounded-lg hover:bg-blue-700"
+              >
                 Contrate-nos agora
-
-					</button>
+              </button>
             </Link>
           </div>
         </div>

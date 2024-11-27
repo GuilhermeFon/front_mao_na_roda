@@ -1,113 +1,163 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 import Logo from '@/assets/icones/logo_azul_e_cinzas_e_nome.svg';
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header>
       <div className="container mx-auto flex justify-between items-center py-5 px-2">
         <div>
           <Link href="/" className="flex items-center rtl:space-x-reverse">
             <Image src={Logo} className="" alt="logo" width={200} height={48} />
-            <span className="text-3xl font-semibold whitespace-nowrap dark:text-black"/>
+            <span className="text-3xl font-semibold whitespace-nowrap dark:text-black" />
           </Link>
         </div>
-        {/* searchbar */}
-        {/* <div className="w-100% bg-gray-100">
-          <div className="max-w-screen-xl mx-auto flex items-center justify-between">
-            <form className="max-w-xl container rounded-full">
-              <label
-                htmlFor="default-search"
-                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-              >
-                Search
-              </label>
-              <div className="relative">
-                <input
-                  type="search"
-                  id="default-search"
-                  className="block w-full max-h-10 py-4 rounded-full ps-4 text-sm text-gray-900 border border-gray-300 italic bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Pesquisar"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="text-white max-w-10 h-10 absolute bg-gray-50 border-t border-b end-0 border-gray-300 bottom-0 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-s-none rounded-e-full text-sm px-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                ></button>
-                <button
-                  type="submit"
-                  className="text-white max-w-10 h-6 absolute bg-gray-50 border-s end-0 border-gray-300 bottom-2 cursor-pointer focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-s-none rounded-e-full text-sm px-4 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  <a href="/pesquisa">
-                    <svg
-                      className="w-4 h-4 text-gray-500 relative end-1.5 dark:text-gray-400"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                      />
-                    </svg>
-                  </a>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div> */}
-        <nav className="bg-white border-gray-200">
-          <ul className="flex justify-center space-x-4 py-4">
-            <li>
-              <Link href="/" className="text-black hover:text-yellow-400">
-                Início
-              </Link>
-            </li>
-            <li>
-            <Link href="perfil" className="text-black hover:text-yellow-400">
-                Perfil
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/servicos"
-                className="text-black hover:text-yellow-400"
-              >
-                Serviços
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/quemSomos"
-                className="text-black hover:text-yellow-400"
-              >
-                Quem Somos
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/login"
-                className="bg-yellow-400 rounded-lg  hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4 "
-              >
-                Entrar
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/cadastro"
-                className="bg-blue-900 rounded-lg  hover:bg-blue-950x text-white text-center font-semibold py-2 px-4"
-              >
-                Cadastre-se
-              </Link>
-            </li>
-          </ul>
+        <nav className="hidden lg:flex space-x-4 items-center">
+          <Link href="/" className="text-black hover:text-yellow-400">
+            Início
+          </Link>
+          <Link href="perfil" className="text-black hover:text-yellow-400">
+            Perfil
+          </Link>
+          <Link href="/servicos" className="text-black hover:text-yellow-400">
+            Serviços
+          </Link>
+          <Link href="/quemSomos" className="text-black hover:text-yellow-400">
+            Quem Somos
+          </Link>
+          <Link
+            href="/login"
+            className="bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
+          >
+            Entrar
+          </Link>
+          <Link
+            href="/cadastro"
+            className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+          >
+            Cadastre-se
+          </Link>
         </nav>
+        <button className="block lg:hidden text-black" onClick={toggleMenu}>
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
       </div>
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={closeMenu}
+        >
+          <nav
+            className="fixed top-0 right-0 w-64 h-full bg-white z-50"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className='mb-10'>
+              <button
+                className="absolute top-4 left-4 text-black"
+                onClick={closeMenu}
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <ul className="flex flex-col space-y-4 p-4">
+              <li>
+                <Link
+                  href="/"
+                  className="text-black hover:text-yellow-400"
+                  onClick={toggleMenu}
+                >
+                  Início
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="perfil"
+                  className="text-black hover:text-yellow-400"
+                  onClick={toggleMenu}
+                >
+                  Perfil
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/servicos"
+                  className="text-black hover:text-yellow-400"
+                  onClick={toggleMenu}
+                >
+                  Serviços
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/quemSomos"
+                  className="text-black hover:text-yellow-400"
+                  onClick={toggleMenu}
+                >
+                  Quem Somos
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/login"
+                  className="bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
+                  onClick={toggleMenu}
+                >
+                  Entrar
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/cadastro"
+                  className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+                  onClick={toggleMenu}
+                >
+                  Cadastre-se
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
