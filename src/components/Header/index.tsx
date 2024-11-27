@@ -10,7 +10,7 @@ export function Header() {
         <div>
           <Link href="/" className="flex items-center rtl:space-x-reverse">
             <Image src={Logo} className="" alt="logo" width={200} height={48} />
-            <span className="text-3xl font-semibold whitespace-nowrap dark:text-black"></span>
+            <span className="text-3xl font-semibold whitespace-nowrap dark:text-black"/>
           </Link>
         </div>
         {/* searchbar */}

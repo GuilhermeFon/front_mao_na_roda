@@ -34,7 +34,7 @@ export default function Login() {
     //    console.log(response)
     const dados_ = await response.json();
     console.log(dados_.token);
-    if (response.status == 200) {
+    if (response.status === 200) {
       const response_ = await fetch(
         `${process.env.NEXT_PUBLIC_URL_API}/usuarios/dados`,
         {
@@ -78,9 +78,9 @@ export default function Login() {
   }
   return (
     <main
-      className={`background-profissional bg-no-repeat bg-right-bottom   `}
+      className={"background-profissional bg-no-repeat bg-right-bottom"}
     >
-      <div className="background-image"></div>
+      <div className="background-image"/>
 
       <div className="flex justify-center items-center min-h-screen p-4">
         <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">

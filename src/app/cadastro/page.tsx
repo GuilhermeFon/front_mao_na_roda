@@ -33,7 +33,7 @@ export default function Cadastro() {
         }
       );
       console.log("Usuário registrado:", response.data);
-      if (response.status == 201){
+      if (response.status === 201){
         alert("Cadasto realizado com sucesso!")
         router.push("/login")        
       }
@@ -84,7 +84,7 @@ export default function Cadastro() {
             />
 
             <div className="mb-4">
-              <label className="text-gray-200">Tipo de usuário:</label>
+              <p className="text-gray-200">Tipo de usuário:</p>
               <div className="flex mt-2">
                 <label className="text-gray-200 mr-4">
                   <input

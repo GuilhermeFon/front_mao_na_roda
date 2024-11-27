@@ -27,7 +27,7 @@ export default function Perfil() {
         }
       );
       console.log(response.status);
-      if (response.status == 200) {
+      if (response.status === 200) {
         // const dados = await response.json();
         // Use the 'dados' variable here if needed
       }
@@ -119,7 +119,7 @@ export default function Perfil() {
                     rows={6}
                     className="bg-Azul2 border border-Azul2  text-sm rounded-lg focus:ring-Azul2 focus:border-Azul2 block w-full p-2.5 "
                     placeholder="Diga algo sobre você aos seus clientes..."
-                  ></textarea>
+                  />
                 </div>
                 <button
                   type="submit"
