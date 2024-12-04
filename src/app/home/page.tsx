@@ -14,7 +14,6 @@ import FerramentasIcon from '@/assets/icones/icone_ferramentas.svg';
 export function Home() {
   return (
     <main>
-      {/* Seção Hero */}
       <section className="bg-blue-900 h-fit  text-white text-start ">
         <div className="container flex justify-between items-center mx-auto">
           <div className="">
@@ -44,11 +43,8 @@ export function Home() {
             />
           </div>
         </div>
-
-        {/* Imagem do Profissional */}
       </section>
 
-      {/* Seção de Serviços */}
       <section className="py-16 mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">
           Conheça os serviços que oferecemos a você!
