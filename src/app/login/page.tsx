@@ -26,14 +26,14 @@ export default function Login() {
         body: JSON.stringify({ email: data.email, senha: data.senha }),
       },
     );
-    const dados_ = await response.json();
+    const dados = await response.json();
     if (response.status === 200) {
       const response_ = await fetch(
         `${process.env.NEXT_PUBLIC_URL_API}/usuarios/dados`,
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${dados_.token}`,
+            Authorization: `Bearer ${dados.token}`,
           },
           method: 'POST',
           body: JSON.stringify({ email: data.email }),
@@ -42,11 +42,11 @@ export default function Login() {
       const dadosUsuario = await response_.json();
       const dadosUsuario2 = {
         ...dadosUsuario,
-        token: dados_.token,
+        token: dados.token,
       };
       logaCliente(dadosUsuario2);
-      localStorage.setItem('client_key', dados_.id);
-      localStorage.setItem('client_token', dados_.token);
+      localStorage.setItem('client_key', dadosUsuario.id);
+      localStorage.setItem('client_token', dados.token);
 
       router.push('/');
     } else {
@@ -80,7 +80,7 @@ export default function Login() {
             <div className="flex justify-between items-center mb-4">
               <Link
                 href="esqueceuSenha"
-                className="text-yellow-600 text-sm hover:text-yellow-500"
+                className="text-yellow-500 text-sm hover:text-yellow-600"
               >
                 Esqueceu a senha?
               </Link>
@@ -97,7 +97,7 @@ export default function Login() {
               Não tem uma conta?
               <Link
                 href="cadastro"
-                className="text-yellow-600 text-sm hover:text-yellow-500 ml-2"
+                className="text-yellow-500 text-sm hover:text-yellow-600 ml-2"
               >
                 Cadastre-se aqui
               </Link>

@@ -5,9 +5,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import Logo from '@/assets/icones/logo_azul_e_cinzas_e_nome.svg';
+import { useClienteStore } from '@/context/cliente';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cliente } = useClienteStore();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -30,27 +32,35 @@ export function Header() {
           <Link href="/" className="text-black hover:text-yellow-400">
             Início
           </Link>
-          <Link href="perfil" className="text-black hover:text-yellow-400">
-            Perfil
-          </Link>
           <Link href="/servicos" className="text-black hover:text-yellow-400">
             Serviços
           </Link>
           <Link href="/quemSomos" className="text-black hover:text-yellow-400">
             Quem Somos
           </Link>
-          <Link
-            href="/login"
-            className="bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
-          >
-            Entrar
-          </Link>
-          <Link
-            href="/cadastro"
-            className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
-          >
-            Cadastre-se
-          </Link>
+          {cliente.id ? (
+            <Link
+              href="/perfil"
+              className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+            >
+              Perfil
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
+              >
+                Entrar
+              </Link>
+              <Link
+                href="/cadastro"
+                className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+              >
+                Cadastre-se
+              </Link>
+            </>
+          )}
         </nav>
         <button className="block lg:hidden text-black" onClick={toggleMenu}>
           <svg
@@ -78,7 +88,7 @@ export function Header() {
             className="fixed top-0 right-0 w-64 h-full bg-white z-50"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className='mb-10'>
+            <div className="mb-10">
               <button
                 className="absolute top-4 left-4 text-black"
                 onClick={closeMenu}
@@ -111,15 +121,6 @@ export function Header() {
               </li>
               <li>
                 <Link
-                  href="perfil"
-                  className="text-black hover:text-yellow-400"
-                  onClick={toggleMenu}
-                >
-                  Perfil
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/servicos"
                   className="text-black hover:text-yellow-400"
                   onClick={toggleMenu}
@@ -136,24 +137,38 @@ export function Header() {
                   Quem Somos
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/login"
-                  className="bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
-                  onClick={toggleMenu}
-                >
-                  Entrar
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/cadastro"
-                  className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
-                  onClick={toggleMenu}
-                >
-                  Cadastre-se
-                </Link>
-              </li>
+              {cliente.id ? (
+                <li>
+                  <Link
+                    href="/perfil"
+                    className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+                    onClick={toggleMenu}
+                  >
+                    Perfil
+                  </Link>
+                </li>
+              ) : (
+                <>
+                  <li>
+                    <Link
+                      href="/login"
+                      className="bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
+                      onClick={toggleMenu}
+                    >
+                      Entrar
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/cadastro"
+                      className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+                      onClick={toggleMenu}
+                    >
+                      Cadastre-se
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>
