@@ -14,11 +14,9 @@ export const useClienteStore = create<ClienteStore>()(
       cliente: {} as ClienteI,
       logaCliente: (clienteLogado) => {
         set({ cliente: clienteLogado });
-        console.log(clienteLogado, '!!!');
       },
       deslogaCliente: () => {
         set({ cliente: {} as ClienteI });
-        console.log('!!!');
       },
     }),
     {

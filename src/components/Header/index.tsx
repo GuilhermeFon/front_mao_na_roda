@@ -9,7 +9,8 @@ import { useClienteStore } from '@/context/cliente';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { cliente } = useClienteStore();
+  const [ConfigMenuOpen, setConfigMenuOpen] = useState(false);
+  const { cliente, deslogaCliente } = useClienteStore();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -17,6 +18,15 @@ export function Header() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleMenuClick = () => {
+    setConfigMenuOpen(!ConfigMenuOpen);
+  };
+
+  const handleLogout = () => {
+    deslogaCliente();
+    setConfigMenuOpen(false);
   };
 
   return (
@@ -39,12 +49,31 @@ export function Header() {
             Quem Somos
           </Link>
           {cliente.id ? (
-            <Link
-              href="/perfil"
-              className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
-            >
-              Perfil
-            </Link>
+            <div className="relative">
+              <button
+                onClick={handleMenuClick}
+                className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+              >
+                Menu
+              </button>
+              {ConfigMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                  <Link
+                    href="/perfil"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    onClick={() => setConfigMenuOpen(false)}
+                  >
+                    Configurações da Conta
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  >
+                    Sair
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <>
               <Link
