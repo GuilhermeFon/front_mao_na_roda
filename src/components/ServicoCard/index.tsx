@@ -92,7 +92,7 @@ const CardHistorico: React.FC<CardHistoricoProps> = ({
 
       {/* Botão de avaliação */}
       <div className="flex justify-center mt-6">
-        <button className="bg-yellow-400 text-gray-900 font-semibold py-2 px-6 rounded-lg hover:bg-yellow-500">
+        <button className="bg-yellow-500 text-gray-900 font-semibold py-2 px-6 rounded-lg hover:bg-yellow-600">
           Avalie aqui!
         </button>
       </div>

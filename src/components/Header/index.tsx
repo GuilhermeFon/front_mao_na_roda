@@ -41,7 +41,7 @@ export function Header() {
           {cliente.id ? (
             <Link
               href="/perfil"
-              className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+              className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
             >
               Perfil
             </Link>
@@ -55,7 +55,7 @@ export function Header() {
               </Link>
               <Link
                 href="/cadastro"
-                className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+                className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
               >
                 Cadastre-se
               </Link>
@@ -141,7 +141,7 @@ export function Header() {
                 <li>
                   <Link
                     href="/perfil"
-                    className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+                    className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
                     onClick={toggleMenu}
                   >
                     Perfil
@@ -161,7 +161,7 @@ export function Header() {
                   <li>
                     <Link
                       href="/cadastro"
-                      className="bg-yellow-400 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+                      className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
                       onClick={toggleMenu}
                     >
                       Cadastre-se

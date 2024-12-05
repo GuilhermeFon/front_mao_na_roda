@@ -87,7 +87,7 @@ export default function Login() {
             </div>
             <button
               type="submit"
-              className="w-full mt-6 bg-yellow-300 text-dark p-2 rounded hover:bg-yellow-400 transition"
+              className="w-full mt-6 bg-yellow-500 text-dark p-2 rounded hover:bg-yellow-600 transition"
             >
               Entrar
             </button>

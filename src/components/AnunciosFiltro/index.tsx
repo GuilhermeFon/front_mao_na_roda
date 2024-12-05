@@ -141,7 +141,7 @@ const AnunciosFiltro = () => {
                   <p className="text-gray-600 mt-2">{anuncio.descricao}</p>
                 )}
                 <button
-                  className="bg-yellow-400 text-white rounded-full py-3 px-6 mt-6 hover:bg-yellow-500"
+                  className="bg-yellow-500 text-white rounded-full py-3 px-6 mt-6 hover:bg-yellow-600"
                   onClick={() => toggleDescricao(index)}
                 >
                   {descricaoVisible[index]
@@ -172,7 +172,7 @@ const AnunciosFiltro = () => {
                   <p className="text-gray-600 mt-2">{anuncio.descricao}</p>
                 )}
                 <button
-                  className="bg-yellow-400 text-white rounded-full py-3 px-6 mt-6 hover:bg-yellow-500"
+                  className="bg-yellow-500 text-white rounded-full py-3 px-6 mt-6 hover:bg-yellow-600"
                   onClick={() => toggleDescricao(index)}
                 >
                   {descricaoVisible[index]
