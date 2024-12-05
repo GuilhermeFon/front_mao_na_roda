@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import ProfissionalImage from '@/assets/imagem_profissional.png';
+import EncanadorCasal    from '@/assets/encanador_com_mulher.png';
 import EncanamentoIcon from '@/assets/icones/icone_encanamento.svg';
 import FaxinaIcon from '@/assets/icones/icone_faxina.svg';
 import PinturaIcon from '@/assets/icones/icone_pintura.svg';
@@ -10,13 +11,15 @@ import EletricistaIcon from '@/assets/icones/icone_eletrecista.svg';
 import MarceneiroIcon from '@/assets/icones/icone_martelo.svg';
 import JardinagemIcon from '@/assets/icones/icone_pa.svg';
 import FerramentasIcon from '@/assets/icones/icone_ferramentas.svg';
+import FeatureGrid from '@/components/FeatureGrid';
+import Profissional  from '@/assets/maria_encanadora.png';
 
 export function Home() {
   return (
     <main>
-      <section className="bg-blue-900 h-fit  text-white text-start ">
+      <section className="bg-blue-900 h-fit text-white text-start">
         <div className="container flex justify-between items-center mx-auto">
-          <div className="">
+          <div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">
               Conectando <span className="text-yellow-400">clientes</span> a
               profissionais
@@ -180,6 +183,92 @@ export function Home() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-8 p-6">
+  {/* Card Profissionais */}
+  <div className="flex bg-white text-gray-800 p-6 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl">
+    <div className="w-3/4">
+      <h3 className="text-2xl font-bold mb-4">Para profissionais</h3>
+      <p className="mb-6">
+        Expanda sua prática e conecte-se com novos pacientes. Junte-se à nossa
+        rede de profissionais e ofereça cuidado de qualidade em um ambiente
+        acolhedor.
+      </p>
+      <button className="bg-teal-500 text-white py-2 px-6 rounded hover:bg-teal-600 transition-colors">
+        Saiba mais
+      </button>
+    </div>
+    <div className="w-1/4 flex justify-end items-center">
+      <Image
+        src={Profissional}
+        alt="Profissional"
+        className=" w-full"
+      />
+    </div>
+  </div>
+
+  {/* Card Clientes */}
+  <div className="flex bg-white text-gray-800 p-6 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl">
+    <div className="w-3/4">
+      <h3 className="text-2xl font-bold mb-4">Para clientes</h3>
+      <p className="mb-6">
+        Encontre o suporte que você precisa com profissionais qualificados.
+        Agende consultas de forma fácil e comece sua jornada de bem-estar.
+      </p>
+      <button className="bg-teal-500 text-white py-2 px-6 rounded hover:bg-teal-600 transition-colors">
+        Saiba mais
+      </button>
+    </div>
+    <div className="w-1/4 flex justify-end items-center">
+      <Image
+        src=""
+        alt="Cliente"
+        className="rounded-full w-28 h-28 object-cover"
+      />
+    </div>
+  </div>
+</div>
+
+      <div className="text-center my-10">
+          <FeatureGrid/>
+        </div>
+      <section className="bg-blue-100 py-10 mt-20">
+        <div className="max-w-screen-lg mx-auto text-center lg:flex lg:justify-between">
+          <div className="lg:w-1/2 lg:text-left">
+            <h2 className="text-2xl font-bold mb-4">Junte-se à nossa rede de profissionais</h2>
+            <p className="text-lg text-gray-700 mb-4">
+              Se você é um profissional qualificado com experiência em serviços gerais e está interessado em expandir sua prática, conectar-se com novos clientes, venha fazer parte da nossa plataforma.
+            </p>
+            <h3 className="text-xl font-semibold mb-2">Por que se juntar a nós?</h3>
+            <ul className="list-disc text-left ml-6 mb-4">
+              <li>Acesso a uma base de clientes diversificada</li>
+              <li>Ferramentas e suporte dedicados</li>
+              <li>Flexibilidade e controle</li>
+            </ul>
+            <p className="text-lg text-gray-700 mb-4">
+              Gerencie seus serviços e horários de forma eficiente e de acordo com suas preferências.
+            </p>
+          </div>
+          <div className="lg:w-1/2 flex justify-center mb-6 lg:mb-5 ml-9">
+            <Image
+              src={EncanadorCasal}
+              alt="Profissional"
+              width={500}
+              height={250}
+              className="rounded-full"
+            />
+          </div>
+        </div>
+        <div className="text-center mt-6">
+          <Link
+            href="cadastro"
+            className="inline-block bg-blue-600 text-white text-lg font-bold py-3 px-6 rounded-full hover:bg-blue-700"
+          >
+            Cadastre-se Agora
+          </Link>
+        </div>
+        
       </section>
     </main>
   );

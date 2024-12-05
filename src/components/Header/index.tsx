@@ -33,7 +33,7 @@ export function Header() {
             Início
           </Link>
           <Link href="/servicos" className="text-black hover:text-yellow-400">
-            Serviços
+            Encontrar profissionais
           </Link>
           <Link href="/quemSomos" className="text-black hover:text-yellow-400">
             Quem Somos
