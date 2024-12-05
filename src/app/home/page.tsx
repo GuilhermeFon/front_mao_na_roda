@@ -30,7 +30,7 @@ export function Home() {
             </p>
             <button
               type="submit"
-              className="bg-yellow-400 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600"
+              className="bg-yellow-500 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600"
             >
               SAIBA MAIS
             </button>

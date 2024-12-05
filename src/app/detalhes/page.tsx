@@ -56,7 +56,7 @@ export default function servicoDetalhes() {
             />
             <button
               type="submit"
-              className="w-full bg-yellow-400 text-white font-bold py-3 rounded-lg hover:bg-yellow-500 transition"
+              className="w-full bg-yellow-500 text-white font-bold py-3 rounded-lg hover:bg-yellow-600 transition"
             >
               Obtenha um orçamento
             </button>

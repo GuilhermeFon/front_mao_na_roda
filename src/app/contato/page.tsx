@@ -71,7 +71,7 @@ const Contato = () => {
 								height={800}
 								className="rounded-lg shadow-lg"
 							/>
-							<div className="absolute bottom-6 left-6 bg-yellow-400 p-4 rounded-lg shadow-md text-AzulEscuro">
+							<div className="absolute bottom-6 left-6 bg-yellow-500 p-4 rounded-lg shadow-md text-AzulEscuro">
 								<h4 className="text-lg font-bold mb-2 mr-2">
 									Sinta-se à vontade para entrar em contato conosco e nos
 									contatar!

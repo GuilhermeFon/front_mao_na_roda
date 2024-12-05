@@ -58,7 +58,7 @@ const QuemSomos = () => {
 							height={800}
 							className="rounded-lg shadow-lg"
 						/>
-						<div className="absolute bottom-6 left-6 bg-yellow-400 p-4 rounded-lg shadow-md text-AzulEscuro">
+						<div className="absolute bottom-6 left-6 bg-yellow-500 p-4 rounded-lg shadow-md text-AzulEscuro">
 							<h4 className="text-lg font-bold mb-2">
 								Uma equipe dedicada ao sucesso!
 							</h4>
