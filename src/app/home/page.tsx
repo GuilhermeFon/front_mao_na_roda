@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import ProfissionalImage from '@/assets/imagem_profissional.png';
-import EncanadorCasal    from '@/assets/encanador_com_mulher.png';
+import EncanadorCasal from '@/assets/encanador_com_mulher.png';
 import EncanamentoIcon from '@/assets/icones/icone_encanamento.svg';
 import FaxinaIcon from '@/assets/icones/icone_faxina.svg';
 import PinturaIcon from '@/assets/icones/icone_pintura.svg';
@@ -12,7 +12,8 @@ import MarceneiroIcon from '@/assets/icones/icone_martelo.svg';
 import JardinagemIcon from '@/assets/icones/icone_pa.svg';
 import FerramentasIcon from '@/assets/icones/icone_ferramentas.svg';
 import FeatureGrid from '@/components/FeatureGrid';
-import Profissional  from '@/assets/maria_encanadora.png';
+import Profissional from '@/assets/maria_encanadora.png';
+import Cliente from '@/assets/cliente.jpg';
 
 export function Home() {
   return (
@@ -186,53 +187,55 @@ export function Home() {
       </section>
 
       <div className="flex flex-col lg:flex-row justify-center items-center gap-8 p-6">
-  {/* Card Profissionais */}
-  <div className="flex bg-white text-gray-800 p-6 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl">
-    <div className="w-3/4">
-      <h3 className="text-2xl font-bold mb-4">Para profissionais</h3>
-      <p className="mb-6">
-        Expanda sua prática e conecte-se com novos pacientes. Junte-se à nossa
-        rede de profissionais e ofereça cuidado de qualidade em um ambiente
-        acolhedor.
-      </p>
-      <button className="bg-teal-500 text-white py-2 px-6 rounded hover:bg-teal-600 transition-colors">
-        Saiba mais
-      </button>
-    </div>
-    <div className="w-1/4 flex justify-end items-center">
-      <Image
-        src={Profissional}
-        alt="Profissional"
-        className=" w-full"
-      />
-    </div>
-  </div>
+        {/* Card Profissionais */}
+        <div className="flex bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl">
+          <div className="w-3/4 p-6">
+            <h3 className="text-2xl font-bold mb-4">Para profissionais</h3>
+            <p className="mb-6">
+              Divulgue seus serviços, conecte-se com clientes e amplie sua rede. Com
+              nossa plataforma, você gerencia seus atendimentos de forma prática e
+              aumenta suas oportunidades de trabalho.
+            </p>
+            <button className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors">
+              Saiba mais
+            </button>
+          </div>
+          <div className="w-1/4 flex justify-end items-center">
+            <Image
+              src={Profissional}
+              alt="Profissional"
+              className="w-full h-full rounded-r-lg"
+            />
+          </div>
+        </div>
 
-  {/* Card Clientes */}
-  <div className="flex bg-white text-gray-800 p-6 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl">
-    <div className="w-3/4">
-      <h3 className="text-2xl font-bold mb-4">Para clientes</h3>
-      <p className="mb-6">
-        Encontre o suporte que você precisa com profissionais qualificados.
-        Agende consultas de forma fácil e comece sua jornada de bem-estar.
-      </p>
-      <button className="bg-teal-500 text-white py-2 px-6 rounded hover:bg-teal-600 transition-colors">
-        Saiba mais
-      </button>
-    </div>
-    <div className="w-1/4 flex justify-end items-center">
-      <Image
-        src=""
-        alt="Cliente"
-        className="rounded-full w-28 h-28 object-cover"
-      />
-    </div>
-  </div>
-</div>
+        {/* Card Clientes */}
+        <div className="flex bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl">
+          <div className="w-3/4 p-6">
+            <h3 className="text-2xl font-bold mb-4">Para clientes</h3>
+            <p className="mb-6">
+              Encontre profissionais qualificados de maneira rápida e segura. Contrate
+              serviços como encanadores, eletricistas e pintores com praticidade e
+              confiança.
+            </p>
+            <button className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors">
+              Saiba mais
+            </button>
+          </div>
+          <div className="w-1/4 flex justify-end items-center">
+            <Image
+              src={Cliente}
+              alt="Cliente"
+              className="w-full h-full rounded-r-lg"
+            />
+          </div>
+        </div>
+      </div>
+
 
       <div className="text-center my-10">
-          <FeatureGrid/>
-        </div>
+        <FeatureGrid />
+      </div>
       <section className="bg-blue-100 py-10 mt-20">
         <div className="max-w-screen-lg mx-auto text-center lg:flex lg:justify-between">
           <div className="lg:w-1/2 lg:text-left">
@@ -268,7 +271,7 @@ export function Home() {
             Cadastre-se Agora
           </Link>
         </div>
-        
+
       </section>
     </main>
   );

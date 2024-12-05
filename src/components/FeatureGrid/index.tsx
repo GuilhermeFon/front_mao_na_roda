@@ -2,40 +2,40 @@
 export default function FeatureGrid() {
     const features = [
       {
-        title: "Acesso facilitado",
+        title: "Encontre serviços próximos",
         description:
-          "Encontre o apoio que precisa sem sair de casa. Agende consultas online com apenas alguns cliques, de maneira rápida e prática.",
-        icon: "💻", // Substitua por um ícone adequado, se necessário
+          "Localize rapidamente profissionais qualificados na sua região, prontos para atender às suas necessidades.",
+        icon: "📍", // Localização
       },
       {
-        title: "Profissionais qualificados",
+        title: "Profissionais confiáveis",
         description:
-          "Psicólogos e psiquiatras experientes e certificados, prontos para oferecer o suporte necessário para o seu bem-estar mental.",
-        icon: "🎓",
+          "Todos os prestadores de serviços passam por uma avaliação rigorosa para garantir qualidade e segurança.",
+        icon: "✅", // Verificação
       },
       {
-        title: "Confidencialidade garantida",
+        title: "Agendamento facilitado",
         description:
-          "Todo o processo é seguro e protegido. Suas informações pessoais e suas sessões são mantidas em total confidencialidade.",
-        icon: "🔒",
+          "Escolha o serviço, veja os horários disponíveis e agende com facilidade diretamente pela plataforma.",
+        icon: "🗓", // Agenda
       },
       {
-        title: "Flexibilidade em consultas",
+        title: "Pagamento seguro",
         description:
-          "Escolha entre consultas online ou presenciais, conforme sua preferência e necessidade, para um atendimento personalizado.",
-        icon: "🗓",
+          "Realize pagamentos diretamente na plataforma com segurança e comodidade, sem complicações.",
+        icon: "💳", // Pagamento
       },
       {
-        title: "Cuidado contínuo",
+        title: "Avaliações e feedback",
         description:
-          "Agende consultas recorrentes e mantenha acompanhamento constante, garantindo progresso contínuo.",
-        icon: "🔄",
+          "Confira avaliações de outros clientes e escolha o melhor profissional para você. Sua opinião também é importante!",
+        icon: "⭐", // Estrela
       },
       {
-        title: "Suporte nas especialidades",
+        title: "Diversidade de serviços",
         description:
-          "Encontre profissionais especializados em diferentes áreas da psicologia e psiquiatria, para o suporte ideal em qualquer situação.",
-        icon: "🧩",
+          "Encanadores, eletricistas, pintores e muito mais. Tudo o que você precisa em um só lugar.",
+        icon: "🛠", // Ferramentas
       },
     ];
   
@@ -45,7 +45,7 @@ export default function FeatureGrid() {
           <div
             key={index}
             className={`p-6 rounded-lg shadow-md ${
-              index % 2 === 0 ? "bg-emerald-700 text-white" : "bg-gray-100"
+              index % 2 === 0 ? "bg-AzulForte text-white" : "bg-gray-100"
             }`}
           >
             <div className="text-3xl mb-4">{feature.icon}</div>
@@ -53,6 +53,7 @@ export default function FeatureGrid() {
             <p className="mt-2 text-sm">{feature.description}</p>
           </div>
         ))}
-   </div>
-  );
+      </div>
+    );
   }
+  
