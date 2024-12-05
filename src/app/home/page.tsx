@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaUsers, FaTools, FaCogs } from 'react-icons/fa';
 
 import ProfissionalImage from '@/assets/imagem_profissional.png';
 import EncanadorCasal from '@/assets/encanador_com_mulher.png';
@@ -186,21 +187,23 @@ export function Home() {
         </div>
       </section>
 
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-8 p-6">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-20 p-6">
         {/* Card Profissionais */}
-        <div className="flex bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl">
+        <div className="flex bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl h-96">
           <div className="w-3/4 p-6">
             <h3 className="text-2xl font-bold mb-4">Para profissionais</h3>
-            <p className="mb-6">
+            <p className="mb-8"> {/* Aumenta a margem inferior */}
               Divulgue seus serviços, conecte-se com clientes e amplie sua rede. Com
               nossa plataforma, você gerencia seus atendimentos de forma prática e
               aumenta suas oportunidades de trabalho.
             </p>
-            <button className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors">
+            <Link
+              href="cadastro"
+              className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors mt-4"> {/* Adiciona margem superior */}
               Saiba mais
-            </button>
+            </Link>
           </div>
-          <div className="w-1/4 flex justify-end items-center">
+          <div className="w-2/4 flex justify-end items-center">
             <Image
               src={Profissional}
               alt="Profissional"
@@ -210,19 +213,21 @@ export function Home() {
         </div>
 
         {/* Card Clientes */}
-        <div className="flex bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl">
+        <div className="flex bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl h-96">
           <div className="w-3/4 p-6">
             <h3 className="text-2xl font-bold mb-4">Para clientes</h3>
-            <p className="mb-6">
+            <p className="mb-8"> {/* Aumenta a margem inferior */}
               Encontre profissionais qualificados de maneira rápida e segura. Contrate
               serviços como encanadores, eletricistas e pintores com praticidade e
               confiança.
             </p>
-            <button className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors">
+            <Link
+              href="cadastro"
+              className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors mt-4"> {/* Adiciona margem superior */}
               Saiba mais
-            </button>
+            </Link>
           </div>
-          <div className="w-1/4 flex justify-end items-center">
+          <div className="w-2/4 flex justify-end items-center">
             <Image
               src={Cliente}
               alt="Cliente"
@@ -231,6 +236,7 @@ export function Home() {
           </div>
         </div>
       </div>
+
 
 
       <div className="text-center my-10">
@@ -244,12 +250,18 @@ export function Home() {
               Se você é um profissional qualificado com experiência em serviços gerais e está interessado em expandir sua prática, conectar-se com novos clientes, venha fazer parte da nossa plataforma.
             </p>
             <h3 className="text-xl font-semibold mb-2">Por que se juntar a nós?</h3>
-            <ul className="list-disc text-left ml-6 mb-4">
-              <li>Acesso a uma base de clientes diversificada</li>
-              <li>Ferramentas e suporte dedicados</li>
-              <li>Flexibilidade e controle</li>
+            <ul className="list-none text-left ml-6 mb-4 space-y-2">
+              <li className="flex items-center">
+                <FaUsers className="mr-4 text-yellow-500 text-3xl" /> Acesso a uma base de clientes diversificada
+              </li>
+              <li className="flex items-center">
+                <FaTools className="mr-4 text-yellow-500 text-3xl" /> Ferramentas e suporte dedicados
+              </li>
+              <li className="flex items-center">
+                <FaCogs className="mr-4 text-yellow-500 text-3xl" /> Flexibilidade e controle
+              </li>
             </ul>
-            <p className="text-lg text-gray-700 mb-4">
+            <p className="text-lg text-gray-700 mr-4">
               Gerencie seus serviços e horários de forma eficiente e de acordo com suas preferências.
             </p>
           </div>
@@ -259,7 +271,7 @@ export function Home() {
               alt="Profissional"
               width={500}
               height={250}
-              className="rounded-full"
+              className="rounded-lg"
             />
           </div>
         </div>
@@ -268,7 +280,7 @@ export function Home() {
             href="cadastro"
             className="inline-block bg-blue-600 text-white text-lg font-bold py-3 px-6 rounded-full hover:bg-blue-700"
           >
-            Cadastre-se Agora
+            Junte-se a nós
           </Link>
         </div>
 
