@@ -68,11 +68,11 @@ export default function PrivacyPolicy() {
           Se você tiver alguma dúvida sobre nossa Política de Privacidade, entre
           em contato conosco em
           <a
-            href="mailto:seuemail@exemplo.com"
+            href="mailto:maonaroda@gmail.com"
             className="text-blue-600 hover:underline"
           >
             {' '}
-            seuemail@exemplo.com
+            maonaroda@gmail.com
           </a>
           .
         </p>

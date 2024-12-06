@@ -44,9 +44,9 @@ export function Footer() {
             <h3 className="font-semibold mb-2">Navegação</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#hero" className="hover:text-primary">
+                <Link href="/" className="hover:text-primary">
                   Inicio
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="hover:text-primary">
