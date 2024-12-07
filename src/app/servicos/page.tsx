@@ -1,62 +1,67 @@
-"use client"; // Garantir que o componente seja renderizado no lado do cliente
+'use client'; // Garantir que o componente seja renderizado no lado do cliente
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import StarImage from "@/assets/icones/full_star.svg";
-import HalfStarImage from "@/assets/icones/half_star.svg";
+import StarImage from '@/assets/icones/full_star.svg';
+import HalfStarImage from '@/assets/icones/half_star.svg';
 
 export default function ListaProfissionais() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [category, setCategory] = useState('');
 
   const data = [
     {
       id: 1,
-      nome: "João",
-      categoria: "Pintor",
+      nome: 'João',
+      categoria: 'Pintor',
       nota: 4.5,
-      descricao:
-        "João é um pintor experiente com mais de 10 anos no mercado.",
+      descricao: 'João é um pintor experiente com mais de 10 anos no mercado.',
       imagem:
-        "https://soscasacuritiba.com.br/wp-content/uploads/2023/10/Quanto-ganha-um-Pintor.jpg",
+        'https://soscasacuritiba.com.br/wp-content/uploads/2023/10/Quanto-ganha-um-Pintor.jpg',
       precoPorHora: 50,
     },
     {
       id: 2,
-      nome: "Maria",
-      categoria: "Faxineira",
+      nome: 'Maria',
+      categoria: 'Faxineira',
       nota: 4.3,
       descricao:
-        "Maria é uma faxineira detalhista, garantindo limpeza impecável.",
+        'Maria é uma faxineira detalhista, garantindo limpeza impecável.',
       imagem:
-        "https://blog.famyle.com/wp-content/uploads/2022/12/housekeeper-holding-bottle-with-cleaner-liquid-in-hands-1024x683.webp",
+        'https://blog.famyle.com/wp-content/uploads/2022/12/housekeeper-holding-bottle-with-cleaner-liquid-in-hands-1024x683.webp',
       precoPorHora: 40,
     },
     {
       id: 3,
-      nome: "Pedro",
-      categoria: "Marceneiro",
+      nome: 'Pedro',
+      categoria: 'Marceneiro',
       nota: 4.8,
       descricao:
-        "Pedro é um marceneiro criativo, especializado em móveis sob medida.",
+        'Pedro é um marceneiro criativo, especializado em móveis sob medida.',
       imagem:
-        "https://lh3.googleusercontent.com/proxy/cc3FUop7yCKwt2BIKfDa3TyEgDOh5iL9X9Y-hYmQ5TB9zHZ9kvdo7zt4GQRcF9q2FNWSFqSWQaooXtcqgdimxW-h-aajMWHS0hQ4lYlL-wib",
+        'https://soscasacuritiba.com.br/wp-content/uploads/2023/10/Quanto-ganha-um-Pintor.jpg',
       precoPorHora: 70,
     },
   ];
 
   // Função para filtrar profissionais com base no termo de busca e categoria
   const filteredProfessionals = data.filter((item) => {
-    const matchesName = item.nome.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesProfession = item.categoria.toLowerCase().includes(category.toLowerCase());
+    const matchesName = item.nome
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesProfession = item.categoria
+      .toLowerCase()
+      .includes(category.toLowerCase());
     return matchesName && (category ? matchesProfession : true);
   });
 
   return (
     <section className="container w-full mx-auto px-2 py-10">
-      <h1 className="text-3xl font-bold text-center mb-6">Profissionais Disponíveis</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">
+        Profissionais Disponíveis
+      </h1>
 
       {/* Filtro de Busca */}
       <div className="flex justify-center gap-4 mb-6">
@@ -89,7 +94,7 @@ export default function ListaProfissionais() {
           >
             <img
               className="rounded-full mb-4 aspect-[4/3]"
-              src={item.imagem || "/default-profile.jpg"} // Imagem padrão caso não haja imagem cadastrada
+              src={item.imagem || '/default-profile.jpg'}
               alt={`${item.nome}`}
               width={250}
               height={250}
@@ -124,7 +129,7 @@ export default function ListaProfissionais() {
                 Ver Perfil
               </Link>
               <Link
-                href={`/profissional/${item.id}`}
+                href={`servicos/servicoDetalhado`}
                 className="bg-yellow-500 text-black text-sm font-bold py-2 px-4 rounded-full hover:bg-yellow-600"
               >
                 Contratar

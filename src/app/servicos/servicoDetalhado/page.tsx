@@ -1,42 +1,38 @@
-"use client"; // Garantir que o componente seja renderizado no lado do cliente
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { useRouter } from "next/router";
-import Image from "next/image";
-import Link from "next/link";
+import StarImage from '@/assets/icones/full_star.svg';
+import HalfStarImage from '@/assets/icones/half_star.svg';
 
-import StarImage from "@/assets/icones/full_star.svg";
-import HalfStarImage from "@/assets/icones/half_star.svg";
-
-export default function ServicoDetalhado({  }) {
-  const router = useRouter();
-
-  // Simulando dados do profissional
+export default function ServicoDetalhado() {
   const data = {
     id: 1,
-    nome: "João",
-    categoria: "Pintor",
+    nome: 'João',
+    categoria: 'Pintor',
     nota: 4.5,
     descricao:
-      "João é um pintor experiente com mais de 10 anos no mercado. Ele é conhecido por sua atenção aos detalhes e pela entrega de resultados impecáveis.",
+      'João é um pintor experiente com mais de 10 anos no mercado. Ele é conhecido por sua atenção aos detalhes e pela entrega de resultados impecáveis.',
     imagem:
-      "https://soscasacuritiba.com.br/wp-content/uploads/2023/10/Quanto-ganha-um-Pintor.jpg",
+      'https://soscasacuritiba.com.br/wp-content/uploads/2023/10/Quanto-ganha-um-Pintor.jpg',
     precoPorHora: 50,
   };
 
   return (
     <section className="container w-full mx-auto px-4 py-10">
-      <button
-        onClick={() => router.back()}
-        className="text-blue-600 text-sm font-bold mb-4 hover:underline"
-      >
-        ← Voltar
-      </button>
+      <div className="mb-4 ">
+        <Link
+          href="/servicos"
+          className="text-gray-500 text-sm font-bold hover:underline"
+        >
+          ← Voltar
+        </Link>
+      </div>
 
       <div className="flex flex-col lg:flex-row gap-6 bg-white shadow-lg p-6 rounded-lg">
         {/* Imagem do Profissional */}
         <div className="flex-shrink-0">
-          <Image
-            src={data.imagem || "/default-profile.jpg"}
+          <img
+            src={data.imagem || '/default-profile.jpg'}
             alt={data.nome}
             width={300}
             height={300}
