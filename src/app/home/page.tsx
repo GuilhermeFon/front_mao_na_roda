@@ -23,18 +23,17 @@ export function Home() {
         <div className="container flex justify-between items-center mx-auto">
           <div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-              Conectando <span className="text-yellow-400">clientes</span> a
-              profissionais
+            Conectando <span className="text-yellow-400"> você </span>
+            aos profissionais ideais!
             </h1>
             <p className="text-lg mb-8">
-              Tenha mais confiança e rapidez na sua reforma, reparo, pintura ou
-              muito mais
+            Agilidade, confiança e qualidade para suas reformas e reparos!
             </p>
             <button
               type="submit"
               className="bg-yellow-500 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600"
             >
-              SAIBA MAIS
+              DESCUBRA AGORA!
             </button>
           </div>
 
@@ -52,7 +51,7 @@ export function Home() {
 
       <section className="py-16 mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">
-          Conheça os serviços que oferecemos a você!
+        Tudo o que você precisa, em um só lugar!
         </h2>
 
         {/* Container da grade */}
@@ -173,14 +172,14 @@ export function Home() {
           {/* Card especial */}
           <div className="border p-8 rounded-lg flex flex-col justify-evenly bg-yellow-500 text-white shadow-md h-full">
             <h3 className="text-xl font-semibold mb-4">
-              Somos os melhores neste ramo de serviços.
+            Não perca tempo! Encontre quem entende do assunto!
             </h3>
-            <Link href="contato">
+            <Link href="/servicos">
               <button
                 type="submit"
                 className="bg-AzulForte py-2 px-6 rounded-lg hover:bg-blue-700"
               >
-                Contrate-nos agora
+                Encontre um profissional
               </button>
             </Link>
           </div>
