@@ -174,7 +174,7 @@ export function Home() {
             <h3 className="text-xl font-semibold mb-4">
             Não perca tempo! Encontre quem entende do assunto!
             </h3>
-            <Link href="/servicos">
+            <Link href="/servicos/servicoDetalhado">
               <button
                 type="submit"
                 className="bg-AzulForte py-2 px-6 rounded-lg hover:bg-blue-700"

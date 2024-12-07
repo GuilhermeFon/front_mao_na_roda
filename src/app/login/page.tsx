@@ -11,7 +11,7 @@ interface LoginFormInputs {
 }
 
 export default function Login() {
-  const { register, handleSubmit } = useForm<LoginFormInputs>();
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
   const { logaCliente } = useClienteStore();
   const router = useRouter();
 
@@ -53,30 +53,34 @@ export default function Login() {
       alert('Erro... Login ou Senha incorretos');
     }
   }
-  return (
-    <main className={'background-profissional bg-no-repeat bg-right-bottom'}>
-      <div className="background-image" />
 
-      <div className="flex justify-center items-center min-h-screen p-4">
-        <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-          <h2 className="text-gray-200 text-center text-2xl font-bold mb-6">
-            Mão na Roda
-          </h2>
+  return (
+    <main className="bg-no-repeat bg-right-bottom">
+      <div className="flex justify-center items-start min-h-screen p-4">
+        <div className="p-8 rounded-lg w-full max-w-md">
+          <h2 className="text-black text-center text-2xl mb-6">Login</h2>
+
           <form onSubmit={handleSubmit(verificaLogin)}>
+            {errors.email && (
+              <span className="text-sm text-red-500">Email é obrigatório</span>
+            )}
             <input
               type="email"
               placeholder="E-mail"
-              className="w-full mb-4 p-2 rounded bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-              {...register('email')}
-              required
+              className="w-full mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
+              {...register('email', { required: true })}
             />
+
+            {errors.senha && (
+              <span className="text-sm text-red-500">Senha é obrigatória</span>
+            )}
             <input
               type="password"
               placeholder="Senha"
-              className="w-full mb-4 p-2 rounded bg-gray-700 text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-              {...register('senha')}
-              required
+              className="w-full mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
+              {...register('senha', { required: true })}
             />
+
             <div className="flex justify-between items-center mb-4">
               <Link
                 href="esqueceuSenha"
@@ -85,6 +89,7 @@ export default function Login() {
                 Esqueceu a senha?
               </Link>
             </div>
+
             <button
               type="submit"
               className="w-full mt-6 bg-yellow-500 text-dark p-2 rounded hover:bg-yellow-600 transition"
@@ -92,8 +97,9 @@ export default function Login() {
               Entrar
             </button>
           </form>
+
           <div className="text-center mt-8">
-            <p className="text-gray-200">
+            <p className="text-black">
               Não tem uma conta?
               <Link
                 href="cadastro"
