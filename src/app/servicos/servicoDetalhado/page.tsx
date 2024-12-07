@@ -30,7 +30,7 @@ export default function ServicosDetalhados() {
   return (
     <section className="container w-full mx-auto px-4 py-10">
       <div className="mb-4">
-        <Link href="/servicos" className="text-gray-500 text-sm font-bold hover:underline">
+        <Link href="/" className="text-gray-500 text-sm font-bold hover:underline">
           ← Voltar
         </Link>
       </div>
