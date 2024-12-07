@@ -57,9 +57,12 @@ export default function ServicosDetalhados() {
           className="px-4 py-2 border border-gray-300 rounded-lg"
         >
           <option value="">Escolha a profissão</option>
-          <option value="Pintor">Pintor</option>
-          <option value="Faxineira">Faxineira</option>
-          <option value="Marceneiro">Marceneiro</option>
+          <option value="Pintor">Pintor(a)</option>
+          <option value="Faxineira">Faxineir(a)</option>
+          <option value="Marceneiro">Marceneiro(a)</option>
+          <option value="Encanadora">Encanador(a)</option>
+          <option value="Eletricista">Eletricista</option>
+          <option value="Jardineira">Jardineiro(a)</option>
         </select>
       </div>
 
