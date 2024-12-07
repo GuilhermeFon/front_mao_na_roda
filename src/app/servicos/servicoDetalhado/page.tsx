@@ -34,27 +34,32 @@ export default function ServicosDetalhados() {
           ← Voltar
         </Link>
       </div>
+      <div>
+      <section className="container w-full mx-auto px-2 py-10"/>
+      <h1 className="text-3xl font-bold text-center mb-6">
+        Profissionais Disponíveis
+      </h1>
+      </div>
 
-      <div className="flex flex-col lg:flex-row gap-4 mb-8">
+      {/* Filtro de Busca */}
+      <div className="flex justify-center gap-4 mb-6">
         <input
           type="text"
-          placeholder="Digite o nome ou profissão"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full lg:w-1/2 p-2 border rounded"
+          placeholder="Digite o nome ou profissão"
+          className="px-4 py-2 border border-gray-300 rounded-lg w-1/3"
         />
+
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full lg:w-1/4 p-2 border rounded"
+          className="px-4 py-2 border border-gray-300 rounded-lg"
         >
           <option value="">Escolha a profissão</option>
           <option value="Pintor">Pintor</option>
           <option value="Faxineira">Faxineira</option>
-          <option value="Eletricista">Eletricista</option>
-          <option value="Encanadora">Encanadora</option>
           <option value="Marceneiro">Marceneiro</option>
-          <option value="Jardineira">Jardineira</option>
         </select>
       </div>
 
