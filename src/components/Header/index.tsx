@@ -42,7 +42,7 @@ export function Header() {
           <Link href="/" className="text-black hover:text-yellow-400">
             Início
           </Link>
-          <Link href="/servicos" className="text-black hover:text-yellow-400">
+          <Link href="/servicos/servicoDetalhado" className="text-black hover:text-yellow-400">
             Encontrar profissionais
           </Link>
           <Link href="/quemSomos" className="text-black hover:text-yellow-400">
