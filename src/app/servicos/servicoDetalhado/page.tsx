@@ -75,7 +75,7 @@ export default function ServicoDetalhado() {
 
           {/* Botão de Contratar */}
           <Link
-            href={`/contratar/${data.id}`}
+            href={`/servicos/servicoDetalhado/confirmacao`}
             className="mt-6 bg-blue-600 text-white text-lg font-bold py-3 px-6 rounded-full hover:bg-blue-700 inline-block"
           >
             Contratar
