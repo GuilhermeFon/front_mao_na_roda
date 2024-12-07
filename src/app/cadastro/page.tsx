@@ -130,13 +130,10 @@ export default function Cadastro() {
       formData.append('dataNascimento', data.dataNascimento || '');
       formData.append('celular', data.celular || '');
       formData.append('descricao', data.descricao || '');
+      formData.append('imagem', data.imagem[0] || '');
       if (tipo === 'PRESTADOR') {
         formData.append('profissoes', JSON.stringify(selectedProfessions));
         formData.append('linkedin', data.linkedin || '');
-
-        if (data.imagem && data.imagem[0]) {
-          formData.append('imagem', data.imagem[0]);
-        }
       }
 
       const response = await axios.post(
