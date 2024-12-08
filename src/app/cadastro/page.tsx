@@ -137,7 +137,7 @@ export default function Cadastro() {
       }
 
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL_API}/usuarios/signin`,
+        `${process.env.NEXT_PUBLIC_URL_API}/prestador/signin`,
         formData,
         {
           headers: {

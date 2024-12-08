@@ -17,7 +17,7 @@ export default function Login() {
 
   async function verificaLogin(data: { email: string; senha: string }) {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL_API}/usuarios/login`,
+      `${process.env.NEXT_PUBLIC_URL_API}/prestador/login`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export default function Login() {
     const dados = await response.json();
     if (response.status === 200) {
       const response_ = await fetch(
-        `${process.env.NEXT_PUBLIC_URL_API}/usuarios/dados`,
+        `${process.env.NEXT_PUBLIC_URL_API}/prestador/dados`,
         {
           headers: {
             'Content-Type': 'application/json',
