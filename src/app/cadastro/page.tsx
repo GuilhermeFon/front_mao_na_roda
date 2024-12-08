@@ -13,7 +13,7 @@ interface Profession {
 }
 
 type FormData = {
-  nomeCompleto: string;
+  nome: string;
   email: string;
   senha: string;
   confirmarSenha: string;
@@ -93,7 +93,7 @@ export default function Cadastro() {
   ];
 
   const router = useRouter();
-  const [tipo, setTipo] = useState<'CLIENTE' | 'PRESTADOR'>('CLIENTE');
+  const [tipo, setTipo] = useState<'cliente' | 'prestador'>('cliente');
   const [selectedProfessions, setSelectedProfessions] = useState<string[]>([]);
   const [fileName, setFileName] = useState('Nenhuma imagem escolhida');
 
@@ -106,12 +106,13 @@ export default function Cadastro() {
     }
   };
 
-  const handleTipoChange = (novoTipo: 'CLIENTE' | 'PRESTADOR') => {
+  const handleTipoChange = (novoTipo: 'cliente' | 'prestador') => {
     setTipo(novoTipo);
     reset();
   };
 
   const onSubmit = async (data: FormData) => {
+    console.log('entrouuu');
     if (data.senha !== data.confirmarSenha) {
       alert('As senhas não coincidem.');
       return;
@@ -119,25 +120,25 @@ export default function Cadastro() {
 
     try {
       const formData = new FormData();
-      formData.append('nomeCompleto', data.nomeCompleto);
+      formData.append('nome', data.nome);
       formData.append('email', data.email);
-      formData.append('password', data.senha);
-      formData.append('tipo', tipo);
+      formData.append('senha', data.senha);
+      formData.append('cpf', data.cpf || '');
       formData.append('pais', data.pais || '');
       formData.append('estado', data.estado || '');
-      formData.append('cpf', data.cpf || '');
       formData.append('cidade', data.cidade || '');
       formData.append('dataNascimento', data.dataNascimento || '');
       formData.append('celular', data.celular || '');
-      formData.append('descricao', data.descricao || '');
       formData.append('imagem', data.imagem[0] || '');
-      if (tipo === 'PRESTADOR') {
-        formData.append('profissoes', JSON.stringify(selectedProfessions));
+      formData.append('descricao', data.descricao || '');
+      if (tipo === 'prestador') {
         formData.append('linkedin', data.linkedin || '');
+        formData.append('profissoes', JSON.stringify(selectedProfessions));
+        // formData.append('plano', 'plano');
       }
 
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL_API}/prestador/signin`,
+        `${process.env.NEXT_PUBLIC_URL_API}/${tipo}/signin`,
         formData,
         {
           headers: {
@@ -164,17 +165,17 @@ export default function Cadastro() {
           <div className="mb-6 relative">
             <div className="w-full flex justify-around">
               <button
-                onClick={() => handleTipoChange('CLIENTE')}
+                onClick={() => handleTipoChange('cliente')}
                 className={`${
-                  tipo === 'CLIENTE' ? 'text-yellow-500' : 'text-black'
+                  tipo === 'cliente' ? 'text-yellow-500' : 'text-black'
                 } py-2 px-6 transition duration-300 w-1/2`}
               >
                 Cliente
               </button>
               <button
-                onClick={() => handleTipoChange('PRESTADOR')}
+                onClick={() => handleTipoChange('prestador')}
                 className={`${
-                  tipo === 'PRESTADOR' ? 'text-yellow-500' : 'text-black'
+                  tipo === 'prestador' ? 'text-yellow-500' : 'text-black'
                 } py-2 px-6 transition duration-300 w-1/2`}
               >
                 Profissional
@@ -182,21 +183,21 @@ export default function Cadastro() {
             </div>
             <div
               className={`absolute bottom-0 left-0 right-0 h-1 bg-yellow-500 transition-transform duration-300 ${
-                tipo === 'CLIENTE'
+                tipo === 'cliente'
                   ? 'transform translate-x-0'
                   : 'transform translate-x-full'
               }`}
               style={{
-                width: tipo === 'CLIENTE' ? '50%' : '50%',
+                width: tipo === 'cliente' ? '50%' : '50%',
               }}
             />
           </div>
 
           {tipo && (
             <form onSubmit={handleSubmit(onSubmit)}>
-              {tipo === 'PRESTADOR' ? (
+              {tipo === 'prestador' ? (
                 <>
-                  {errors.nomeCompleto && (
+                  {errors.nome && (
                     <span className="text-sm text-red-500">
                       Nome completo é obrigatório
                     </span>
@@ -205,7 +206,7 @@ export default function Cadastro() {
                     type="text"
                     placeholder="Nome completo"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
-                    {...register('nomeCompleto', { required: true })}
+                    {...register('nome', { required: true })}
                   />
 
                   {errors.dataNascimento && (
@@ -332,7 +333,7 @@ export default function Cadastro() {
                     </span>
                   )}
                   <input
-                    type="password"
+                    type="senha"
                     placeholder="Senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('senha', { required: true })}
@@ -344,7 +345,7 @@ export default function Cadastro() {
                     </span>
                   )}
                   <input
-                    type="password"
+                    type="senha"
                     placeholder="Confirmar senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('confirmarSenha', { required: true })}
@@ -362,7 +363,7 @@ export default function Cadastro() {
                       <input
                         type="file"
                         className="hidden"
-                        {...register('imagem', { required: true })}
+                        {...register('imagem')}
                         onChange={handleFileChange}
                       />
                     </label>
@@ -373,7 +374,7 @@ export default function Cadastro() {
                 </>
               ) : (
                 <>
-                  {errors.nomeCompleto && (
+                  {errors.nome && (
                     <span className="text-sm text-red-500">
                       Nome completo é obrigatório
                     </span>
@@ -382,7 +383,7 @@ export default function Cadastro() {
                     type="text"
                     placeholder="Nome completo"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
-                    {...register('nomeCompleto', { required: true })}
+                    {...register('nome', { required: true })}
                   />
 
                   {errors.dataNascimento && (
@@ -480,7 +481,7 @@ export default function Cadastro() {
                     </span>
                   )}
                   <input
-                    type="password"
+                    type="senha"
                     placeholder="Senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('senha', { required: true })}
@@ -492,7 +493,7 @@ export default function Cadastro() {
                     </span>
                   )}
                   <input
-                    type="password"
+                    type="senha"
                     placeholder="Confirmar senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('confirmarSenha', { required: true })}
@@ -510,7 +511,7 @@ export default function Cadastro() {
                       <input
                         type="file"
                         className="hidden"
-                        {...register('imagem', { required: true })}
+                        {...register('imagem')}
                         onChange={handleFileChange}
                       />
                     </label>
