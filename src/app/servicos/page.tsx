@@ -1,6 +1,6 @@
 'use client'; // Garantir que o componente seja renderizado no lado do cliente
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -10,50 +10,39 @@ import HalfStarImage from '@/assets/icones/half_star.svg';
 export default function ListaProfissionais() {
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('');
+  interface Prestador {
+    id: number;
+    nome: string;
+    categoria: string;
+    imagem?: string;
+    nota: number;
+  }
 
-  const data = [
-    {
-      id: 1,
-      nome: 'João',
-      categoria: 'Pintor',
-      nota: 4.5,
-      descricao: 'João é um pintor experiente com mais de 10 anos no mercado.',
-      imagem:
-        'https://soscasacuritiba.com.br/wp-content/uploads/2023/10/Quanto-ganha-um-Pintor.jpg',
-      precoPorHora: 50,
-    },
-    {
-      id: 2,
-      nome: 'Maria',
-      categoria: 'Faxineira',
-      nota: 4.3,
-      descricao:
-        'Maria é uma faxineira detalhista, garantindo limpeza impecável.',
-      imagem:
-        'https://blog.famyle.com/wp-content/uploads/2022/12/housekeeper-holding-bottle-with-cleaner-liquid-in-hands-1024x683.webp',
-      precoPorHora: 40,
-    },
-    {
-      id: 3,
-      nome: 'Pedro',
-      categoria: 'Marceneiro',
-      nota: 4.8,
-      descricao:
-        'Pedro é um marceneiro criativo, especializado em móveis sob medida.',
-      imagem:
-        'https://soscasacuritiba.com.br/wp-content/uploads/2023/10/Quanto-ganha-um-Pintor.jpg',
-      precoPorHora: 70,
-    },
-  ];
+  const [data, setData] = useState<Prestador[]>([]);
 
-  // Função para filtrar profissionais com base no termo de busca e categoria
+  useEffect(() => {
+    const fetchPrestadores = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_URL_API}/prestador`,
+        );
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error('Erro ao buscar prestadores:', error);
+      }
+    };
+
+    fetchPrestadores();
+  }, []);
+
   const filteredProfessionals = data.filter((item) => {
     const matchesName = item.nome
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
     const matchesProfession = item.categoria
-      .toLowerCase()
-      .includes(category.toLowerCase());
+      ? item.categoria.toLowerCase().includes(category.toLowerCase())
+      : false;
     return matchesName && (category ? matchesProfession : true);
   });
 
@@ -102,15 +91,16 @@ export default function ListaProfissionais() {
             <h2 className="text-xl font-semibold text-center">{item.nome}</h2>
             <p className="text-sm text-gray-600">{item.categoria}</p>
             <div className="flex items-center mt-2">
-              {[...Array(Math.floor(item.nota))].map((_, i) => (
-                <Image
-                  key={i}
-                  className="w-5 h-5 mx-1"
-                  src={StarImage}
-                  alt="Star"
-                />
-              ))}
-              {item.nota % 1 !== 0 && (
+              {Number.isFinite(item.nota) &&
+                [...Array(Math.floor(item.nota))].map((_, i) => (
+                  <Image
+                    key={i}
+                    className="w-5 h-5 mx-1"
+                    src={StarImage}
+                    alt="Star"
+                  />
+                ))}
+              {Number.isFinite(item.nota) && item.nota % 1 !== 0 && (
                 <Image
                   className="w-5 h-5 mx-1"
                   src={HalfStarImage}

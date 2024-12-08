@@ -3,7 +3,7 @@ export interface ClienteI {
   token: string;
   nome: string;
   dataNascimento: string;
-  telefone: string;
+  celular: string;
   cpf: string;
   pais: string;
   estado: string;
@@ -11,5 +11,6 @@ export interface ClienteI {
   linkedin: string;
   instagram: string;
   descricao: string;
+  perfilImage: string;
   email: string;
 }

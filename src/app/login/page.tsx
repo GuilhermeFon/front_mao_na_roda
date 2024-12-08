@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { useClienteStore } from '@/context/cliente';
@@ -7,50 +8,50 @@ import Link from 'next/link';
 interface LoginFormInputs {
   email: string;
   senha: string;
+  tipo: 'cliente' | 'prestador';
   manter?: boolean;
 }
 
 export default function Login() {
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
   const { logaCliente } = useClienteStore();
   const router = useRouter();
+  const [tipo, setTipo] = useState<'cliente' | 'prestador'>('cliente');
 
-  async function verificaLogin(data: { email: string; senha: string }) {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL_API}/prestador/login`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify({ email: data.email, senha: data.senha }),
-      },
-    );
-    const dados = await response.json();
-    if (response.status === 200) {
-      const response_ = await fetch(
-        `${process.env.NEXT_PUBLIC_URL_API}/prestador/dados`,
+  async function verificaLogin(data: {
+    email: string;
+    senha: string;
+    tipo: 'cliente' | 'prestador';
+  }) {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL_API}/${tipo}/login`,
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${dados.token}`,
           },
           method: 'POST',
-          body: JSON.stringify({ email: data.email }),
+          body: JSON.stringify({ email: data.email, senha: data.senha }),
         },
       );
-      const dadosUsuario = await response_.json();
-      const dadosUsuario2 = {
-        ...dadosUsuario,
-        token: dados.token,
-      };
-      logaCliente(dadosUsuario2);
-      localStorage.setItem('client_key', dadosUsuario.id);
-      localStorage.setItem('client_token', dados.token);
 
-      router.push('/');
-    } else {
-      alert('Erro... Login ou Senha incorretos');
+      if (response.status === 200) {
+        const dados = await response.json();
+        logaCliente(dados);
+        localStorage.setItem('client_key', dados.id);
+        localStorage.setItem('client_token', dados.token);
+
+        router.push('/');
+      } else {
+        alert('Erro... Login ou Senha incorretos');
+      }
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      alert('Erro ao fazer login. Tente novamente mais tarde.');
     }
   }
 
@@ -60,7 +61,40 @@ export default function Login() {
         <div className="p-8 rounded-lg w-full max-w-md">
           <h2 className="text-black text-center text-2xl mb-6">Login</h2>
 
+          <div className="mb-6 relative">
+            <div className="w-full flex justify-around">
+              <button
+                onClick={() => setTipo('cliente')}
+                className={`${
+                  tipo === 'cliente' ? 'text-yellow-500' : 'text-black'
+                } py-2 px-6 transition duration-300 w-1/2`}
+              >
+                Cliente
+              </button>
+              <button
+                onClick={() => setTipo('prestador')}
+                className={`${
+                  tipo === 'prestador' ? 'text-yellow-500' : 'text-black'
+                } py-2 px-6 transition duration-300 w-1/2`}
+              >
+                Profissional
+              </button>
+            </div>
+            <div
+              className={`absolute bottom-0 left-0 right-0 h-1 bg-yellow-500 transition-transform duration-300 ${
+                tipo === 'cliente'
+                  ? 'transform translate-x-0'
+                  : 'transform translate-x-full'
+              }`}
+              style={{
+                width: tipo === 'cliente' ? '50%' : '50%',
+              }}
+            />
+          </div>
+
           <form onSubmit={handleSubmit(verificaLogin)}>
+            <input type="hidden" value={tipo} {...register('tipo')} />
+
             {errors.email && (
               <span className="text-sm text-red-500">Email é obrigatório</span>
             )}
