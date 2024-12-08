@@ -24,12 +24,12 @@ const Contato = () => {
 							Entre em contato
 						</h2>
 						<h3 className="text-3xl font-bold mb-4">
-							Entre em contato e entre em contato conosco!
+							Fale conosco!
 						</h3>
 						<p className="text-gray-500 mb-6">
-							Só que vou abrir muitas vezes a porta do hospital, me disseram que
-							quando a dor for maior, e o chocolate nascer com uma vida grande e
-							pura, eles vão dar à luz às vezes com uma vida grande e pura.
+						Estamos aqui para ouvir você. Sua opinião, dúvidas e sugestões são muito importantes para nós.
+						Preencha o formulário ao lado e envie sua mensagem. Nossa equipe fará o possível para responder o mais rápido possível.
+						No Mão na Roda, conectamos você a profissionais qualificados, porque acreditamos que todo serviço merece ser feito com excelência.
 						</p>
 						<form className="bg-white rounded-lg p-6 border border-gray-300 shadow-lg space-y-4">
 							<input
