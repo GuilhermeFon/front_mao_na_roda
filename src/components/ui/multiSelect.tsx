@@ -25,7 +25,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
   const handleSelect = (selectedValue: string) => {
     const isSelected = value.includes(selectedValue);
-    const newValue = isSelected
+  const newValue = isSelected
       ? value.filter((v) => v !== selectedValue)
       : [...value, selectedValue];
     onChange(newValue);

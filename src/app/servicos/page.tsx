@@ -1,22 +1,82 @@
-'use client'; // Garantir que o componente seja renderizado no lado do cliente
+'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
-import StarImage from '@/assets/icones/full_star.svg';
-import HalfStarImage from '@/assets/icones/half_star.svg';
+interface Profession {
+  id: string;
+  label: string;
+}
+
+interface Prestador {
+  id: number;
+  nome: string;
+  categoria?: string;
+  imagem?: string;
+  nota: number;
+  descricao: string;
+  precoPorHora: number;
+  profissoes: string[];
+}
 
 export default function ListaProfissionais() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [category, setCategory] = useState('');
-  interface Prestador {
-    id: number;
-    nome: string;
-    categoria: string;
-    imagem?: string;
-    nota: number;
-  }
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  const professions: Profession[] = [
+    { id: 'eletricista', label: 'Eletricista' },
+    { id: 'encanador', label: 'Encanador' },
+    { id: 'pintor', label: 'Pintor' },
+    { id: 'pedreiro', label: 'Pedreiro' },
+    { id: 'carpinteiro', label: 'Carpinteiro' },
+    { id: 'marceneiro', label: 'Marceneiro' },
+    { id: 'serralheiro', label: 'Serralheiro' },
+    { id: 'gesseiro', label: 'Gesseiro' },
+    { id: 'azulejista', label: 'Azulejista' },
+    { id: 'jardineiro', label: 'Jardineiro' },
+    { id: 'mecanico', label: 'Mecânico' },
+    { id: 'eletronico', label: 'Eletrônico' },
+    { id: 'padeiro', label: 'Padeiro' },
+    { id: 'cozinheiro', label: 'Cozinheiro' },
+    { id: 'garcom', label: 'Garçom' },
+    { id: 'motorista', label: 'Motorista' },
+    { id: 'seguranca', label: 'Segurança' },
+    { id: 'porteiro', label: 'Porteiro' },
+    { id: 'faxineiro', label: 'Faxineiro' },
+    { id: 'vendedor', label: 'Vendedor' },
+    { id: 'vidraceiro', label: 'Vidraceiro' },
+    { id: 'tapeceiro', label: 'Tapeceiro' },
+    { id: 'montador', label: 'Montador de Móveis' },
+    { id: 'reparador', label: 'Reparador de Eletrodomésticos' },
+    { id: 'piscineiro', label: 'Piscineiro' },
+    { id: 'calheiro', label: 'Calheiro' },
+    { id: 'impermeabilizador', label: 'Impermeabilizador' },
+    { id: 'dedetizador', label: 'Dedetizador' },
+    { id: 'limpador', label: 'Limpador de Vidros' },
+    { id: 'restaurador', label: 'Restaurador de Móveis' },
+    { id: 'refrigerista', label: 'Refrigerista' },
+    { id: 'soldador', label: 'Soldador' },
+    { id: 'chaveiro', label: 'Chaveiro' },
+    { id: 'desentupidor', label: 'Desentupidor' },
+    { id: 'piso', label: 'Instalador de Piso' },
+    { id: 'telhadista', label: 'Telhadista' },
+    { id: 'cortineiro', label: 'Instalador de Cortinas' },
+    { id: 'persianista', label: 'Instalador de Persianas' },
+    { id: 'arcondicionado', label: 'Instalador de Ar Condicionado' },
+    { id: 'aquecedor', label: 'Instalador de Aquecedores' },
+    { id: 'elevador', label: 'Técnico de Elevadores' },
+    { id: 'portao', label: 'Instalador de Portões Automáticos' },
+    { id: 'cercas', label: 'Instalador de Cercas Elétricas' },
+    { id: 'alarme', label: 'Instalador de Alarmes' },
+    { id: 'cftv', label: 'Instalador de CFTV' },
+    { id: 'som', label: 'Instalador de Sistemas de Som' },
+    { id: 'iluminacao', label: 'Instalador de Iluminação' },
+    { id: 'gesso', label: 'Instalador de Gesso' },
+    { id: 'drywall', label: 'Instalador de Drywall' },
+    { id: 'teto', label: 'Instalador de Teto Falso' },
+    { id: 'pvc', label: 'Instalador de Forro de PVC' },
+  ];
 
   const [data, setData] = useState<Prestador[]>([]);
 
@@ -36,18 +96,30 @@ export default function ListaProfissionais() {
     fetchPrestadores();
   }, []);
 
-  const filteredProfessionals = data.filter((item) => {
-    const matchesName = item.nome
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesProfession = item.categoria
-      ? item.categoria.toLowerCase().includes(category.toLowerCase())
-      : false;
-    return matchesName && (category ? matchesProfession : true);
+  const filteredData = data.filter((profissional) => {
+    const matchesSearchTerm =
+      profissional.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      profissional.profissoes.some((profissao) =>
+        profissao.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+
+    const matchesCategory =
+      selectedCategory === '' ||
+      profissional.profissoes.includes(selectedCategory.toLowerCase());
+
+    return matchesSearchTerm && matchesCategory;
   });
 
   return (
-    <section className="container w-full mx-auto px-2 py-10">
+    <section className="container w-full mx-auto px-4 py-10">
+      <div className="mb-4">
+        <Link
+          href="/"
+          className="text-gray-500 text-sm font-bold hover:underline"
+        >
+          ← Voltar
+        </Link>
+      </div>
       <h1 className="text-3xl font-bold text-center mb-6">
         Profissionais Disponíveis
       </h1>
@@ -63,71 +135,106 @@ export default function ListaProfissionais() {
         />
 
         <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
           className="px-4 py-2 border border-gray-300 rounded-lg"
         >
-          <option value="">Escolha a profissão</option>
-          <option value="Pintor">Pintor</option>
-          <option value="Faxineira">Faxineira</option>
-          <option value="Marceneiro">Marceneiro</option>
+          <option value="">Filtre por profissão</option>
+          {professions.map((profession) => (
+            <option key={profession.id} value={profession.label}>
+              {profession.label}
+            </option>
+          ))}
         </select>
       </div>
 
-      {/* Lista de Profissionais */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProfessionals.map((item) => (
-          <div
-            key={item.id}
-            className="flex flex-col items-center bg-white shadow-lg rounded-lg p-6"
-          >
+      {filteredData.map((profissional) => (
+        <div
+          key={profissional.id}
+          className="flex flex-col lg:flex-row gap-6 bg-white shadow-lg p-6 rounded-lg mb-6 relative max-w-[800px] mx-auto"
+        >
+          <div className="flex-shrink-0">
             <img
-              className="rounded-full mb-4 aspect-[4/3]"
-              src={item.imagem || '/default-profile.jpg'}
-              alt={`${item.nome}`}
-              width={250}
-              height={250}
+              src={profissional.imagem || '/default-profile.jpg'}
+              alt={profissional.nome}
+              width={300}
+              height={300}
+              className="rounded-lg"
             />
-            <h2 className="text-xl font-semibold text-center">{item.nome}</h2>
-            <p className="text-sm text-gray-600">{item.categoria}</p>
-            <div className="flex items-center mt-2">
-              {Number.isFinite(item.nota) &&
-                [...Array(Math.floor(item.nota))].map((_, i) => (
-                  <Image
-                    key={i}
-                    className="w-5 h-5 mx-1"
-                    src={StarImage}
-                    alt="Star"
-                  />
+          </div>
+          <div className="flex flex-col justify-between w-full">
+            <div>
+              <h1 className="text-2xl font-bold">{profissional.nome}</h1>
+              <div className="flex items-center mt-2">
+                <div className="flex mr-2">
+                  {Number.isFinite(profissional.nota) ? (
+                    <>
+                      {[...Array(Math.floor(profissional.nota))].map((_, i) => (
+                        <FaStar
+                          key={i}
+                          className="text-yellow-500 w-5 h-5 mx-1"
+                        />
+                      ))}
+                      {profissional.nota % 1 !== 0 && (
+                        <FaStarHalfAlt className="text-yellow-500 w-5 h-5 mx-1" />
+                      )}
+                      {[...Array(5 - Math.ceil(profissional.nota))].map(
+                        (_, i) => (
+                          <FaRegStar
+                            key={i}
+                            className="text-yellow-500 w-5 h-5 mx-1"
+                          />
+                        ),
+                      )}
+                    </>
+                  ) : (
+                    [...Array(5)].map((_, i) => (
+                      <FaRegStar
+                        key={i}
+                        className="text-yellow-500 w-5 h-5 mx-1"
+                      />
+                    ))
+                  )}
+                </div>
+                <p className="text-sm text-gray-500 mt-1">
+                  {profissional.nota
+                    ? `${profissional.nota} de 5 estrelas`
+                    : 'Sem avaliações'}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2 mt-2 ">
+                {profissional.profissoes.map((item) => (
+                  <div
+                    key={item}
+                    className="border border-yellow-400 text-black px-2 text-center rounded-full"
+                  >
+                    {item}
+                  </div>
                 ))}
-              {Number.isFinite(item.nota) && item.nota % 1 !== 0 && (
-                <Image
-                  className="w-5 h-5 mx-1"
-                  src={HalfStarImage}
-                  alt="Half Star"
-                />
-              )}
+              </div>
+              <div className="bg-[#F2F1F7] text-black mt-4 py-1 px-2 rounded-md ">
+                <p className="">Sobre mim</p>
+                <p className="text-sm">{profissional.descricao}</p>
+              </div>
             </div>
-            <p className="text-sm text-gray-500 mt-1">
-              {item.nota} de 5 estrelas
-            </p>
-            <div className="flex justify-center items-center mt-4 gap-2">
+            <div className="absolute right-6 bottom-6">
               <Link
-                href={`/profissional/${item.id}`}
-                className="bg-blue-600 text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-blue-700"
-              >
-                Ver Perfil
-              </Link>
-              <Link
-                href={`servicos/servicoDetalhado`}
-                className="bg-yellow-500 text-black text-sm font-bold py-2 px-4 rounded-full hover:bg-yellow-600"
+                href={`/servicos/servicoDetalhado/confirmacao`}
+                className="mt-6 bg-blue-600 text-white text-lg font-semibold py-3 px-6 rounded-full hover:bg-blue-700 inline-block"
               >
                 Contratar
               </Link>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+
+      {filteredData.length === 0 && (
+        <p className="text-gray-500 text-center">
+          Nenhum profissional encontrado para os critérios selecionados.
+        </p>
+      )}
     </section>
   );
 }
