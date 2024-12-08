@@ -13,7 +13,7 @@ export const useClienteStore = create<ClienteStore>()(
     (set) => ({
       cliente: {} as ClienteI,
       logaCliente: (clienteLogado) => {
-        set({ cliente: clienteLogado });
+        set({ cliente: clienteLogado }); 
       },
       deslogaCliente: () => {
         set({ cliente: {} as ClienteI });

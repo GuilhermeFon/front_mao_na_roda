@@ -112,37 +112,32 @@ export default function Cadastro() {
   };
 
   const onSubmit = async (data: FormData) => {
-    console.log('entrouuu');
     if (data.senha !== data.confirmarSenha) {
       alert('As senhas não coincidem.');
       return;
     }
 
-    try {
-      const formData = new FormData();
-      formData.append('nome', data.nome);
-      formData.append('email', data.email);
-      formData.append('senha', data.senha);
-      formData.append('cpf', data.cpf || '');
-      formData.append('pais', data.pais || '');
-      formData.append('estado', data.estado || '');
-      formData.append('cidade', data.cidade || '');
-      formData.append('dataNascimento', data.dataNascimento || '');
-      formData.append('celular', data.celular || '');
-      formData.append('imagem', data.imagem[0] || '');
-      formData.append('descricao', data.descricao || '');
-      if (tipo === 'prestador') {
-        formData.append('linkedin', data.linkedin || '');
-        formData.append('profissoes', JSON.stringify(selectedProfessions));
-        // formData.append('plano', 'plano');
-      }
+    // Clean up and prepare data
+    data.cpf = data.cpf.replace(/\D/g, '');
+    data.pais = data.pais || '';
+    data.estado = data.estado || '';
+    data.cidade = data.cidade || '';
+    data.dataNascimento = data.dataNascimento || '';
+    data.celular = data.celular || '';
+    data.descricao = data.descricao || '';
+    if (tipo === 'prestador') {
+      data.linkedin = data.linkedin || '';
+      data.profissoes = selectedProfessions; // Ensure this is an array
+      // data.plano = 'plano';
+    }
 
+    try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_URL_API}/${tipo}/signin`,
-        formData,
+        data,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
           },
         },
       );
@@ -333,7 +328,7 @@ export default function Cadastro() {
                     </span>
                   )}
                   <input
-                    type="senha"
+                    type="password"
                     placeholder="Senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('senha', { required: true })}
@@ -345,7 +340,7 @@ export default function Cadastro() {
                     </span>
                   )}
                   <input
-                    type="senha"
+                    type="password"
                     placeholder="Confirmar senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('confirmarSenha', { required: true })}
@@ -481,7 +476,7 @@ export default function Cadastro() {
                     </span>
                   )}
                   <input
-                    type="senha"
+                    type="password"
                     placeholder="Senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('senha', { required: true })}
@@ -493,7 +488,7 @@ export default function Cadastro() {
                     </span>
                   )}
                   <input
-                    type="senha"
+                    type="password"
                     placeholder="Confirmar senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('confirmarSenha', { required: true })}
