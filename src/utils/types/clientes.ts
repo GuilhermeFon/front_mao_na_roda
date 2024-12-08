@@ -13,4 +13,5 @@ export interface ClienteI {
   descricao: string;
   perfilImage: string;
   email: string;
+  plano: string;
 }

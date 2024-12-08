@@ -167,6 +167,7 @@ export default function Perfil() {
   // const handleSaveClick = () => {
   //   setIsConfirmModalOpen(true);
   // };
+  console.log('cliente: ', cliente);
 
   const handleConfirmSave = async (data: FormData) => {
     setIsConfirmModalOpen(false);
@@ -177,6 +178,7 @@ export default function Perfil() {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${cliente.token}`,
           },
           body: JSON.stringify(data),
         },
@@ -501,7 +503,9 @@ export default function Perfil() {
               <Image src={StarImage} alt="" width={20} height={20} />
               <Image src={HalfStarImage} alt="" width={20} height={20} />
             </div>
-            <p className="text-gray-600 text-sm">Plano: Ouro</p>
+            <p className="text-gray-600 text-sm">
+              Plano: {cliente.plano ? cliente.plano : 'Gratuito'}
+            </p>
           </div>
         </div>
       </div>
