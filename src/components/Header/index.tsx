@@ -50,24 +50,26 @@ export function Header() {
           </Link>
           {cliente.id ? (
             <div className="relative">
-              <button
+              <Image
+                src={cliente.imagem}
+                alt="Cliente Avatar"
                 onClick={handleMenuClick}
-                className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
-              >
-                Menu
-              </button>
+                width={40}
+                height={40}
+                className="rounded-full max-w-10 max-h-10 object-cover cursor-pointer"
+              />
               {ConfigMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-background border border-gray-200 rounded-lg shadow-lg">
+                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
                   <Link
                     href="/perfil"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg"
                     onClick={() => setConfigMenuOpen(false)}
                   >
                     Configurações da Conta
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg"
                   >
                     Sair
                   </button>
