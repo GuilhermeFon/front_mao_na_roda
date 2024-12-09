@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import Image from 'next/image';
 
 interface Profession {
   id: string;
@@ -109,7 +110,7 @@ export default function ListaProfissionais() {
 
     return matchesSearchTerm && matchesCategory;
   });
-
+  console.log('filteredData: ', filteredData);
   return (
     <section className="container w-full mx-auto px-4 py-10">
       <div className="mb-4">
@@ -154,12 +155,12 @@ export default function ListaProfissionais() {
           className="flex flex-col lg:flex-row gap-6 bg-white shadow-lg p-6 rounded-lg mb-6 relative max-w-[800px] mx-auto"
         >
           <div className="flex-shrink-0">
-            <img
-              src={profissional.imagem || '/default-profile.jpg'}
+            <Image
+              src={profissional.imagem || ''}
               alt={profissional.nome}
-              width={300}
-              height={300}
-              className="rounded-lg"
+              width={200}
+              height={200}
+              className="max-h-[200px] object-cover rounded-full"
             />
           </div>
           <div className="flex flex-col justify-between w-full">
