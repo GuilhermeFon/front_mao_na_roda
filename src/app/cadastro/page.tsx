@@ -96,13 +96,16 @@ export default function Cadastro() {
   const [tipo, setTipo] = useState<'cliente' | 'prestador'>('cliente');
   const [selectedProfessions, setSelectedProfessions] = useState<string[]>([]);
   const [fileName, setFileName] = useState('Nenhuma imagem escolhida');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
       setFileName(file.name);
+      setSelectedFile(file);
     } else {
       setFileName('Nenhuma imagem escolhida');
+      setSelectedFile(null);
     }
   };
 
@@ -116,32 +119,43 @@ export default function Cadastro() {
       alert('As senhas não coincidem.');
       return;
     }
-
-    // Clean up and prepare data
-    data.cpf = data.cpf.replace(/\D/g, '');
-    data.pais = data.pais || '';
-    data.estado = data.estado || '';
-    data.cidade = data.cidade || '';
-    data.dataNascimento = data.dataNascimento || '';
-    data.celular = data.celular || '';
-    data.descricao = data.descricao || '';
-    if (tipo === 'prestador') {
-      data.linkedin = data.linkedin || '';
-      data.profissoes = selectedProfessions; // Ensure this is an array
-      // data.plano = 'plano';
+  
+    // Create a FormData object
+    const formData = new FormData();
+  
+    // Append text fields
+    formData.append('nome', data.nome);
+    formData.append('email', data.email);
+    formData.append('senha', data.senha);
+    formData.append('cpf', data.cpf.replace(/\D/g, ''));
+    formData.append('pais', data.pais || '');
+    formData.append('estado', data.estado || '');
+    formData.append('cidade', data.cidade || '');
+    formData.append('dataNascimento', data.dataNascimento || '');
+    formData.append('celular', data.celular || '');
+    formData.append('descricao', data.descricao || '');
+  
+    // Append image file if present
+    if (selectedFile) {
+      formData.append('imagem', selectedFile);
     }
-
+  
+    // Append additional fields for 'prestador'
+    if (tipo === 'prestador') {
+      formData.append('linkedin', data.linkedin || '');
+      formData.append('profissoes', JSON.stringify(selectedProfessions));
+    }
+  
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_URL_API}/${tipo}/signin`,
-        data,
+        formData,
         {
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
           },
         },
       );
-      console.log('Usuário registrado:', response.data);
       if (response.status === 201) {
         alert('Cadastro realizado com sucesso!');
         router.push('/login');
