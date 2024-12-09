@@ -21,7 +21,7 @@ export default function servicoDetalhes() {
             width={500}
             height={300}
           />
-          <div className="flex flex-col bg-white justify-evenly border p-8 rounded-lg shadow-lg max-h-40">
+          <div className="flex flex-col bg-background justify-evenly border p-8 rounded-lg shadow-lg max-h-40">
             <h3 className="text-xl font-semibold mb-4">
               Fale com João Silva através do whats
             </h3>
@@ -30,7 +30,7 @@ export default function servicoDetalhes() {
             </p>
           </div>
         </div>
-        <div className="bg-white shadow-lg rounded-lg p-8">
+        <div className="bg-background shadow-lg rounded-lg p-8">
           <h3 className="text-xl font-semibold mb-4 text-center">
             Fale com João Silva agora mesmo!
           </h3>

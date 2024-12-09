@@ -57,7 +57,7 @@ export function Header() {
                 Menu
               </button>
               {ConfigMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div className="absolute right-0 mt-2 w-48 bg-background border border-gray-200 rounded-lg shadow-lg">
                   <Link
                     href="/perfil"
                     className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
@@ -78,7 +78,7 @@ export function Header() {
             <>
               <Link
                 href="/login"
-                className="bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
+                className="bg-background border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
               >
                 Entrar
               </Link>
@@ -114,7 +114,7 @@ export function Header() {
           onClick={closeMenu}
         >
           <nav
-            className="fixed top-0 right-0 w-64 h-full bg-white z-50"
+            className="fixed top-0 right-0 w-64 h-full bg-background z-50"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-10">
@@ -181,7 +181,7 @@ export function Header() {
                   <li>
                     <Link
                       href="/login"
-                      className="bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
+                      className="bg-background border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
                       onClick={toggleMenu}
                     >
                       Entrar

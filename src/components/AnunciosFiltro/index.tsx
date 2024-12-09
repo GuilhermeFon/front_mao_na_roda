@@ -124,7 +124,7 @@ const AnunciosFiltro = () => {
           anuncios.map((anuncio, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full"
+              className="bg-background rounded-lg shadow-lg p-6 max-w-md w-full"
             >
               <div className="relative w-full" style={{height: "410px"}}>
                 <Image
@@ -155,7 +155,7 @@ const AnunciosFiltro = () => {
           anunciosExemplo.map((anuncio, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full"
+              className="bg-background rounded-lg shadow-lg p-6 max-w-md w-full"
             >
               <div className="relative w-full" style={{height: "410px"}}>
                 <Image

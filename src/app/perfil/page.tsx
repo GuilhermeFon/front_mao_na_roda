@@ -211,7 +211,7 @@ export default function Perfil() {
             <input
               type="text"
               id="nome"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Seu nome completo"
               {...register('nome', { required: true })}
             />
@@ -232,7 +232,7 @@ export default function Perfil() {
             <input
               type="email"
               id="email"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="seu_email@exemplo.com"
               {...register('email', { required: true })}
             />
@@ -251,7 +251,7 @@ export default function Perfil() {
             <input
               type="tel"
               id="celular"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="(00) 00000-0000"
               {...register('celular', { required: true })}
             />
@@ -294,7 +294,7 @@ export default function Perfil() {
             <input
               type="text"
               id="cpf"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="CPF"
               {...register('cpf', { required: true })}
             />
@@ -313,7 +313,7 @@ export default function Perfil() {
             <input
               type="text"
               id="pais"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="País"
               {...register('pais', { required: true })}
             />
@@ -332,7 +332,7 @@ export default function Perfil() {
             <input
               type="text"
               id="estado"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Estado"
               {...register('estado', { required: true })}
             />
@@ -351,7 +351,7 @@ export default function Perfil() {
             <input
               type="text"
               id="cidade"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Cidade"
               {...register('cidade', { required: true })}
             />
@@ -399,7 +399,7 @@ export default function Perfil() {
             <input
               type="text"
               id="linkedin"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Perfil no LinkedIn"
               {...register('linkedin')}
             />
@@ -415,7 +415,7 @@ export default function Perfil() {
             <input
               type="password"
               id="senha"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Senha"
               {...register('senha', { required: true })}
             />
@@ -434,7 +434,7 @@ export default function Perfil() {
             <input
               type="password"
               id="confirmarSenha"
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Confirmar Senha"
               {...register('confirmarSenha', { required: true })}
             />
@@ -455,7 +455,7 @@ export default function Perfil() {
             <textarea
               id="descricao"
               rows={10}
-              className="bg-white border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-background border border-gray-300 mb-4 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="Diga algo sobre você aos seus clientes..."
               {...register('descricao')}
             />
@@ -481,7 +481,7 @@ export default function Perfil() {
       </div>
 
       <div className="col-span-2 md:col-span-1 order-first md:order-3">
-        <div className="bg-white rounded-lg shadow-lg p-6 flex items-center space-x-4 col-span-2 md:col-span-1 h-fit">
+        <div className="bg-background rounded-lg shadow-lg p-6 flex items-center space-x-4 col-span-2 md:col-span-1 h-fit">
           <img
             src={
               typeof cliente.perfilImage === 'string'
@@ -512,7 +512,7 @@ export default function Perfil() {
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white flex flex-col gap-5 p-6 rounded-lg shadow-lg">
+          <div className="bg-background flex flex-col gap-5 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-bold mb-4">Alterar Imagem de Perfil</h2>
             <button
               className="bg-red-500 text-white px-4 py-2 rounded-lg mr-2"
@@ -541,7 +541,7 @@ export default function Perfil() {
 
       {isConfirmModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg ">
+          <div className="bg-background p-6 rounded-lg shadow-lg ">
             <h2 className="text-xl font-bold mb-4">
               Tem certeza que deseja salvar?
             </h2>

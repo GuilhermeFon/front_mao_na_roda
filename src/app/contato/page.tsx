@@ -16,7 +16,7 @@ const Contato = () => {
 			</header>
 
 			{/* Conteúdo principal */}
-			<main className="flex-grow bg-white">
+			<main className="flex-grow bg-background">
 				<div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
 					{/* Formulário de Contato */}
 					<section>
@@ -31,7 +31,7 @@ const Contato = () => {
 						Preencha o formulário ao lado e envie sua mensagem. Nossa equipe fará o possível para responder o mais rápido possível.
 						No Mão na Roda, conectamos você a profissionais qualificados, porque acreditamos que todo serviço merece ser feito com excelência.
 						</p>
-						<form className="bg-white rounded-lg p-6 border border-gray-300 shadow-lg space-y-4">
+						<form className="bg-background rounded-lg p-6 border border-gray-300 shadow-lg space-y-4">
 							<input
 								type="text"
 								placeholder="Nome"

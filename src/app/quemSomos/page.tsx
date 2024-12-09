@@ -7,7 +7,7 @@ import CasalImage from "@/assets/casal.png";
 
 const QuemSomos = () => {
 	return (
-		<div className="min-h-screen bg-white text-AzulEscuro">
+		<div className="min-h-screen bg-background text-AzulEscuro">
 			{/* Cabeçalho com fundo azul */}
 			<header className="py-8 bg-AzulForte text-white text-center">
 				<h1 className="text-4xl font-bold">Quem Somos</h1>

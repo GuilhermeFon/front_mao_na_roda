@@ -1,5 +1,5 @@
-import {useForm, SubmitHandler} from "react-hook-form";
-import {toast} from "sonner";
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { toast } from 'sonner';
 
 interface FormValues {
   termo: string;
@@ -11,20 +11,20 @@ interface InputPesquisaProps {
       id: number;
       nome: string;
       [key: string]: string | number | boolean;
-    }>
+    }>,
   ) => void;
 }
 
-export function InputPesquisa({setCarros}: InputPesquisaProps) {
-  const {register, handleSubmit, reset} = useForm<FormValues>();
+export function InputPesquisa({ setCarros }: InputPesquisaProps) {
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
   const enviaPesquisa: SubmitHandler<FormValues> = async (data) => {
     if (data.termo.length < 2) {
-      toast.warning("Digite, no mínimo, 2 caracteres para a pesquisa");
+      toast.warning('Digite, no mínimo, 2 caracteres para a pesquisa');
       return;
     }
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL_API}/propostas/${data.termo}`
+      `${process.env.NEXT_PUBLIC_URL_API}/propostas/${data.termo}`,
     );
     const dados = await response.json();
 
@@ -32,7 +32,7 @@ export function InputPesquisa({setCarros}: InputPesquisaProps) {
 
     if (dados.length === 0) {
       // toast.error("Não há produtos com o termo pesquisado")
-      reset({termo: ""});
+      reset({ termo: '' });
       return;
     }
   };
@@ -52,10 +52,10 @@ export function InputPesquisa({setCarros}: InputPesquisaProps) {
         <input
           type="search"
           id="default-search"
-          className="block w-full max-h-10 py-4 rounded-full ps-10 text-sm text-gray-900 border border-gray-300 bg-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
+          className="block w-full max-h-10 py-4 rounded-full ps-10 text-sm text-gray-900 border border-gray-300 bg-background placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
           placeholder="Pesquisar"
           required
-          {...register("termo")}
+          {...register('termo')}
         />
         <button
           type="submit"

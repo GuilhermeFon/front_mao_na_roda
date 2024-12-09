@@ -3,7 +3,6 @@ import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Poppins } from 'next/font/google';
-import './globals.css';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -19,8 +18,8 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-BR">
-      <body className={`${poppins.variable} antialiased`}>
+    <html lang="pt-BR" className="slim-scrollbar">
+      <body className={`${poppins.variable} antialiased slim-scrollbar`}>
         <Header />
         {children}
         <Footer />

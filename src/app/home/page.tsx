@@ -23,11 +23,11 @@ export function Home() {
         <div className="container flex justify-between items-center mx-auto">
           <div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-            Conectando <span className="text-yellow-400"> você </span>
-            aos profissionais ideais!
+              Conectando <span className="text-yellow-400"> você </span>
+              aos profissionais ideais!
             </h1>
             <p className="text-lg mb-8">
-            Agilidade, confiança e qualidade para suas reformas e reparos!
+              Agilidade, confiança e qualidade para suas reformas e reparos!
             </p>
             <button
               type="submit"
@@ -51,7 +51,7 @@ export function Home() {
 
       <section className="py-16 mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">
-        Tudo o que você precisa, em um só lugar!
+          Tudo o que você precisa, em um só lugar!
         </h2>
 
         {/* Container da grade */}
@@ -172,15 +172,13 @@ export function Home() {
           {/* Card especial */}
           <div className="border p-8 rounded-lg flex flex-col justify-evenly bg-yellow-500 text-white shadow-md h-full">
             <h3 className="text-xl font-semibold mb-4">
-            Não perca tempo! Encontre quem entende do assunto!
+              Não perca tempo! Encontre quem entende do assunto!
             </h3>
-            <Link href="/servicos/servicoDetalhado">
-              <button
-                type="submit"
-                className="bg-AzulForte py-2 px-6 rounded-lg hover:bg-blue-700"
-              >
-                Encontre um profissional
-              </button>
+            <Link
+              href="/servicos/servicoDetalhado"
+              className="bg-blue-500 py-2 px-6 rounded-lg hover:bg-AzulForte"
+            >
+              Encontre um profissional
             </Link>
           </div>
         </div>
@@ -188,17 +186,22 @@ export function Home() {
 
       <div className="flex flex-col lg:flex-row justify-center items-center gap-20 p-6">
         {/* Card Profissionais */}
-        <div className="flex bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl h-96">
+        <div className="flex bg-background text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl h-96">
           <div className="w-3/4 p-6">
             <h3 className="text-2xl font-bold mb-4">Para profissionais</h3>
-            <p className="mb-8"> {/* Aumenta a margem inferior */}
-              Divulgue seus serviços, conecte-se com clientes e amplie sua rede. Com
-              nossa plataforma, você gerencia seus atendimentos de forma prática e
-              aumenta suas oportunidades de trabalho.
+            <p className="mb-8">
+              {' '}
+              {/* Aumenta a margem inferior */}
+              Divulgue seus serviços, conecte-se com clientes e amplie sua rede.
+              Com nossa plataforma, você gerencia seus atendimentos de forma
+              prática e aumenta suas oportunidades de trabalho.
             </p>
             <Link
               href="cadastro"
-              className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors mt-4"> {/* Adiciona margem superior */}
+              className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors mt-4"
+            >
+              {' '}
+              {/* Adiciona margem superior */}
               Saiba mais
             </Link>
           </div>
@@ -206,23 +209,28 @@ export function Home() {
             <Image
               src={Profissional}
               alt="Profissional"
-              className="w-full h-full rounded-r-lg"
+              className="w-full h-full rounded-r-lg object-cover"
             />
           </div>
         </div>
 
         {/* Card Clientes */}
-        <div className="flex bg-white text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl h-96">
+        <div className="flex bg-background text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl h-96">
           <div className="w-3/4 p-6">
             <h3 className="text-2xl font-bold mb-4">Para clientes</h3>
-            <p className="mb-8"> {/* Aumenta a margem inferior */}
-              Encontre profissionais qualificados de maneira rápida e segura. Contrate
-              serviços como encanadores, eletricistas e pintores com praticidade e
-              confiança.
+            <p className="mb-8">
+              {' '}
+              {/* Aumenta a margem inferior */}
+              Encontre profissionais qualificados de maneira rápida e segura.
+              Contrate serviços como encanadores, eletricistas e pintores com
+              praticidade e confiança.
             </p>
             <Link
               href="cadastro"
-              className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors mt-4"> {/* Adiciona margem superior */}
+              className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white py-2 px-6 transition-colors mt-4"
+            >
+              {' '}
+              {/* Adiciona margem superior */}
               Saiba mais
             </Link>
           </div>
@@ -230,13 +238,11 @@ export function Home() {
             <Image
               src={Cliente}
               alt="Cliente"
-              className="w-full h-full rounded-r-lg"
+              className="w-full h-full rounded-r-lg object-cover"
             />
           </div>
         </div>
       </div>
-
-
 
       <div className="text-center my-10">
         <FeatureGrid />
@@ -244,24 +250,34 @@ export function Home() {
       <section className="bg-blue-100 py-10 mt-20">
         <div className="max-w-screen-lg mx-auto text-center lg:flex lg:justify-between">
           <div className="lg:w-1/2 lg:text-left">
-            <h2 className="text-2xl font-bold mb-4">Junte-se à nossa rede de profissionais</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              Junte-se à nossa rede de profissionais
+            </h2>
             <p className="text-lg text-gray-700 mb-4">
-              Se você é um profissional qualificado com experiência em serviços gerais e está interessado em expandir sua prática, conectar-se com novos clientes, venha fazer parte da nossa plataforma.
+              Se você é um profissional qualificado com experiência em serviços
+              gerais e está interessado em expandir sua prática, conectar-se com
+              novos clientes, venha fazer parte da nossa plataforma.
             </p>
-            <h3 className="text-xl font-semibold mb-2">Por que se juntar a nós?</h3>
+            <h3 className="text-xl font-semibold mb-2">
+              Por que se juntar a nós?
+            </h3>
             <ul className="list-none text-left ml-6 mb-4 space-y-2">
               <li className="flex items-center">
-                <FaUsers className="mr-4 text-yellow-500 text-3xl" /> Acesso a uma base de clientes diversificada
+                <FaUsers className="mr-4 text-yellow-500 text-3xl" /> Acesso a
+                uma base de clientes diversificada
               </li>
               <li className="flex items-center">
-                <FaTools className="mr-4 text-yellow-500 text-3xl" /> Ferramentas e suporte dedicados
+                <FaTools className="mr-4 text-yellow-500 text-3xl" />{' '}
+                Ferramentas e suporte dedicados
               </li>
               <li className="flex items-center">
-                <FaCogs className="mr-4 text-yellow-500 text-3xl" /> Flexibilidade e controle
+                <FaCogs className="mr-4 text-yellow-500 text-3xl" />{' '}
+                Flexibilidade e controle
               </li>
             </ul>
             <p className="text-lg text-gray-700 mr-4">
-              Gerencie seus serviços e horários de forma eficiente e de acordo com suas preferências.
+              Gerencie seus serviços e horários de forma eficiente e de acordo
+              com suas preferências.
             </p>
           </div>
           <div className="lg:w-1/2 flex justify-center mb-6 lg:mb-5 ml-9">
@@ -282,7 +298,6 @@ export function Home() {
             Junte-se a nós
           </Link>
         </div>
-
       </section>
     </main>
   );

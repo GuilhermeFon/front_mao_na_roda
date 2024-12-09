@@ -2,15 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
 body {
   font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
+  background-color: var(--background);
 }
 
 @layer utilities {
@@ -25,7 +19,7 @@ background-profissional {
 
 @layer base {
   :root {
-    --background: #F8F8FB;
+    --background: #f8f8fb;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -52,7 +46,7 @@ background-profissional {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 0 0% 3.9%;
+    --background: #f8f8fb;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -90,19 +84,22 @@ background-profissional {
 
 .slim-scrollbar::-webkit-scrollbar {
   width: 6px;
+  border-radius: 10px;
 }
 
 .slim-scrollbar::-webkit-scrollbar-track {
   background: transparent;
+  border-radius: 10px;
 }
 
 .slim-scrollbar::-webkit-scrollbar-thumb {
   background-color: #c1c1c1;
-  border-radius: 3px;
+  border-radius: 10px;
 }
 
 /* For Firefox */
 .slim-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #c1c1c1 transparent;
+  border-radius: 10px;
 }

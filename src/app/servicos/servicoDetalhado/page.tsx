@@ -67,7 +67,7 @@ export default function ServicosDetalhados() {
       </div>
 
       {filteredData.map((profissional) => (
-        <div key={profissional.id} className="flex flex-col lg:flex-row gap-6 bg-white shadow-lg p-6 rounded-lg mb-6">
+        <div key={profissional.id} className="flex flex-col lg:flex-row gap-6 bg-background shadow-lg p-6 rounded-lg mb-6">
           <div className="flex-shrink-0">
             <img src={profissional.imagem || '/default-profile.jpg'} alt={profissional.nome} width={300} height={300} className="rounded-lg" />
           </div>

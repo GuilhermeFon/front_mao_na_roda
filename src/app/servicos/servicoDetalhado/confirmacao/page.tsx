@@ -5,7 +5,7 @@ export default function confirmacao() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50">
       {/* Mensagem de Sucesso */}
-      <div className="flex flex-col items-center mt-16 bg-white rounded-lg shadow-lg p-8">
+      <div className="flex flex-col items-center mt-16 bg-background rounded-lg shadow-lg p-8">
         <div className="bg-blue-100 p-4 rounded-full mb-4">
           <BsEnvelopeCheckFill className="text-blue-600 h-16 w-16" />
         </div>

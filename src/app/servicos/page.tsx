@@ -152,7 +152,7 @@ export default function ListaProfissionais() {
       {filteredData.map((profissional) => (
         <div
           key={profissional.id}
-          className="flex flex-col lg:flex-row gap-6 bg-white shadow-lg p-6 rounded-lg mb-6 relative max-w-[800px] mx-auto"
+          className="flex flex-col lg:flex-row gap-6 bg-white border p-6 rounded-lg mb-6 relative max-w-[800px] mx-auto"
         >
           <div className="flex-shrink-0">
             <Image
@@ -160,7 +160,7 @@ export default function ListaProfissionais() {
               alt={profissional.nome}
               width={200}
               height={200}
-              className="max-h-[200px] object-cover rounded-full"
+              className="max-h-[200px] max-w-[200px] min-h-[200px] min-w-[200px] object-cover rounded-full"
             />
           </div>
           <div className="flex flex-col justify-between w-full">
@@ -219,10 +219,10 @@ export default function ListaProfissionais() {
                 <p className="text-sm">{profissional.descricao}</p>
               </div>
             </div>
-            <div className="absolute right-6 bottom-6">
+            <div className="flex self-end">
               <Link
                 href={`/servicos/servicoDetalhado/confirmacao`}
-                className="mt-6 bg-blue-600 text-white text-lg font-semibold py-3 px-6 rounded-full hover:bg-blue-700 inline-block"
+                className="mt-6 bg-blue-600 text-white text-lg font-semibold p-2 rounded-lg hover:bg-blue-700 inline-block"
               >
                 Contratar
               </Link>
