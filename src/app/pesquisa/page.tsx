@@ -1,9 +1,10 @@
-import {useState, useEffect} from "react";
-import {useSearchParams} from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import EncanadoraImage from "@/assets/maria_encanadora.png";
+import EncanadoraImage from '@/assets/maria_encanadora.png';
 
 interface Servico {
   id: number;
@@ -14,7 +15,7 @@ interface Servico {
 
 export default function Pesquisa() {
   const searchParams = useSearchParams();
-  const termo = searchParams.get("termo");
+  const termo = searchParams.get('termo');
   const [servicos, setServicos] = useState<Servico[]>([]);
 
   const listaServico = servicos?.map((servico) => (
@@ -44,7 +45,7 @@ export default function Pesquisa() {
   useEffect(() => {
     async function buscaServicos() {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL_API}/propostas?nome=${termo}`
+        `${process.env.NEXT_PUBLIC_URL_API}/propostas?nome=${termo}`,
       );
 
       if (response.status == 200) {
