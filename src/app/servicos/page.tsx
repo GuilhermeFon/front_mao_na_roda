@@ -110,7 +110,7 @@ export default function ListaProfissionais() {
 
     return matchesSearchTerm && matchesCategory;
   });
-  console.log('filteredData: ', filteredData);
+  
   return (
     <section className="container w-full mx-auto px-4 py-10">
       <div className="mb-4">
