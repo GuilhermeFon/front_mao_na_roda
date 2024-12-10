@@ -36,6 +36,7 @@ export default function Perfil() {
   const { cliente } = useClienteStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -194,6 +195,11 @@ export default function Perfil() {
 
   const handleCancelSave = () => {
     setIsConfirmModalOpen(false);
+  };
+
+  const handlePlanUpgrade = (plan: string) => {
+    // setCliente({ ...cliente, plano: plan });
+    setIsPlanModalOpen(false);
   };
 
   return (
@@ -489,7 +495,7 @@ export default function Perfil() {
             className="rounded-full border border-gray-800 object-cover cursor-pointer hover:opacity-70 transition-opacity aspect-square"
             onClick={handleImageClick}
           />
-          <div className="space-y-1">
+          <div className="space-y-2">
             <h2 className="text-xl font-bold text-gray-800">{cliente.nome}</h2>
             <div className="flex items-center space-x-2">
               {Number.isFinite(cliente.nota) ? (
@@ -516,6 +522,14 @@ export default function Perfil() {
             <p className="text-gray-600 text-sm">
               Plano: {cliente.plano ? cliente.plano : 'Gratuito'}
             </p>
+            {cliente.plano !== 'ouro' && (
+              <p
+                className="text-gray-600 text-sm hover:underline cursor-pointer"
+                onClick={() => setIsPlanModalOpen(true)}
+              >
+                Melhore seu alcance com um upgrade de plano
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -542,6 +556,91 @@ export default function Perfil() {
             <button
               className="bg-gray-300 text-black px-4 py-2 rounded-lg"
               onClick={handleCloseModal}
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {isPlanModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={() => setIsPlanModalOpen(false)}>
+          <div className="bg-white text-center flex flex-col gap-5 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
+            <h2 className="text-2xl font-bold mb-4">Selecione seu Plano</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center">
+              <div className="bg-gray-100 p-6 rounded-lg flex flex-col justify-between max-w-[300px] shadow-md">
+                <h3 className="text-xl font-bold mb-2">Gratuito</h3>
+                <p className="text-sm mb-4">
+                  Plano básico com acesso limitado.
+                </p>
+                <ul className="text-left text-sm mb-4">
+                  <li>- Acesso a funcionalidades básicas</li>
+                  <li>- Suporte limitado</li>
+                  <li>- Prioridade baixa na listagem de serviços</li>
+                </ul>
+                <button
+                  className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
+                  onClick={() => handlePlanUpgrade('gratuito')}
+                >
+                  Selecionar
+                </button>
+              </div>
+              <div className="bg-[#BF7B6E] p-6 rounded-lg flex flex-col justify-between max-w-[300px] shadow-md">
+                <h3 className="text-xl font-bold mb-2">Bronze</h3>
+                <p className="text-sm mb-4">
+                  Plano intermediário com mais vantagens.
+                </p>
+                <ul className="text-left text-sm mb-4">
+                  <li>- Acesso a funcionalidades intermediárias</li>
+                  <li>- Suporte prioritário</li>
+                  <li>- Prioridade média na listagem de serviços</li>
+                </ul>
+                <button
+                  className="bg-[#A65A4E] text-white px-4 py-2 rounded-lg hover:bg-[#8E4A3F] transition"
+                  onClick={() => handlePlanUpgrade('bronze')}
+                >
+                  Selecionar
+                </button>
+              </div>
+              <div className="bg-[#AEADAD] p-6 rounded-lg flex flex-col justify-between max-w-[300px] shadow-md">
+                <h3 className="text-xl font-bold mb-2">Prata</h3>
+                <p className="text-sm mb-4">
+                  Plano avançado com ainda mais vantagens.
+                </p>
+                <ul className="text-left text-sm mb-4">
+                  <li>- Acesso a todas as funcionalidades</li>
+                  <li>- Suporte premium</li>
+                  <li>- Prioridade alta na listagem de serviços</li>
+                </ul>
+                <button
+                  className="bg-[#8C8B8B] text-white px-4 py-2 rounded-lg hover:bg-[#7A7979] transition"
+                  onClick={() => handlePlanUpgrade('prata')}
+                >
+                  Selecionar
+                </button>
+              </div>
+              <div className="bg-[#D3A344] p-6 rounded-lg flex flex-col justify-between max-w-[300px] shadow-md">
+                <h3 className="text-xl font-bold mb-2">Ouro</h3>
+                <p className="text-sm mb-4">
+                  Plano completo com todas as vantagens.
+                </p>
+                <ul className="text-left text-sm mb-4">
+                  <li>- Acesso a todas as funcionalidades</li>
+                  <li>- Suporte premium 24/7</li>
+                  <li>- Consultoria personalizada</li>
+                  <li>- Prioridade máxima na listagem de serviços</li>
+                </ul>
+                <button
+                  className="bg-[#B8860B] text-white px-4 py-2 rounded-lg hover:bg-[#A0760A] transition"
+                  onClick={() => handlePlanUpgrade('ouro')}
+                >
+                  Selecionar
+                </button>
+              </div>
+            </div>
+            <button
+              className="bg-gray-300 text-black px-4 py-2 rounded-lg mt-4 hover:bg-gray-400 transition"
+              onClick={() => setIsPlanModalOpen(false)}
             >
               Cancelar
             </button>
