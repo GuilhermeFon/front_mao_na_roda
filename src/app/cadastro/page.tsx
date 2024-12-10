@@ -545,7 +545,7 @@ export default function Cadastro() {
               Já tem uma conta?
               <Link
                 href="/login"
-                className="text-yellow-500 text-sm hover:text-yellow-600 ml-2"
+                className="text-yellow-500 text-sm hover:text-yellow-600 ml-2 transition-colors"
               >
                 Faça login
               </Link>

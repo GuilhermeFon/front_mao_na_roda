@@ -27,7 +27,7 @@ export default function esqueceuSenha() {
             Lembrou a senha?{" "}
             <Link
               href="login"
-              className="text-yellow-500 text-sm hover:text-yellow-600"
+              className="text-yellow-500 text-sm hover:text-yellow-600 transition-colors"
             >
               Voltar ao login
             </Link>
