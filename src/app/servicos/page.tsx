@@ -112,130 +112,134 @@ export default function ListaProfissionais() {
   });
   
   return (
-    <section className="container w-full mx-auto px-4 py-10">
-      <div className="mb-4">
-        <Link
-          href="/"
-          className="text-gray-500 text-sm font-bold hover:underline"
-        >
-          ← Voltar
-        </Link>
-      </div>
-      <h1 className="text-3xl font-bold text-center mb-6">
-        Profissionais Disponíveis
-      </h1>
-
-      {/* Filtro de Busca */}
-      <div className="flex justify-center gap-4 mb-6">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Digite o nome ou profissão"
-          className="px-4 py-2 border border-gray-300 rounded-lg w-1/3"
-        />
-
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg"
-        >
-          <option value="">Filtre por profissão</option>
-          {professions.map((profession) => (
-            <option key={profession.id} value={profession.label}>
-              {profession.label}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {filteredData.map((profissional) => (
-        <div
-          key={profissional.id}
-          className="flex flex-col lg:flex-row gap-6 bg-white border p-6 rounded-lg mb-6 relative max-w-[800px] mx-auto"
-        >
-          <div className="flex-shrink-0">
-            <Image
-              src={profissional.imagem || ''}
-              alt={profissional.nome}
-              width={200}
-              height={200}
-              className="max-h-[200px] max-w-[200px] min-h-[200px] min-w-[200px] object-cover rounded-full"
-            />
-          </div>
-          <div className="flex flex-col justify-between w-full">
-            <div>
-              <h1 className="text-2xl font-bold">{profissional.nome}</h1>
-              <div className="flex items-center mt-2">
-                <div className="flex mr-2">
-                  {Number.isFinite(profissional.nota) ? (
-                    <>
-                      {[...Array(Math.floor(profissional.nota))].map((_, i) => (
-                        <FaStar
-                          key={i}
-                          className="text-yellow-500 w-5 h-5 mx-1"
-                        />
-                      ))}
-                      {profissional.nota % 1 !== 0 && (
-                        <FaStarHalfAlt className="text-yellow-500 w-5 h-5 mx-1" />
-                      )}
-                      {[...Array(5 - Math.ceil(profissional.nota))].map(
-                        (_, i) => (
-                          <FaRegStar
+    <section className="container w-full mx-auto px-4 py-10 min-h-screen flex flex-col justify-between">
+      <div>
+        <div className="mb-4">
+          <Link
+            href="/"
+            className="text-gray-500 text-sm font-bold hover:underline"
+          >
+            ← Voltar
+          </Link>
+        </div>
+        <h1 className="text-3xl font-bold text-center mb-6">
+          Profissionais Disponíveis
+        </h1>
+  
+        {/* Filtro de Busca */}
+        <div className="flex justify-center gap-4 mb-6">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Digite o nome ou profissão"
+            className="px-4 py-2 border border-gray-300 rounded-lg w-1/3"
+          />
+  
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg"
+          >
+            <option value="">Filtre por profissão</option>
+            {professions.map((profession) => (
+              <option key={profession.id} value={profession.label}>
+                {profession.label}
+              </option>
+            ))}
+          </select>
+        </div>
+  
+        {filteredData.map((profissional) => (
+          <div
+            key={profissional.id}
+            className="flex flex-col lg:flex-row gap-6 bg-white border p-6 rounded-lg mb-6 relative max-w-[800px] mx-auto"
+          >
+            <div className="flex-shrink-0">
+              <Image
+                src={profissional.imagem || ''}
+                alt={profissional.nome}
+                width={200}
+                height={200}
+                className="max-h-[200px] max-w-[200px] min-h-[200px] min-w-[200px] object-cover rounded-full"
+              />
+            </div>
+            <div className="flex flex-col justify-between w-full">
+              <div>
+                <h1 className="text-2xl font-bold">{profissional.nome}</h1>
+                <div className="flex items-center mt-2">
+                  <div className="flex mr-2">
+                    {Number.isFinite(profissional.nota) ? (
+                      <>
+                        {[...Array(Math.floor(profissional.nota))].map((_, i) => (
+                          <FaStar
                             key={i}
                             className="text-yellow-500 w-5 h-5 mx-1"
                           />
-                        ),
-                      )}
-                    </>
-                  ) : (
-                    [...Array(5)].map((_, i) => (
-                      <FaRegStar
-                        key={i}
-                        className="text-yellow-500 w-5 h-5 mx-1"
-                      />
-                    ))
-                  )}
-                </div>
-                <p className="text-sm text-gray-500 mt-1">
-                  {profissional.nota
-                    ? `${profissional.nota} de 5 estrelas`
-                    : 'Sem avaliações'}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mt-2 ">
-                {profissional.profissoes.map((item) => (
-                  <div
-                    key={item}
-                    className="border border-yellow-400 text-black px-2 text-center rounded-full"
-                  >
-                    {item}
+                        ))}
+                        {profissional.nota % 1 !== 0 && (
+                          <FaStarHalfAlt className="text-yellow-500 w-5 h-5 mx-1" />
+                        )}
+                        {[...Array(5 - Math.ceil(profissional.nota))].map(
+                          (_, i) => (
+                            <FaRegStar
+                              key={i}
+                              className="text-yellow-500 w-5 h-5 mx-1"
+                            />
+                          ),
+                        )}
+                      </>
+                    ) : (
+                      [...Array(5)].map((_, i) => (
+                        <FaRegStar
+                          key={i}
+                          className="text-yellow-500 w-5 h-5 mx-1"
+                        />
+                      ))
+                    )}
                   </div>
-                ))}
+                  <p className="text-sm text-gray-500 mt-1">
+                    {profissional.nota
+                      ? `${profissional.nota} de 5 estrelas`
+                      : 'Sem avaliações'}
+                  </p>
+                </div>
+  
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {profissional.profissoes.map((item) => (
+                    <div
+                      key={item}
+                      className="border border-yellow-400 text-black px-2 text-center rounded-full"
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-[#F2F1F7] text-black mt-4 py-1 px-2 rounded-md">
+                  <p className="">Sobre mim</p>
+                  <p className="text-sm">{profissional.descricao}</p>
+                </div>
               </div>
-              <div className="bg-[#F2F1F7] text-black mt-4 py-1 px-2 rounded-md ">
-                <p className="">Sobre mim</p>
-                <p className="text-sm">{profissional.descricao}</p>
+              <div className="flex self-end">
+                <Link
+                  href={`/servicos/servicoDetalhado/confirmacao`}
+                  className="mt-6 bg-blue-600 text-white text-lg font-semibold p-2 rounded-lg hover:bg-blue-700 inline-block"
+                >
+                  Contratar
+                </Link>
               </div>
-            </div>
-            <div className="flex self-end">
-              <Link
-                href={`/servicos/servicoDetalhado/confirmacao`}
-                className="mt-6 bg-blue-600 text-white text-lg font-semibold p-2 rounded-lg hover:bg-blue-700 inline-block"
-              >
-                Contratar
-              </Link>
             </div>
           </div>
-        </div>
-      ))}
-
-      {filteredData.length === 0 && (
-        <p className="text-gray-500 text-center">
-          Nenhum profissional encontrado para os critérios selecionados.
-        </p>
-      )}
+        ))}
+  
+        {filteredData.length === 0 && (
+          <div className="flex-grow flex items-center justify-center">
+            <p className="text-gray-500 text-center">
+              Nenhum profissional encontrado para os critérios selecionados.
+            </p>
+          </div>
+        )}
+      </div>
     </section>
   );
-}
+}  

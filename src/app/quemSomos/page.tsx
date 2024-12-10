@@ -13,9 +13,9 @@ const QuemSomos = () => {
 				<h1 className="text-4xl font-bold">Quem Somos</h1>
 				<div className=" text-white p-4 max-w-4xl mx-auto">
 					<p className="text-lg leading-relaxed line-clamp-6">
-						Somos uma plataforma comprometida em conectar você com psicólogos e
-						psiquiatras altamente qualificados, proporcionando apoio emocional e
-						tratamento terapêutico de maneira acessível, prática e segura.
+						Somos uma plataforma dedicada a conectar você com prestadores de serviços qualificados, 
+						como encanadores, eletricistas e muitos outros, proporcionando soluções práticas, 
+						rápidas e seguras para suas necessidades do dia a dia.
 					</p>
 				</div>
 			</header>
