@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
 import Logo from '@/assets/icones/logo_azul_e_cinzas_e_nome.svg';
 import { useClienteStore } from '@/context/cliente';

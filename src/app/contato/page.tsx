@@ -1,9 +1,10 @@
 // pages/contato.tsx
 
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 import EncanadorComTuboImage from "@/assets/encanador_com_tubo.png";
+import Faq from "@/components/Faq";
 
 const Contato = () => {
 	return (
@@ -83,6 +84,7 @@ const Contato = () => {
 						</div>
 					</section>
 				</div>
+        <Faq />
 			</main>
 		</div>
 	);

@@ -1,6 +1,7 @@
-import * as React from 'react';
 import * as Popover from '@radix-ui/react-popover';
 import { ChevronDown } from 'lucide-react';
+import * as React from 'react';
+
 import { Checkbox } from '@/components/ui/checkbox';
 
 interface Profession {

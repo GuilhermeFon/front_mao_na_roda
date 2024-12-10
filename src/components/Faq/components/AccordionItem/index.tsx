@@ -1,19 +1,13 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
-
-import DownImage from '@/assets/svg/caretDown.svg';
-import MinusIcon from '@/assets/svg/minus.svg';
-import PlusIcon from '@/assets/svg/plus.svg';
-
+import { IoIosArrowDown } from "react-icons/io";
 
 interface FaqAccordionProps {
   title: string;
   content: string;
-  arrowButton?: boolean;
 }
 
-const FaqAccordion = ({ title, content, arrowButton }: FaqAccordionProps) => {
+const FaqAccordion = ({ title, content }: FaqAccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -33,46 +27,18 @@ const FaqAccordion = ({ title, content, arrowButton }: FaqAccordionProps) => {
         >
           {title}
         </span>
-        {isOpen ? (
-          arrowButton ? (
-            <Image
-              src={DownImage}
-              alt="Ícone para fechar"
-              className="transform rotate-180"
-              width={24}
-              height={24}
-            />
-          ) : (
-            <Image
-              src={MinusIcon}
-              width={26}
-              height={26}
-              alt="Ícone de menos para fechar"
-              className="text-foreground"
-            />
-          )
-        ) : arrowButton ? (
-          <Image
-            src={DownImage}
-            alt="Ícone para abrir"
-            className="transform "
-            width={24}
-            height={24}
-          />
-        ) : (
-          <Image 
-          src={PlusIcon} 
-          width={26} 
-          height={26} 
-          alt="Ícone de mais para abrir" />
-        )}
+        <IoIosArrowDown
+          className={`transform ${isOpen ? 'rotate-180' : ''}`}
+          size={24}
+        />
       </div>
       {isOpen && (
         <div className="absolute w-full h-px left-0 top-16 bg-divider" />
       )}
       <div
-        className={`overflow-hidden transition-max-height duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'
-          }`}
+        className={`overflow-hidden transition-max-height duration-300 ease-in-out ${
+          isOpen ? 'max-h-96' : 'max-h-0'
+        }`}
       >
         {isOpen && <div className="mt-8 text-foreground">{content}</div>}
       </div>

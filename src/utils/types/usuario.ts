@@ -1,5 +1,5 @@
-import { ReservaI } from "./reserva";
 import { AvaliacaoI } from "./avaliacoes";
+import { ReservaI } from "./reserva";
 
 export interface UsuarioI {
     id: string;

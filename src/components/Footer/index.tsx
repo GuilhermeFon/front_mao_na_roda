@@ -1,9 +1,10 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 import InstagramImage from '@/assets/icones/instagram.svg';
 import LinkedinImage from '@/assets/icones/linkedin.svg';
 import InverseLogoImage from '@/assets/nomeBranco.png';
 
-import Image from 'next/image';
-import Link from 'next/link';
 
 export function Footer() {
   return (

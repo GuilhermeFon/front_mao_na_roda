@@ -1,5 +1,5 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 import EncanadorImage from "@/assets/encanador_com_mulher.png";
 

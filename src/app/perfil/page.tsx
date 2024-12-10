@@ -1,13 +1,13 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import Image from 'next/image';
-import { useClienteStore } from '@/context/cliente';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { DatePickerDemo } from '@/components/Datepicker';
-import MultiSelect from '@/components/ui/multiSelect';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 import imagem from '@/assets/perfil.jpg';
+import { DatePickerDemo } from '@/components/Datepicker';
+import MultiSelect from '@/components/ui/multiSelect';
+import { useClienteStore } from '@/context/cliente';
 
 interface Profession {
   id: string;
@@ -198,6 +198,7 @@ export default function Perfil() {
 
   const handlePlanUpgrade = (plan: string) => {
     // setCliente({ ...cliente, plano: plan });
+    console.log(plan);
     setIsPlanModalOpen(false);
   };
 

@@ -1,21 +1,21 @@
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 import { FaUsers, FaTools, FaCogs } from 'react-icons/fa';
 
-import ProfissionalImage from '@/assets/imagem_profissional.png';
+import Cliente from '@/assets/cliente.jpg';
 import EncanadorCasal from '@/assets/encanador_com_mulher.png';
+import EletricistaIcon from '@/assets/icones/icone_eletrecista.svg';
 import EncanamentoIcon from '@/assets/icones/icone_encanamento.svg';
 import FaxinaIcon from '@/assets/icones/icone_faxina.svg';
-import PinturaIcon from '@/assets/icones/icone_pintura.svg';
-import EletricistaIcon from '@/assets/icones/icone_eletrecista.svg';
+import FerramentasIcon from '@/assets/icones/icone_ferramentas.svg';
 import MarceneiroIcon from '@/assets/icones/icone_martelo.svg';
 import JardinagemIcon from '@/assets/icones/icone_pa.svg';
-import FerramentasIcon from '@/assets/icones/icone_ferramentas.svg';
-import FeatureGrid from '@/components/FeatureGrid';
+import PinturaIcon from '@/assets/icones/icone_pintura.svg';
+import ProfissionalImage from '@/assets/imagem_profissional.png';
 import Profissional from '@/assets/maria_encanadora.png';
-import Cliente from '@/assets/cliente.jpg';
 import Faq from '@/components/Faq';
+import FeatureGrid from '@/components/FeatureGrid';
 
 export function Home() {
   return (

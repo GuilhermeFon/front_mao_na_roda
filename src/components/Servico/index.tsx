@@ -1,12 +1,12 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
-import EncanadorImage from "@/assets/encanador.png";
 import CasalImage from "@/assets/casal.png";
+import EncanadorImage from "@/assets/encanador.png";
 import EncanadorTuboImage from "@/assets/encanador_com_tubo.png";
-import PersonImage from "@/assets/perfil.jpg";
 import DocumentIcon from "@/assets/icones/icone_docu_check_branco.svg";
 import ProfileIcon from "@/assets/icones/icone_perfil_check.svg";
+import PersonImage from "@/assets/perfil.jpg";
 
 export function Main() {
   return (

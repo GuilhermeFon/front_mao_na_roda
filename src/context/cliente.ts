@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist, PersistOptions } from 'zustand/middleware';
+
 import { ClienteI } from '@/utils/types/clientes';
 
 type ClienteStore = {
