@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import Logo from '@/assets/icones/logo_azul_e_cinzas_e_nome.svg';
+import ProfileImage from '@/assets/profile.png';
 import { useClienteStore } from '@/context/cliente';
 
 export function Header() {
@@ -51,7 +52,7 @@ export function Header() {
           {cliente.id ? (
             <div className="relative">
               <Image
-                src={cliente.imagem}
+                src={cliente.imagem || ProfileImage}
                 alt="Cliente Avatar"
                 onClick={handleMenuClick}
                 width={40}

@@ -5,6 +5,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 import imagem from '@/assets/perfil.jpg';
+import ProfileImage from '@/assets/profile.png';
 import { DatePickerDemo } from '@/components/Datepicker';
 import MultiSelect from '@/components/ui/multiSelect';
 import { useClienteStore } from '@/context/cliente';
@@ -123,7 +124,7 @@ export default function Perfil() {
         console.error('Erro ao buscar dados do cliente:', error);
       }
     },
-    [setValue] // Apenas setValue como dependência
+    [setValue], // Apenas setValue como dependência
   );
 
   useEffect(() => {
@@ -490,7 +491,7 @@ export default function Perfil() {
       <div className="col-span-2 md:col-span-1 order-first md:order-3">
         <div className="bg-background rounded-lg border p-4 flex items-start space-x-4 col-span-2 md:col-span-1 h-fit">
           <Image
-            src={typeof cliente.imagem === 'string' ? cliente.imagem : ' '}
+            src={cliente.imagem ? cliente.imagem : ProfileImage}
             alt="Foto do Perfil"
             width={150}
             height={150}
