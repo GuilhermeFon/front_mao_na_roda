@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
@@ -100,6 +100,32 @@ export default function Perfil() {
     { id: 'pvc', label: 'Instalador de Forro de PVC' },
   ];
 
+  const fetchClienteData = useCallback(
+    async (clienteId: string) => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_URL_API}/prestador/${clienteId}`,
+        );
+        const result = await response.json();
+        setValue('nome', result.nome);
+        setValue('email', result.email);
+        setValue('celular', result.celular);
+        setValue('cpf', result.cpf);
+        setValue('pais', result.pais);
+        setValue('estado', result.estado);
+        setValue('cidade', result.cidade);
+        setValue('dataNascimento', result.dataNascimento);
+        setValue('linkedin', result.linkedin);
+        setValue('profissoes', result.profissoes);
+        setValue('descricao', result.descricao);
+        setValue('imagem', result.imagem || imagem.src); // imagem ainda é usada, mas fora das dependências
+      } catch (error) {
+        console.error('Erro ao buscar dados do cliente:', error);
+      }
+    },
+    [setValue] // Apenas setValue como dependência
+  );
+
   useEffect(() => {
     const storedClienteId = localStorage.getItem('clienteId');
     if (storedClienteId) {
@@ -108,31 +134,7 @@ export default function Perfil() {
       localStorage.setItem('clienteId', cliente.id);
       fetchClienteData(cliente.id);
     }
-  }, [cliente.id]);
-
-  const fetchClienteData = async (clienteId: string) => {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL_API}/prestador/${clienteId}`,
-      );
-      const result = await response.json();
-      setValue('nome', result.nome);
-      setValue('email', result.email);
-      setValue('celular', result.celular);
-      setValue('cpf', result.cpf);
-      setValue('pais', result.pais);
-      setValue('estado', result.estado);
-      setValue('cidade', result.cidade);
-      setValue('dataNascimento', result.dataNascimento);
-      setValue('linkedin', result.linkedin);
-      setValue('profissoes', result.profissoes);
-      setValue('descricao', result.descricao);
-      setValue('imagem', result.imagem || imagem.src);
-      // Set other fields if available
-    } catch (error) {
-      console.error('Erro ao buscar dados do cliente:', error);
-    }
-  };
+  }, [cliente.id, fetchClienteData]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
