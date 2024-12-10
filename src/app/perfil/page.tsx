@@ -574,9 +574,8 @@ export default function Perfil() {
                   Plano básico com acesso limitado.
                 </p>
                 <ul className="text-left text-sm mb-4">
-                  <li>- Acesso a funcionalidades básicas</li>
                   <li>- Suporte limitado</li>
-                  <li>- Prioridade baixa na listagem de serviços</li>
+                  <li>- Sem prioridade na listagem de serviços</li>
                 </ul>
                 <button
                   className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
@@ -592,8 +591,8 @@ export default function Perfil() {
                 </p>
                 <ul className="text-left text-sm mb-4">
                   <li>- Acesso a funcionalidades intermediárias</li>
-                  <li>- Suporte prioritário</li>
-                  <li>- Prioridade média na listagem de serviços</li>
+                  <li>- Suporte por E-mail 24h</li>
+                  <li>- Prioridade baixa na listagem de serviços</li>
                 </ul>
                 <button
                   className="bg-[#A65A4E] text-white px-4 py-2 rounded-lg hover:bg-[#8E4A3F] transition"
@@ -609,7 +608,7 @@ export default function Perfil() {
                 </p>
                 <ul className="text-left text-sm mb-4">
                   <li>- Acesso a todas as funcionalidades</li>
-                  <li>- Suporte premium</li>
+                  <li>- Suporte por E-mail 24h</li>
                   <li>- Prioridade alta na listagem de serviços</li>
                 </ul>
                 <button
@@ -626,8 +625,7 @@ export default function Perfil() {
                 </p>
                 <ul className="text-left text-sm mb-4">
                   <li>- Acesso a todas as funcionalidades</li>
-                  <li>- Suporte premium 24/7</li>
-                  <li>- Consultoria personalizada</li>
+                  <li>- Suporte por E-mail 24h</li>
                   <li>- Prioridade máxima na listagem de serviços</li>
                 </ul>
                 <button
