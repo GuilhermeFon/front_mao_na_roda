@@ -9,7 +9,7 @@ const QuemSomos = () => {
 	return (
 		<div className="min-h-screen bg-background text-AzulEscuro">
 			{/* Cabeçalho com fundo azul */}
-			<header className="py-8 bg-AzulForte text-white text-center">
+			<header className="py-8 bg-[#082D53] text-white text-center">
 				<h1 className="text-4xl font-bold">Quem Somos</h1>
 				<div className=" text-white p-4 max-w-4xl mx-auto">
 					<p className="text-lg leading-relaxed line-clamp-6">

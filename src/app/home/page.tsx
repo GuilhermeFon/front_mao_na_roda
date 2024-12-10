@@ -15,6 +15,7 @@ import FerramentasIcon from '@/assets/icones/icone_ferramentas.svg';
 import FeatureGrid from '@/components/FeatureGrid';
 import Profissional from '@/assets/maria_encanadora.png';
 import Cliente from '@/assets/cliente.jpg';
+import Faq from '@/components/Faq';
 
 export function Home() {
   return (
@@ -303,6 +304,7 @@ export function Home() {
           </div>
         </div>
       </section>
+        <Faq />
     </main>
   );
 }

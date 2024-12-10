@@ -9,7 +9,7 @@ const Contato = () => {
 	return (
 		<div className="min-h-screen flex flex-col">
 			{/* Cabeçalho com fundo azul */}
-			<header className="bg-AzulForte text-white py-8">
+			<header className="bg-[#082D53] text-white py-8">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold">Contato</h1>
 				</div>

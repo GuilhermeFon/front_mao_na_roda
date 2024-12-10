@@ -1,6 +1,6 @@
 import InstagramImage from '@/assets/icones/instagram.svg';
 import LinkedinImage from '@/assets/icones/linkedin.svg';
-import InverseLogoImage from '@/assets/icones/logo_azul_escuro_e_nome.svg';
+import InverseLogoImage from '@/assets/nomeBranco.png';
 
 import Image from 'next/image';
 import Link from 'next/link';
