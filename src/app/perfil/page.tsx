@@ -7,7 +7,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { DatePickerDemo } from '@/components/Datepicker';
 import MultiSelect from '@/components/ui/multiSelect';
 
-import PerfilImage from '@/assets/perfil.jpg';
+import imagem from '@/assets/perfil.jpg';
 
 interface Profession {
   id: string;
@@ -20,14 +20,13 @@ type FormData = {
   celular: string;
   dataNascimento: string;
   descricao: string;
-  perfilImage: string | ArrayBuffer | null;
   senha: string;
   confirmarSenha: string;
   cpf: string;
   pais: string;
   estado: string;
   cidade: string;
-  imagem: FileList;
+  imagem: string | FileList;
   profissoes?: string[];
   linkedin?: string;
 };
@@ -128,7 +127,7 @@ export default function Perfil() {
       setValue('linkedin', result.linkedin);
       setValue('profissoes', result.profissoes);
       setValue('descricao', result.descricao);
-      setValue('perfilImage', result.perfilImage || PerfilImage.src);
+      setValue('imagem', result.imagem || imagem.src);
       // Set other fields if available
     } catch (error) {
       console.error('Erro ao buscar dados do cliente:', error);
@@ -143,7 +142,7 @@ export default function Perfil() {
         if (upload.target && upload.target.result !== null) {
           const result = upload.target.result;
           if (result) {
-            setValue('perfilImage', result as string | ArrayBuffer);
+            setValue('imagem', result as string);
           }
         }
       };
@@ -156,7 +155,7 @@ export default function Perfil() {
   };
 
   const handleRemoveImage = () => {
-    setValue('perfilImage', null);
+    setValue('imagem', '');
     setIsModalOpen(false);
   };
 
@@ -468,7 +467,7 @@ export default function Perfil() {
 
           <input
             type="file"
-            id="perfilImage"
+            id="imagem"
             className="hidden"
             ref={fileInputRef}
             onChange={handleImageChange}
@@ -564,7 +563,10 @@ export default function Perfil() {
       )}
 
       {isPlanModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={() => setIsPlanModalOpen(false)}>
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+          onClick={() => setIsPlanModalOpen(false)}
+        >
           <div className="bg-white text-center flex flex-col gap-5 p-6 rounded-lg shadow-lg w-11/12 md:w-2/3 lg:w-1/2">
             <h2 className="text-2xl font-bold mb-4">Selecione seu Plano</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center">

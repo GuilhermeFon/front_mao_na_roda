@@ -6,7 +6,7 @@ import EncanadorImage from "@/assets/encanador_com_mulher.png";
 export default function servicoDetalhes() {
   return (
     <div className="bg-gray-50 min-h-screen">
-      <div className="relative bg-blue-900 py-24 flex justify-center items-center">
+      <div className="relative bg-[#082D53] py-24 flex justify-center items-center">
         <h1 className="text-white text-4xl font-bold">Entre em contato</h1>
       </div>
       <div className="container mx-auto max-w-screen-lg py-16 px-4 grid md:grid-cols-2 gap-10">

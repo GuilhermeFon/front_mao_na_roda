@@ -19,15 +19,16 @@ import Cliente from '@/assets/cliente.jpg';
 export function Home() {
   return (
     <main>
-      <section className="bg-blue-900 h-fit text-white text-start">
-        <div className="container flex justify-between items-center mx-auto">
-          <div>
+      <section className="bg-[#082D53] text-white text-start">
+        <div className="container flex flex-col lg:flex-row justify-between items-center mx-auto px-2 pb-10 lg:pb-0 pt-10">
+          <div className="lg:mr-60 flex-grow">
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">
               Conectando <span className="text-yellow-400"> você </span>
               aos profissionais ideais!
             </h1>
             <p className="text-lg mb-8">
-              Agilidade, confiança e qualidade para suas reformas e reparos!
+              Encontre rapidamente os melhores especialistas para suas reformas
+              e reparos, com a confiança e qualidade que você merece!
             </p>
             <button
               type="submit"
@@ -41,15 +42,15 @@ export function Home() {
             <Image
               src={ProfissionalImage}
               alt="Profissional"
-              width={210}
-              height={210}
+              width={500}
+              height={500}
               className="object-cover"
             />
           </div>
         </div>
       </section>
 
-      <section className="py-16 mx-auto text-center">
+      <section className="container px-2 py-20 mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">
           Tudo o que você precisa, em um só lugar!
         </h2>
@@ -176,7 +177,7 @@ export function Home() {
             </h3>
             <Link
               href="/servicos/servicoDetalhado"
-              className="bg-blue-500 py-2 px-6 rounded-lg hover:bg-AzulForte"
+              className="bg-[#1D69B7] py-2 px-6 rounded-lg hover:bg-[#082D53]"
             >
               Encontre um profissional
             </Link>
@@ -184,7 +185,7 @@ export function Home() {
         </div>
       </section>
 
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-20 p-6">
+      <section className="container mx-auto px-2 py-20 flex flex-col lg:flex-row justify-between  items-center gap-20">
         {/* Card Profissionais */}
         <div className="flex bg-background text-gray-800 rounded-lg shadow-lg w-full max-w-lg lg:max-w-2xl h-96">
           <div className="w-3/4 p-6">
@@ -242,61 +243,64 @@ export function Home() {
             />
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="text-center my-10">
+      <section className="container mx-auto px-2 py-20 text-center">
         <FeatureGrid />
-      </div>
-      <section className="bg-blue-100 py-10 mt-20">
-        <div className="max-w-screen-lg mx-auto text-center lg:flex lg:justify-between">
-          <div className="lg:w-1/2 lg:text-left">
-            <h2 className="text-2xl font-bold mb-4">
-              Junte-se à nossa rede de profissionais
-            </h2>
-            <p className="text-lg text-gray-700 mb-4">
-              Se você é um profissional qualificado com experiência em serviços
-              gerais e está interessado em expandir sua prática, conectar-se com
-              novos clientes, venha fazer parte da nossa plataforma.
-            </p>
-            <h3 className="text-xl font-semibold mb-2">
-              Por que se juntar a nós?
-            </h3>
-            <ul className="list-none text-left ml-6 mb-4 space-y-2">
-              <li className="flex items-center">
-                <FaUsers className="mr-4 text-yellow-500 text-3xl" /> Acesso a
-                uma base de clientes diversificada
-              </li>
-              <li className="flex items-center">
-                <FaTools className="mr-4 text-yellow-500 text-3xl" />{' '}
-                Ferramentas e suporte dedicados
-              </li>
-              <li className="flex items-center">
-                <FaCogs className="mr-4 text-yellow-500 text-3xl" />{' '}
-                Flexibilidade e controle
-              </li>
-            </ul>
-            <p className="text-lg text-gray-700 mr-4">
-              Gerencie seus serviços e horários de forma eficiente e de acordo
-              com suas preferências.
-            </p>
+      </section>
+      <section className="bg-blue-100 mt-20">
+        <div className="container mx-auto px-2 py-20">
+          <div className="text-center lg:flex lg:justify-between">
+            <div className="lg:w-1/2 lg:text-left">
+              <h2 className="text-2xl font-bold mb-4">
+                Junte-se à nossa rede de profissionais
+              </h2>
+              <p className="text-lg text-gray-700 mb-4">
+                Se você é um profissional qualificado com experiência em
+                serviços gerais e está interessado em expandir sua prática,
+                conectar-se com novos clientes, venha fazer parte da nossa
+                plataforma.
+              </p>
+              <h3 className="text-xl font-semibold mb-2">
+                Por que se juntar a nós?
+              </h3>
+              <ul className="list-none text-left ml-6 mb-4 space-y-2">
+                <li className="flex items-center">
+                  <FaUsers className="mr-4 text-yellow-500 text-3xl" /> Acesso a
+                  uma base de clientes diversificada
+                </li>
+                <li className="flex items-center">
+                  <FaTools className="mr-4 text-yellow-500 text-3xl" />{' '}
+                  Ferramentas e suporte dedicados
+                </li>
+                <li className="flex items-center">
+                  <FaCogs className="mr-4 text-yellow-500 text-3xl" />{' '}
+                  Flexibilidade e controle
+                </li>
+              </ul>
+              <p className="text-lg text-gray-700 mr-4">
+                Gerencie seus serviços e horários de forma eficiente e de acordo
+                com suas preferências.
+              </p>
+            </div>
+            <div className="lg:w-1/2 flex justify-center lg:justify-end mb-6 lg:mb-5 ml-9">
+              <Image
+                src={EncanadorCasal}
+                alt="Profissional"
+                width={500}
+                height={250}
+                className="rounded-lg"
+              />
+            </div>
           </div>
-          <div className="lg:w-1/2 flex justify-center mb-6 lg:mb-5 ml-9">
-            <Image
-              src={EncanadorCasal}
-              alt="Profissional"
-              width={500}
-              height={250}
-              className="rounded-lg"
-            />
+          <div className="text-center mt-6">
+            <Link
+              href="cadastro"
+              className="inline-block bg-[#1D69B7] text-white text-lg font-bold py-3 px-6 rounded-lg hover:bg-[#082D53]"
+            >
+              Junte-se a nós
+            </Link>
           </div>
-        </div>
-        <div className="text-center mt-6">
-          <Link
-            href="cadastro"
-            className="inline-block bg-blue-600 text-white text-lg font-bold py-3 px-6 rounded-full hover:bg-blue-700"
-          >
-            Junte-se a nós
-          </Link>
         </div>
       </section>
     </main>
