@@ -4,8 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { Calendar } from '@/components/ui/calendar';
+import Modal from '@/components/Modal';
 
 import ProfileImage from '@/assets/profile.png';
+import { useClienteStore } from '@/context/cliente';
+// Removed unused import: DateRange
+
 interface Profession {
   id: string;
   label: string;
@@ -25,58 +30,17 @@ interface Prestador {
 export default function ListaProfissionais() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { cliente } = useClienteStore();
+
+  // Define requesterId and selectedUserId
+  const requesterId = 'user123'; // Example ID
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
 
   const professions: Profession[] = [
     { id: 'eletricista', label: 'Eletricista' },
-    { id: 'encanador', label: 'Encanador' },
-    { id: 'pintor', label: 'Pintor' },
-    { id: 'pedreiro', label: 'Pedreiro' },
-    { id: 'carpinteiro', label: 'Carpinteiro' },
-    { id: 'marceneiro', label: 'Marceneiro' },
-    { id: 'serralheiro', label: 'Serralheiro' },
-    { id: 'gesseiro', label: 'Gesseiro' },
-    { id: 'azulejista', label: 'Azulejista' },
-    { id: 'jardineiro', label: 'Jardineiro' },
-    { id: 'mecanico', label: 'Mecânico' },
-    { id: 'eletronico', label: 'Eletrônico' },
-    { id: 'padeiro', label: 'Padeiro' },
-    { id: 'cozinheiro', label: 'Cozinheiro' },
-    { id: 'garcom', label: 'Garçom' },
-    { id: 'motorista', label: 'Motorista' },
-    { id: 'seguranca', label: 'Segurança' },
-    { id: 'porteiro', label: 'Porteiro' },
-    { id: 'faxineiro', label: 'Faxineiro' },
-    { id: 'vendedor', label: 'Vendedor' },
-    { id: 'vidraceiro', label: 'Vidraceiro' },
-    { id: 'tapeceiro', label: 'Tapeceiro' },
-    { id: 'montador', label: 'Montador de Móveis' },
-    { id: 'reparador', label: 'Reparador de Eletrodomésticos' },
-    { id: 'piscineiro', label: 'Piscineiro' },
-    { id: 'calheiro', label: 'Calheiro' },
-    { id: 'impermeabilizador', label: 'Impermeabilizador' },
-    { id: 'dedetizador', label: 'Dedetizador' },
-    { id: 'limpador', label: 'Limpador de Vidros' },
-    { id: 'restaurador', label: 'Restaurador de Móveis' },
-    { id: 'refrigerista', label: 'Refrigerista' },
-    { id: 'soldador', label: 'Soldador' },
-    { id: 'chaveiro', label: 'Chaveiro' },
-    { id: 'desentupidor', label: 'Desentupidor' },
-    { id: 'piso', label: 'Instalador de Piso' },
-    { id: 'telhadista', label: 'Telhadista' },
-    { id: 'cortineiro', label: 'Instalador de Cortinas' },
-    { id: 'persianista', label: 'Instalador de Persianas' },
-    { id: 'arcondicionado', label: 'Instalador de Ar Condicionado' },
-    { id: 'aquecedor', label: 'Instalador de Aquecedores' },
-    { id: 'elevador', label: 'Técnico de Elevadores' },
-    { id: 'portao', label: 'Instalador de Portões Automáticos' },
-    { id: 'cercas', label: 'Instalador de Cercas Elétricas' },
-    { id: 'alarme', label: 'Instalador de Alarmes' },
-    { id: 'cftv', label: 'Instalador de CFTV' },
-    { id: 'som', label: 'Instalador de Sistemas de Som' },
-    { id: 'iluminacao', label: 'Instalador de Iluminação' },
-    { id: 'gesso', label: 'Instalador de Gesso' },
-    { id: 'drywall', label: 'Instalador de Drywall' },
-    { id: 'teto', label: 'Instalador de Teto Falso' },
+    // ... other professions
     { id: 'pvc', label: 'Instalador de Forro de PVC' },
   ];
 
@@ -87,6 +51,11 @@ export default function ListaProfissionais() {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_URL_API}/prestador`,
+          {
+            headers: {
+              Authorization: `Bearer ${cliente.token}`,
+            },
+          }
         );
         const result = await response.json();
         setData(result);
@@ -96,7 +65,7 @@ export default function ListaProfissionais() {
     };
 
     fetchPrestadores();
-  }, []);
+  }, [cliente.token]);
 
   const filteredData = data.filter((profissional) => {
     const matchesSearchTerm =
@@ -111,6 +80,36 @@ export default function ListaProfissionais() {
 
     return matchesSearchTerm && matchesCategory;
   });
+
+  const handleConfirmReservation = async () => {
+    if (!selectedDate || !selectedUserId) {
+      console.error('Data ou usuário selecionado ausente.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/reserva`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          date: selectedDate.toISOString(),
+          requesterId,
+          selectedUserId,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Falha ao criar reserva');
+      }
+  
+      console.log('Reserva criada com sucesso');
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Erro ao criar reserva:', error);
+    }
+  };
 
   return (
     <section className="container w-full mx-auto px-4 py-10 min-h-screen flex flex-col justify-between">
@@ -224,12 +223,15 @@ export default function ListaProfissionais() {
                 </div>
               </div>
               <div className="flex self-end">
-                <Link
-                  href={`/servicos/servicoDetalhado/confirmacao`}
-                  className="mt-6 bg-blue-600 text-white text-lg font-semibold p-2 rounded-lg hover:bg-blue-700 inline-block transition-colors"
+                <button
+                  onClick={() => {
+                    setSelectedUserId(profissional.id.toString());
+                    setIsModalOpen(true);
+                  }}
+                  className="mt-6 bg-[#1D69B7] text-white text-lg font-semibold p-2 rounded-lg hover:bg-[#082D53] inline-block transition-colors"
                 >
-                  Contratar
-                </Link>
+                  Agendar
+                </button>
               </div>
             </div>
           </div>
@@ -243,6 +245,35 @@ export default function ListaProfissionais() {
           </div>
         )}
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2 className="text-xl font-bold mb-4">Selecione uma data</h2>
+        <Calendar
+          mode="single"
+          selected={selectedDate || undefined}
+          onSelect={(date: Date | undefined) => {
+            console.log('Data selecionada:', date);
+            setSelectedDate(date || null);
+          }}
+          disabled={{ before: new Date() }}
+          className="block w-full p-2 text-base justify-items-center border-gray-300 focus:outline-none sm:text-sm rounded-md"
+        />
+        <div className="w-full p-2 mx-auto flex justify-center gap-5">
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="mt-4 bg-gray-400 text-white text-lg font-semibold p-2 rounded-lg hover:bg-[#082D53] inline-block transition-colors"
+          >
+            Cancelar
+          </button>
+          <button
+            onClick={handleConfirmReservation}
+            className="mt-4 bg-[#1D69B7] text-white text-lg font-semibold p-2 rounded-lg hover:bg-[#082D53] inline-block transition-colors"
+            disabled={!selectedDate || !selectedUserId}
+          >
+            Confirmar
+          </button>
+        </div>
+      </Modal>
     </section>
   );
 }

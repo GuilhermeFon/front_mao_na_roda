@@ -120,10 +120,10 @@ export default function Cadastro() {
       alert('As senhas não coincidem.');
       return;
     }
-  
+
     // Create a FormData object
     const formData = new FormData();
-  
+
     // Append text fields
     formData.append('nome', data.nome);
     formData.append('email', data.email);
@@ -134,19 +134,19 @@ export default function Cadastro() {
     formData.append('cidade', data.cidade || '');
     formData.append('dataNascimento', data.dataNascimento || '');
     formData.append('celular', data.celular || '');
-    formData.append('descricao', data.descricao || '');
-  
+
     // Append image file if present
     if (selectedFile) {
       formData.append('imagem', selectedFile);
     }
-  
+
     // Append additional fields for 'prestador'
     if (tipo === 'prestador') {
-      formData.append('linkedin', data.linkedin || '');
       formData.append('profissoes', JSON.stringify(selectedProfessions));
+      formData.append('linkedin', data.linkedin || '');
+      formData.append('descricao', data.descricao || '');
     }
-  
+
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_URL_API}/${tipo}/signin`,
@@ -507,12 +507,6 @@ export default function Cadastro() {
                     placeholder="Confirmar senha"
                     className="w-full h-8 mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm"
                     {...register('confirmarSenha', { required: true })}
-                  />
-
-                  <textarea
-                    placeholder="Descrição"
-                    className="w-full mb-4 px-3 py-1 rounded border border-gray-300 bg-transparent text-black placeholder-gray-400 placeholder:text-sm min-h-[100px]"
-                    {...register('descricao')}
                   />
 
                   <div className="mb-4">
