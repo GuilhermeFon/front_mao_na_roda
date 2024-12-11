@@ -40,19 +40,32 @@ export function Header() {
           </Link>
         </div>
         <nav className="hidden lg:flex space-x-4 items-center">
-          <Link href="/" className="text-black hover:text-yellow-400 transition-colors">
+          <Link
+            href="/"
+            className="text-black hover:text-yellow-400 transition-colors"
+          >
             Início
           </Link>
-          <Link href="/servicos" className="text-black hover:text-yellow-400 transition-colors">
+          <Link
+            href="/servicos"
+            className="text-black hover:text-yellow-400 transition-colors"
+          >
             Encontrar profissionais
           </Link>
-          <Link href="/quemSomos" className="text-black hover:text-yellow-400 transition-colors">
+          <Link
+            href="/quemSomos"
+            className="text-black hover:text-yellow-400 transition-colors"
+          >
             Quem Somos
           </Link>
           {cliente.id ? (
             <div className="relative">
               <Image
-                src={cliente.imagem instanceof File ? URL.createObjectURL(cliente.imagem) : cliente.imagem || ProfileImage}
+                src={
+                  cliente.imagem instanceof File
+                    ? URL.createObjectURL(cliente.imagem)
+                    : cliente.imagem || ProfileImage
+                }
                 alt="Cliente Avatar"
                 onClick={handleMenuClick}
                 width={40}
@@ -61,12 +74,23 @@ export function Header() {
               />
               {ConfigMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                  {cliente.tipo === 'prestador' && (
+                    <Link
+                      href="/perfil"
+                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg"
+                      onClick={() => setConfigMenuOpen(false)}
+                    >
+                      Configurações da Conta
+                    </Link>
+                  )}
                   <Link
-                    href="/perfil"
+                    href="/agenda"
                     className="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg"
                     onClick={() => setConfigMenuOpen(false)}
                   >
-                    Configurações da Conta
+                    {cliente.tipo === 'prestador'
+                      ? 'Minha Agenda'
+                      : 'Meus serviços'}
                   </Link>
                   <button
                     onClick={handleLogout}

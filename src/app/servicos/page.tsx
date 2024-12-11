@@ -34,9 +34,7 @@ export default function ListaProfissionais() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { cliente } = useClienteStore();
 
-  // Define requesterId and selectedUserId
-  const requesterId = 'user123'; // Example ID
-  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
   const professions: Profession[] = [
     { id: 'eletricista', label: 'Eletricista' },
@@ -51,11 +49,6 @@ export default function ListaProfissionais() {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_URL_API}/prestador`,
-          {
-            headers: {
-              Authorization: `Bearer ${cliente.token}`,
-            },
-          }
         );
         const result = await response.json();
         setData(result);
@@ -88,22 +81,26 @@ export default function ListaProfissionais() {
     }
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/reserva`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL_API}/reserva`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cliente.token}`,
+          },
+          body: JSON.stringify({
+            data: selectedDate,
+            clienteId: cliente.id,
+            prestadorId: selectedUserId,
+          }),
         },
-        body: JSON.stringify({
-          date: selectedDate.toISOString(),
-          requesterId,
-          selectedUserId,
-        }),
-      });
-  
+      );
+
       if (!response.ok) {
         throw new Error('Falha ao criar reserva');
       }
-  
+
       console.log('Reserva criada com sucesso');
       setIsModalOpen(false);
     } catch (error) {
@@ -225,7 +222,7 @@ export default function ListaProfissionais() {
               <div className="flex self-end">
                 <button
                   onClick={() => {
-                    setSelectedUserId(profissional.id.toString());
+                    setSelectedUserId(profissional.id);
                     setIsModalOpen(true);
                   }}
                   className="mt-6 bg-[#1D69B7] text-white text-lg font-semibold p-2 rounded-lg hover:bg-[#082D53] inline-block transition-colors"
@@ -252,7 +249,6 @@ export default function ListaProfissionais() {
           mode="single"
           selected={selectedDate || undefined}
           onSelect={(date: Date | undefined) => {
-            console.log('Data selecionada:', date);
             setSelectedDate(date || null);
           }}
           disabled={{ before: new Date() }}
