@@ -123,7 +123,7 @@ function ServiceManager() {
                     <td className="justify-items-center p-2 border">
                       <Image
                         src={item.cliente.imagem}
-                        alt={item.servico?.descricao || 'Sem descrição'}
+                        alt={item.cliente.nome}
                         width={80}
                         height={80} 
                         className="object-cover rounded-full"
