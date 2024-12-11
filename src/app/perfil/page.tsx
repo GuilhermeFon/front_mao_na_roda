@@ -4,7 +4,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
-import imagem from '@/assets/perfil.jpg';
 import ProfileImage from '@/assets/profile.png';
 import { DatePickerDemo } from '@/components/Datepicker';
 import MultiSelect from '@/components/ui/multiSelect';
@@ -27,9 +26,10 @@ type FormData = {
   pais: string;
   estado: string;
   cidade: string;
-  imagem: string | FileList;
+  imagem: File | null | string;
   profissoes?: string[];
   linkedin?: string;
+  tipo?: string;
 };
 
 export default function Perfil() {
@@ -37,6 +37,8 @@ export default function Perfil() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -119,12 +121,12 @@ export default function Perfil() {
         setValue('linkedin', result.linkedin);
         setValue('profissoes', result.profissoes);
         setValue('descricao', result.descricao);
-        setValue('imagem', result.imagem || imagem.src); // imagem ainda é usada, mas fora das dependências
+        setValue('imagem', selectedFile);
       } catch (error) {
         console.error('Erro ao buscar dados do cliente:', error);
       }
     },
-    [setValue], // Apenas setValue como dependência
+    [setValue],
   );
 
   useEffect(() => {
@@ -137,19 +139,12 @@ export default function Perfil() {
     }
   }, [cliente.id, fetchClienteData]);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (upload) => {
-        if (upload.target && upload.target.result !== null) {
-          const result = upload.target.result;
-          if (result) {
-            setValue('imagem', result as string);
-          }
-        }
-      };
-      reader.readAsDataURL(file);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    if (file) {
+      setSelectedFile(file);
+    } else {
+      setSelectedFile(null);
     }
   };
 
@@ -158,7 +153,7 @@ export default function Perfil() {
   };
 
   const handleRemoveImage = () => {
-    setValue('imagem', '');
+    setValue('imagem', null);
     setIsModalOpen(false);
   };
 
@@ -169,22 +164,37 @@ export default function Perfil() {
   // const handleSaveClick = () => {
   //   setIsConfirmModalOpen(true);
   // };
-  console.log('cliente: ', cliente);
 
   const handleConfirmSave = async (data: FormData) => {
     setIsConfirmModalOpen(false);
     try {
+      const formData = new FormData();
+      formData.append('nome', data.nome);
+      formData.append('email', data.email);
+      formData.append('celular', data.celular);
+      formData.append('cpf', data.cpf);
+      formData.append('pais', data.pais);
+      formData.append('estado', data.estado);
+      formData.append('cidade', data.cidade);
+      formData.append('dataNascimento', data.dataNascimento);
+      formData.append('linkedin', data.linkedin || '');
+      formData.append('descricao', data.descricao);
+      formData.append('profissoes', JSON.stringify(data.profissoes || []));
+      if (selectedFile) {
+        formData.append('imagem', selectedFile);
+      }
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL_API}/prestador/${cliente.id}`,
         {
           method: 'PUT',
           headers: {
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${cliente.token}`,
           },
-          body: JSON.stringify(data),
+          body: formData,
         },
       );
+
       if (response.ok) {
         alert('Dados atualizados com sucesso!');
       } else {
@@ -474,7 +484,7 @@ export default function Perfil() {
             id="imagem"
             className="hidden"
             ref={fileInputRef}
-            onChange={handleImageChange}
+            onChange={handleFileChange}
           />
 
           <div className="col-span-2 order-last flex flex-col justify-between items-end">
@@ -491,7 +501,9 @@ export default function Perfil() {
       <div className="col-span-2 md:col-span-1 order-first md:order-3">
         <div className="bg-background rounded-lg border p-4 flex items-start space-x-4 col-span-2 md:col-span-1 h-fit">
           <Image
-            src={cliente.imagem ? cliente.imagem : ProfileImage}
+            src={
+              typeof cliente.imagem === 'string' ? cliente.imagem : ProfileImage
+            }
             alt="Foto do Perfil"
             width={150}
             height={150}

@@ -11,8 +11,9 @@ export interface ClienteI {
   linkedin: string;
   instagram: string;
   descricao: string;
-  imagem: string;
+  imagem: File;
   email: string;
   plano: string;
   nota: number;
+  tipo: string;
 }

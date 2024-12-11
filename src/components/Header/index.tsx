@@ -52,12 +52,12 @@ export function Header() {
           {cliente.id ? (
             <div className="relative">
               <Image
-                src={cliente.imagem || ProfileImage}
+                src={cliente.imagem instanceof File ? URL.createObjectURL(cliente.imagem) : cliente.imagem || ProfileImage}
                 alt="Cliente Avatar"
                 onClick={handleMenuClick}
                 width={40}
                 height={40}
-                className="rounded-full max-w-10 max-h-10 object-cover cursor-pointer"
+                className="rounded-full min-w-10 min-h-10 max-w-10 max-h-10 object-cover cursor-pointer"
               />
               {ConfigMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
