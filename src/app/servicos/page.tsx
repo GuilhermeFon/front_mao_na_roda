@@ -226,7 +226,7 @@ export default function ListaProfissionais() {
               <div className="flex self-end">
                 <Link
                   href={`/servicos/servicoDetalhado/confirmacao`}
-                  className="mt-6 bg-blue-600 text-white text-lg font-semibold p-2 rounded-lg hover:bg-blue-700 inline-block"
+                  className="mt-6 bg-blue-600 text-white text-lg font-semibold p-2 rounded-lg hover:bg-blue-700 inline-block transition-colors"
                 >
                   Contratar
                 </Link>

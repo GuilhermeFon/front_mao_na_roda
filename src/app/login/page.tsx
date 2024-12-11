@@ -120,7 +120,7 @@ export default function Login() {
             <div className="flex justify-between items-center mb-4">
               <Link
                 href="esqueceuSenha"
-                className="text-yellow-500 text-sm hover:text-yellow-600"
+                className="text-yellow-500 text-sm hover:text-yellow-600 transition-colors"
               >
                 Esqueceu a senha?
               </Link>
@@ -128,7 +128,7 @@ export default function Login() {
 
             <button
               type="submit"
-              className="w-full mt-6 bg-yellow-500 text-dark p-2 rounded hover:bg-yellow-600 transition"
+              className="w-full mt-6 bg-yellow-500 text-dark p-2 rounded hover:bg-yellow-600 transition-colors "
             >
               Entrar
             </button>
@@ -139,7 +139,7 @@ export default function Login() {
               Não tem uma conta?
               <Link
                 href="cadastro"
-                className="text-yellow-500 text-sm hover:text-yellow-600 ml-2"
+                className="text-yellow-500 text-sm hover:text-yellow-600 ml-2 transition-colors"
               >
                 Cadastre-se aqui
               </Link>

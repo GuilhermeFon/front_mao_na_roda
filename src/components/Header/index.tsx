@@ -40,13 +40,13 @@ export function Header() {
           </Link>
         </div>
         <nav className="hidden lg:flex space-x-4 items-center">
-          <Link href="/" className="text-black hover:text-yellow-400">
+          <Link href="/" className="text-black hover:text-yellow-400 transition-colors">
             Início
           </Link>
-          <Link href="/servicos" className="text-black hover:text-yellow-400">
+          <Link href="/servicos" className="text-black hover:text-yellow-400 transition-colors">
             Encontrar profissionais
           </Link>
-          <Link href="/quemSomos" className="text-black hover:text-yellow-400">
+          <Link href="/quemSomos" className="text-black hover:text-yellow-400 transition-colors">
             Quem Somos
           </Link>
           {cliente.id ? (
@@ -70,7 +70,7 @@ export function Header() {
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg"
+                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
                   >
                     Sair
                   </button>
@@ -81,13 +81,13 @@ export function Header() {
             <>
               <Link
                 href="/login"
-                className="bg-background border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
+                className="bg-background border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4 transition-colors"
               >
                 Entrar
               </Link>
               <Link
                 href="/cadastro"
-                className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+                className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4 transition-colors"
               >
                 Cadastre-se
               </Link>

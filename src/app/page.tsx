@@ -35,7 +35,7 @@ export default async function Home() {
             </p>
             <button
               type="submit"
-              className="bg-yellow-500 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600"
+              className="bg-yellow-500 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600 transition-colors"
             >
               DESCUBRA AGORA!
             </button>
@@ -180,7 +180,7 @@ export default async function Home() {
             </h3>
             <Link
               href="/servicos/servicoDetalhado"
-              className="bg-[#1D69B7] py-2 px-6 rounded-lg hover:bg-[#082D53]"
+              className="bg-[#1D69B7] py-2 px-6 rounded-lg hover:bg-[#082D53] transition-colors"
             >
               Encontre um profissional
             </Link>
@@ -299,7 +299,7 @@ export default async function Home() {
           <div className="text-center mt-6">
             <Link
               href="cadastro"
-              className="inline-block bg-[#1D69B7] text-white text-lg font-bold py-3 px-6 rounded-lg hover:bg-[#082D53]"
+              className="inline-block bg-[#1D69B7] text-white text-lg font-bold py-3 px-6 rounded-lg hover:bg-[#082D53] transition-colors"
             >
               Junte-se a nós
             </Link>

@@ -100,7 +100,7 @@ export function Main() {
 
             <Link
               href="/buy"
-              className="bg-green-400 w-[80%] px-0 rounded-full hover:text-blue-700 text-white text-base text-center font-bold  py-2"
+              className="bg-green-400 w-[80%] px-0 rounded-full hover:text-blue-700 text-white text-base text-center font-bold  py-2 transition-colors"
             >
               Ver telefone
             </Link>
