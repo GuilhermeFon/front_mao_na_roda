@@ -92,12 +92,13 @@ export function Header() {
                       ? 'Minha Agenda'
                       : 'Meus serviços'}
                   </Link>
-                  <button
+                  <Link
                     onClick={handleLogout}
+                    href="/"
                     className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
                   >
                     Sair
-                  </button>
+                  </Link>
                 </div>
               )}
             </div>
