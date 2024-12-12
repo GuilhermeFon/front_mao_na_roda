@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaRegStar, FaArrowUp } from 'react-icons/fa';
 
 import ProfileImage from '@/assets/profile.png';
 import { DatePickerDemo } from '@/components/Datepicker';
@@ -31,6 +31,15 @@ type FormData = {
   linkedin?: string;
   tipo?: string;
 };
+interface Avaliacao {
+  mediaNotas: number;
+  totalAvaliacoes: number;
+  avaliacoes: AvaliacaoItem[];
+}
+
+interface AvaliacaoItem {
+  descricao: string;
+}
 
 export default function Perfil() {
   const { cliente } = useClienteStore();
@@ -38,6 +47,12 @@ export default function Perfil() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const [avaliacao, setAvaliacao] = useState<Avaliacao>({
+    mediaNotas: 0,
+    totalAvaliacoes: 0,
+    avaliacoes: [],
+  });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -106,6 +121,11 @@ export default function Perfil() {
 
   const fetchClienteData = useCallback(
     async (clienteId: string) => {
+      if (!clienteId) {
+        console.error('Cliente ID is undefined');
+        return;
+      }
+
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_URL_API}/prestador/${clienteId}`,
@@ -131,14 +151,36 @@ export default function Perfil() {
   );
 
   useEffect(() => {
-    const storedClienteId = localStorage.getItem('clienteId');
-    if (storedClienteId) {
-      fetchClienteData(storedClienteId);
-    } else if (cliente.id) {
-      localStorage.setItem('clienteId', cliente.id);
+    if (cliente && cliente.id) {
       fetchClienteData(cliente.id);
     }
   }, [cliente.id, fetchClienteData]);
+
+  const fetchClienteAvaliacoes = useCallback(
+    async (clienteId: string) => {
+      if (!clienteId) {
+        console.error('Cliente ID is undefined');
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_URL_API}/avaliacao/prestador/${clienteId}`,
+        );
+        const result = await response.json();
+        setAvaliacao(result);
+      } catch (error) {
+        console.error('Erro ao buscar dados do cliente:', error);
+      }
+    },
+    [setAvaliacao],
+  );
+
+  useEffect(() => {
+    if (cliente && cliente.id) {
+      fetchClienteAvaliacoes(cliente.id);
+    }
+  }, [cliente.id, fetchClienteAvaliacoes]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
@@ -514,20 +556,25 @@ export default function Perfil() {
           <div className="space-y-2">
             <h2 className="text-xl font-bold text-gray-800">{cliente.nome}</h2>
             <div className="flex items-center space-x-2">
-              {Number.isFinite(cliente.nota) ? (
+              {avaliacao.avaliacoes.length > 0 ? (
                 <>
-                  {[...Array(Math.floor(cliente.nota))].map((_, i) => (
+                  {[...Array(Math.floor(avaliacao.mediaNotas))].map((_, i) => (
                     <FaStar key={i} className="text-yellow-500 w-5 h-5 mx-1" />
                   ))}
-                  {cliente.nota % 1 !== 0 && (
+                  {avaliacao.mediaNotas % 1 !== 0 && (
                     <FaStarHalfAlt className="text-yellow-500 w-5 h-5 mx-1" />
                   )}
-                  {[...Array(5 - Math.ceil(cliente.nota))].map((_, i) => (
-                    <FaRegStar
-                      key={i}
-                      className="text-yellow-500 w-5 h-5 mx-1"
-                    />
-                  ))}
+                  {[...Array(5 - Math.ceil(avaliacao.mediaNotas))].map(
+                    (_, i) => (
+                      <FaRegStar
+                        key={i}
+                        className="text-yellow-500 w-5 h-5 mx-1"
+                      />
+                    ),
+                  )}
+                  <p className="text-gray-600 text-sm">
+                    ({avaliacao.totalAvaliacoes} avaliações)
+                  </p>
                 </>
               ) : (
                 [...Array(5)].map((_, i) => (
@@ -540,9 +587,10 @@ export default function Perfil() {
             </p>
             {cliente.plano !== 'ouro' && (
               <p
-                className="text-gray-600 text-sm hover:underline cursor-pointer"
+                className="text-blue-600 text-sm font-semibold hover:underline cursor-pointer flex items-center"
                 onClick={() => setIsPlanModalOpen(true)}
               >
+                <FaArrowUp className="mr-2" />
                 Melhore seu alcance com um upgrade de plano
               </p>
             )}
@@ -656,7 +704,7 @@ export default function Perfil() {
               </div>
             </div>
             <button
-              className="bg-gray-300 text-black px-4 py-2 rounded-lg mt-4 hover:bg-gray-400 transition"
+              className="bg-gray-300 text-black px-8 py-2 rounded-lg mt-4 self-center hover:bg-gray-400 transition"
               onClick={() => setIsPlanModalOpen(false)}
             >
               Cancelar

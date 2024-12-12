@@ -80,7 +80,7 @@ export function Header() {
                       className="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg"
                       onClick={() => setConfigMenuOpen(false)}
                     >
-                      Configurações da Conta
+                      Meu perfil
                     </Link>
                   )}
                   <Link
