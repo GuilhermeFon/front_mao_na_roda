@@ -26,6 +26,7 @@ interface Prestador {
   profissoes: string[];
   avaliacoes: AvaliacaoItem[];
   mediaNotas: number;
+  plano?: 'bronze' | 'prata' | 'ouro' | null; // Adicionei o campo plano
 }
 
 interface Avaliacao {
@@ -124,19 +125,31 @@ export default function ListaProfissionais() {
     fetchPrestadores();
   }, [cliente.token]);
 
-  const filteredData = data.filter((profissional) => {
-    const matchesSearchTerm =
-      profissional.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      profissional.profissoes.some((profissao) =>
-        profissao.toLowerCase().includes(searchTerm.toLowerCase()),
-      );
+  const filteredData = data
+    .filter((profissional) => {
+      const matchesSearchTerm =
+        profissional.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        profissional.profissoes.some((profissao) =>
+          profissao.toLowerCase().includes(searchTerm.toLowerCase()),
+        );
 
-    const matchesCategory =
-      selectedCategory === '' ||
-      profissional.profissoes.includes(selectedCategory.toLowerCase());
+      const matchesCategory =
+        selectedCategory === '' ||
+        profissional.profissoes.includes(selectedCategory.toLowerCase());
 
-    return matchesSearchTerm && matchesCategory;
-  });
+      return matchesSearchTerm && matchesCategory;
+    })
+    .sort((a, b) => {
+      const planoRank = { ouro: 3, prata: 2, bronze: 1, null: 0 };
+      const planoA = planoRank[a.plano ?? 'null'];
+      const planoB = planoRank[b.plano ?? 'null'];
+
+      if (planoA !== planoB) {
+        return planoB - planoA;
+      }
+
+      return b.mediaNotas - a.mediaNotas;
+    });
 
   const handleConfirmReservation = async () => {
     if (!selectedDate || !selectedUserId) {
