@@ -100,8 +100,7 @@ export default function ListaProfissionais() {
     { id: 'drywall', label: 'Instalador(a) de Drywall' },
     { id: 'teto', label: 'Instalador(a) de Teto Falso' },
     { id: 'pvc', label: 'Instalador(a) de Forro de PVC' },
-];
-
+  ];
 
   const [data, setData] = useState<Prestador[]>([]);
 
@@ -157,7 +156,11 @@ export default function ListaProfissionais() {
       return;
     }
 
-    if (cliente.tipo !== 'cliente') {
+    if (!cliente.token) {
+      alert('Você precisa estar logado para agendar um serviço.');
+      window.location.href = '/login';
+      return;
+    } else if (cliente.tipo !== 'cliente') {
       alert('Você precisa estar logado como cliente para agendar um serviço.');
       return;
     }

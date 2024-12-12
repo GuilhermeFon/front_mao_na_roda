@@ -4,6 +4,8 @@ import { TiDeleteOutline } from 'react-icons/ti';
 import { FaCheckCircle, FaStar } from 'react-icons/fa';
 import { useClienteStore } from '@/context/cliente';
 import Image from 'next/image';
+import DefaultProfileImage from '@/assets/profile.png';
+
 
 interface Service {
   id: number;
@@ -279,7 +281,7 @@ function ServiceManager() {
                   >
                     <td className="justify-items-center p-2 border">
                       <Image
-                        src={item.cliente.imagem}
+                        src={item.cliente.imagem || DefaultProfileImage}
                         alt={item.cliente.nome}
                         width={80}
                         height={80}
@@ -339,7 +341,7 @@ function ServiceManager() {
                   >
                     <td className=" justify-items-center p-2 border">
                       <Image
-                        src={item.prestador.imagem}
+                        src={item.prestador.imagem || DefaultProfileImage}
                         alt={item.prestador.nome}
                         width={80}
                         height={80}
