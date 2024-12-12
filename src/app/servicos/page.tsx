@@ -48,7 +48,6 @@ export default function ListaProfissionais() {
     totalAvaliacoes: 0,
     avaliacoes: [],
   });
-  console.log('avaliacao: ', avaliacao);
   const { cliente } = useClienteStore();
 
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
