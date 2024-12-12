@@ -1,9 +1,9 @@
-"use client";
-import { useEffect, useState } from "react";
-import { TiDeleteOutline } from "react-icons/ti";
-import { FaCheckCircle, FaStar } from "react-icons/fa";
-import { useClienteStore } from "@/context/cliente";
-import Image from "next/image";
+'use client';
+import { useEffect, useState } from 'react';
+import { TiDeleteOutline } from 'react-icons/ti';
+import { FaCheckCircle, FaStar } from 'react-icons/fa';
+import { useClienteStore } from '@/context/cliente';
+import Image from 'next/image';
 
 interface Service {
   id: number;
@@ -13,8 +13,10 @@ interface Service {
     nome: string;
     imagem: string;
     celular: string;
+    cidade: string;
   };
   prestador: {
+    id: number;
     nome: string;
     imagem: string;
     descricao: string;
@@ -32,52 +34,140 @@ function ServiceManager() {
   const [services, setServices] = useState<Service[]>([]);
   const [modalService, setModalService] = useState<Service | null>(null);
   const [rating, setRating] = useState<number>(0);
+  const [serviceToDelete, setServiceToDelete] = useState<Service | null>(null);
+  const [serviceToConfirm, setServiceToConfirm] = useState<Service | null>(
+    null,
+  );
+  const [descricao, setDescricao] = useState<string>('');
 
-  useEffect(() => {
+  const fetchServices = async () => {
     if (!cliente || !cliente.id || !cliente.token) {
-      console.error("Cliente information is missing");
+      console.error('Cliente information is missing');
       return;
     }
 
-    const fetchServices = async () => {
-      try {
-        const endpoint =
-          cliente.tipo === "prestador"
-            ? `${process.env.NEXT_PUBLIC_URL_API}/reserva/prestador/${cliente.id}`
-            : `${process.env.NEXT_PUBLIC_URL_API}/reserva/cliente/${cliente.id}`;
+    try {
+      const endpoint =
+        cliente.tipo === 'prestador'
+          ? `${process.env.NEXT_PUBLIC_URL_API}/reserva/prestador/${cliente.id}`
+          : `${process.env.NEXT_PUBLIC_URL_API}/reserva/cliente/${cliente.id}`;
 
-        const response = await fetch(endpoint, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${cliente.token}`,
-          },
-        });
+      const response = await fetch(endpoint, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${cliente.token}`,
+        },
+      });
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const result = await response.json();
-        setServices(result);
-      } catch (error) {
-        console.error("Erro ao buscar serviços:", error);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    };
 
+      const result = await response.json();
+      setServices(result.reverse());
+    } catch (error) {
+      console.error('Erro ao buscar serviços:', error);
+    }
+  };
+
+  useEffect(() => {
     fetchServices();
   }, [cliente]);
 
-  const confirmarServico = (id: number) => {
-    setServices((prev) =>
-      prev.map((service) =>
-        service.id === id ? { ...service, status: "confirmado" } : service
-      )
-    );
+  const updateReserva = async (
+    reservaId: number,
+    updateData: Partial<{
+      clienteId: number;
+      prestadorId: number;
+      data: string;
+      status: string;
+    }>,
+    token: string,
+  ) => {
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL_API}/reserva/${reservaId}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(updateData),
+        },
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Erro ao atualizar reserva:', errorData);
+        return;
+      }
+
+      const updatedReserva = await response.json();
+      // Atualize o estado ou execute outras ações conforme necessário
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
   };
 
-  const excluirServico = (id: number) => {
-    setServices((prev) => prev.filter((service) => service.id !== id));
+  const abrirModalConfirmar = (service: Service) => {
+    setServiceToConfirm(service);
+  };
+
+  const confirmarServico = async () => {
+    if (!serviceToConfirm || !cliente || !cliente.token) {
+      console.error('Cliente information is missing');
+      return;
+    }
+
+    try {
+      await updateReserva(
+        serviceToConfirm.id,
+        { status: 'CONFIRMADO' },
+        cliente.token,
+      );
+      setServices((prev) =>
+        prev.map((service) =>
+          service.id === serviceToConfirm.id
+            ? { ...service, status: 'CONFIRMADO' }
+            : service,
+        ),
+      );
+      setServiceToConfirm(null);
+    } catch (error) {
+      console.error('Erro ao confirmar serviço:', error);
+    }
+  };
+
+  const abrirModalExcluir = (service: Service) => {
+    setServiceToDelete(service);
+  };
+
+  const confirmarExclusao = async () => {
+    if (!serviceToDelete) return;
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL_API}/reserva/${serviceToDelete.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cliente.token}`,
+          },
+          body: JSON.stringify({ status: 'CANCELADO' }),
+        },
+      );
+      if (!response.ok) {
+        throw new Error('Failed to delete reservation');
+      }
+      // Recarregar a lista de serviços após a exclusão
+      fetchServices();
+      setServiceToDelete(null);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const abrirModalAvaliacao = (service: Service) => {
@@ -85,17 +175,72 @@ function ServiceManager() {
     setRating(0);
   };
 
-  const enviarAvaliacao = () => {
-    if (modalService) {
+  const criarAvaliacao = async (
+    prestadorId: number,
+    nota: number,
+    comentario: string,
+  ) => {
+    if (!cliente || !cliente.id || !cliente.token) {
+      console.error('Cliente information is missing');
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL_API}/avaliacao/${prestadorId}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${cliente.token}`,
+          },
+          body: JSON.stringify({
+            clienteId: cliente.id,
+            prestadorId,
+            nota,
+            comentario,
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error('Erro ao criar avaliação');
+      }
+
+      const result = await response.json();
+    } catch (error) {
+      console.error('Erro ao criar avaliação:', error);
+    }
+  };
+
+  const enviarAvaliacao = async () => {
+    if (!modalService || !cliente || !cliente.token) {
+      console.error('Cliente information is missing');
+      return;
+    }
+
+    try {
+      await updateReserva(
+        modalService.id,
+        { status: 'FINALIZADO' },
+        cliente.token,
+      );
+
       setServices((prev) =>
         prev.map((service) =>
           service.id === modalService.id
-            ? { ...service, avaliacao: rating }
-            : service
-        )
+            ? { ...service, status: 'FINALIZADO' }
+            : service,
+        ),
       );
+
+      await criarAvaliacao(modalService.prestador.id, rating, descricao);
+
       setModalService(null);
       setRating(0);
+      setDescricao('');
+    } catch (error) {
+      console.error('Erro ao confirmar serviço:', error);
     }
   };
 
@@ -107,47 +252,76 @@ function ServiceManager() {
             <tr>
               <th className="p-2 border"></th>
               <th className="px-6 py-4 border">
-                {cliente.tipo === "prestador" ? "Cliente" : "Profissional"}
+                {cliente.tipo === 'prestador' ? 'Cliente' : 'Profissional'}
               </th>
-              <th className="px-6 py-4 border">Data</th>
+              {cliente.tipo === 'prestador' && (
+                <th className="px-6 py-4 border">Cidade</th>
+              )}
               <th className="px-6 py-4 border">WhatsApp</th>
+              <th className="px-6 py-4 border">Data</th>
               <th className="px-6 py-4 border">Status</th>
               <th className="px-6 py-4 border">Ações</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="max-h-[700px] overflow-y-auto block slim-scrollbar">
             {services.length > 0 ? (
-              cliente.tipo === "prestador" ? (
+              cliente.tipo === 'prestador' ? (
                 services.map((item) => (
-                  <tr key={item.id} className="border-b dark:border-gray-700 text-center">
+                  <tr
+                    key={item.id}
+                    className={`border-b dark:border-gray-700 text-center ${
+                      item.status === 'CANCELADO'
+                        ? 'bg-red-100'
+                        : item.status === 'CONFIRMADO'
+                          ? 'bg-green-100'
+                          : ''
+                    }`}
+                  >
                     <td className="justify-items-center p-2 border">
                       <Image
                         src={item.cliente.imagem}
                         alt={item.cliente.nome}
                         width={80}
-                        height={80} 
-                        className="object-cover rounded-full"
+                        height={80}
+                        className="object-cover rounded-full max-h-[80px] max-w-[80px] min-h-[80px] min-w-[80px]"
                       />
                     </td>
                     <td className="px-6 py-4 border">{item.cliente.nome}</td>
-                    <td className="px-6 py-4 border">
-                      {new Date(item.data).toLocaleDateString("pt-BR")}
-                    </td>
+                    <td className="px-6 py-4 border">{item.cliente.cidade}</td>
                     <td className="px-6 py-4 border">{item.cliente.celular}</td>
-                    <td className="px-6 py-4 border lowercase">{item.status}</td>
-                    <td className="px-6 py-4 border flex gap-2">
-                      <button
-                        onClick={() => confirmarServico(item.id)}
-                        className="text-green-500 text-4xl"
-                      >
-                        <FaCheckCircle />
-                      </button>
-                      <button
-                        onClick={() => excluirServico(item.id)}
-                        className="text-red-500 text-5xl"
-                      >
-                        <TiDeleteOutline />
-                      </button>
+                    <td className="px-6 py-4 border">
+                      {new Date(item.data).toLocaleDateString('pt-BR')}
+                    </td>
+                    <td className="px-6 py-4 border lowercase">
+                      {item.status}
+                    </td>
+                    <td className="px-6 py-4 border">
+                      {item.status === 'PENDENTE' && (
+                        <div className="flex gap-2 justify-center">
+                          <button
+                            onClick={() => abrirModalConfirmar(item)}
+                            className="text-green-500 text-4xl"
+                          >
+                            <FaCheckCircle />
+                          </button>
+                          <button
+                            onClick={() => abrirModalExcluir(item)}
+                            className="text-red-500 text-5xl"
+                          >
+                            <TiDeleteOutline />
+                          </button>
+                        </div>
+                      )}
+                      {item.status === 'CONFIRMADO' && (
+                        <div className="text-green-500 text-4xl justify-self-center">
+                          <FaCheckCircle />
+                        </div>
+                      )}
+                      {item.status === 'CANCELADO' && (
+                        <div className="text-red-500 text-5xl justify-self-center">
+                          <TiDeleteOutline />
+                        </div>
+                      )}
                     </td>
                   </tr>
                 ))
@@ -155,7 +329,13 @@ function ServiceManager() {
                 services.map((item) => (
                   <tr
                     key={item.id}
-                    className="border-b dark:border-gray-700 text-center"
+                    className={`border-b dark:border-gray-700 text-center ${
+                      item.status === 'CANCELADO'
+                        ? 'bg-red-100'
+                        : item.status === 'CONFIRMADO'
+                          ? 'bg-green-100'
+                          : ''
+                    }`}
                   >
                     <td className=" justify-items-center p-2 border">
                       <Image
@@ -163,22 +343,24 @@ function ServiceManager() {
                         alt={item.prestador.nome}
                         width={80}
                         height={80}
-                        className="object-cover rounded-full"
+                        className="object-cover rounded-full max-h-[80px] max-w-[80px] min-h-[80px] min-w-[80px]"
                       />
                     </td>
                     <td className="px-6 py-4 border">{item.prestador.nome}</td>
                     <td className="px-6 py-4 border">
-                      {new Date(item.data).toLocaleDateString("pt-BR")}
+                      {item.prestador.celular}
                     </td>
-                    <td className="px-6 py-4 border">{item.prestador.celular}</td>
+                    <td className="px-6 py-4 border">
+                      {new Date(item.data).toLocaleDateString('pt-BR')}
+                    </td>
                     <td className="px-6 py-4 border lowercase">
                       {item.status}
                     </td>
                     <td className="px-6 py-4 border">
-                      {item.status === "confirmado" && (
+                      {item.status === 'CONFIRMADO' && (
                         <button
                           onClick={() => abrirModalAvaliacao(item)}
-                          className="text-yellow-400"
+                          className="bg-yellow-500 text-white p-3 rounded-lg font-semibold hover:bg-yellow-600 transition-colors"
                         >
                           Avaliar Serviço
                         </button>
@@ -200,19 +382,25 @@ function ServiceManager() {
 
       {modalService && (
         <div className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="bg-white py-6 px-10 rounded-lg shadow-lg justify-items-center">
             <h2 className="text-xl font-bold mb-4">Avaliar Serviço</h2>
             <div className="flex justify-center gap-2 mb-4">
               {[1, 2, 3, 4, 5].map((star) => (
                 <FaStar
                   key={star}
                   className={`cursor-pointer text-2xl ${
-                    rating >= star ? "text-yellow-400" : "text-gray-300"
+                    rating >= star ? 'text-yellow-400' : 'text-gray-300'
                   }`}
                   onClick={() => setRating(star)}
                 />
               ))}
             </div>
+            <textarea
+              className="w-full p-2 mb-4 border rounded"
+              placeholder="Descreva sua avaliação"
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
+            />
             <div className="flex justify-end gap-2">
               <button
                 onClick={() => setModalService(null)}
@@ -225,6 +413,52 @@ function ServiceManager() {
                 className="bg-blue-500 text-white px-4 py-2 rounded"
               >
                 Enviar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {serviceToDelete && (
+        <div className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-bold mb-4">Confirmar Exclusão</h2>
+            <p>Tem certeza que deseja excluir o serviço?</p>
+            <div className="flex justify-between gap-2 mt-4">
+              <button
+                onClick={() => setServiceToDelete(null)}
+                className="bg-gray-300 px-4 py-2 rounded"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={confirmarExclusao}
+                className="bg-red-500 text-white px-4 py-2 rounded"
+              >
+                Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {serviceToConfirm && (
+        <div className="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-bold mb-4">Confirmar Serviço</h2>
+            <p>Tem certeza que deseja confirmar o serviço?</p>
+            <div className="flex justify-between gap-2 mt-4">
+              <button
+                onClick={() => setServiceToConfirm(null)}
+                className="bg-gray-300 px-4 py-2 rounded"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={confirmarServico}
+                className="bg-green-500 text-white px-4 py-2 rounded"
+              >
+                Confirmar
               </button>
             </div>
           </div>

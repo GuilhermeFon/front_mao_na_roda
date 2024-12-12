@@ -103,3 +103,15 @@ background-profissional {
   scrollbar-color: #c1c1c1 transparent;
   border-radius: 10px;
 }
+
+tbody {
+  display: block;
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
