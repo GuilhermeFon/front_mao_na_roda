@@ -1,8 +1,7 @@
 'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import { Calendar } from '@/components/ui/calendar';
 import Modal from '@/components/Modal';
@@ -25,6 +24,18 @@ interface Prestador {
   descricao: string;
   precoPorHora: number;
   profissoes: string[];
+  avaliacoes: AvaliacaoItem[];
+  mediaNotas: number;
+}
+
+interface Avaliacao {
+  mediaNotas: number;
+  totalAvaliacoes: number;
+  avaliacoes: AvaliacaoItem[];
+}
+
+interface AvaliacaoItem {
+  descricao: string;
 }
 
 export default function ListaProfissionais() {
@@ -32,6 +43,12 @@ export default function ListaProfissionais() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [avaliacao, setAvaliacao] = useState<Avaliacao>({
+    mediaNotas: 0,
+    totalAvaliacoes: 0,
+    avaliacoes: [],
+  });
+  console.log('avaliacao: ', avaliacao);
   const { cliente } = useClienteStore();
 
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
@@ -149,12 +166,37 @@ export default function ListaProfissionais() {
         throw new Error('Falha ao criar reserva');
       }
 
-      console.log('Reserva criada com sucesso');
       setIsModalOpen(false);
     } catch (error) {
       console.error('Erro ao criar reserva:', error);
     }
   };
+
+  const fetchClienteAvaliacoes = useCallback(
+    async (clienteId: string) => {
+      if (!clienteId) {
+        console.error('Cliente ID is undefined');
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_URL_API}/avaliacao/prestador/${clienteId}`,
+        );
+        const result = await response.json();
+        setAvaliacao(result);
+      } catch (error) {
+        console.error('Erro ao buscar dados do cliente:', error);
+      }
+    },
+    [setAvaliacao],
+  );
+
+  useEffect(() => {
+    if (cliente && cliente.id) {
+      fetchClienteAvaliacoes(cliente.id);
+    }
+  }, [cliente.id, fetchClienteAvaliacoes]);
 
   return (
     <section className="container w-full mx-auto px-4 py-10 min-h-screen flex flex-col justify-between">
@@ -214,9 +256,9 @@ export default function ListaProfissionais() {
                 <h1 className="text-2xl font-bold">{profissional.nome}</h1>
                 <div className="flex items-center mt-2">
                   <div className="flex mr-2">
-                    {Number.isFinite(profissional.nota) ? (
+                    {profissional.avaliacoes.length > 0 ? (
                       <>
-                        {[...Array(Math.floor(profissional.nota))].map(
+                        {[...Array(Math.floor(profissional.mediaNotas))].map(
                           (_, i) => (
                             <FaStar
                               key={i}
@@ -224,10 +266,10 @@ export default function ListaProfissionais() {
                             />
                           ),
                         )}
-                        {profissional.nota % 1 !== 0 && (
+                        {profissional.mediaNotas % 1 !== 0 && (
                           <FaStarHalfAlt className="text-yellow-500 w-5 h-5 mx-1" />
                         )}
-                        {[...Array(5 - Math.ceil(profissional.nota))].map(
+                        {[...Array(5 - Math.ceil(profissional.mediaNotas))].map(
                           (_, i) => (
                             <FaRegStar
                               key={i}
@@ -235,21 +277,22 @@ export default function ListaProfissionais() {
                             />
                           ),
                         )}
+                        <p className="text-gray-600 text-sm">
+                          ({profissional.avaliacoes.length} avaliações)
+                        </p>
                       </>
                     ) : (
-                      [...Array(5)].map((_, i) => (
-                        <FaRegStar
-                          key={i}
-                          className="text-yellow-500 w-5 h-5 mx-1"
-                        />
-                      ))
+                      <>
+                        {[...Array(5)].map((_, i) => (
+                          <FaRegStar
+                            key={i}
+                            className="text-yellow-500 w-5 h-5 mx-1"
+                          />
+                        ))}
+                        <p className="text-gray-600 text-sm">Sem avaliações</p>
+                      </>
                     )}
                   </div>
-                  <p className="text-sm text-gray-500 mt-1">
-                    {profissional.nota
-                      ? `${profissional.nota} de 5 estrelas`
-                      : 'Sem avaliações'}
-                  </p>
                 </div>
 
                 <div className="flex flex-wrap gap-2 mt-2">
