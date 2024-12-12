@@ -30,6 +30,7 @@ type FormData = {
   profissoes?: string[];
   linkedin?: string;
   tipo?: string;
+  plano?: string;
 };
 interface Avaliacao {
   mediaNotas: number;
@@ -42,11 +43,13 @@ interface AvaliacaoItem {
 }
 
 export default function Perfil() {
-  const { cliente } = useClienteStore();
+  const { cliente, setCliente } = useClienteStore();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedPlan, setSelectedPlan] = useState('GRATIS');
+  const [selectedFile, setSelectedFile] = useState<File | ' '>(' ');
+  const [prestador, setPrestador] = useState<FormData>();
 
   const [avaliacao, setAvaliacao] = useState<Avaliacao>({
     mediaNotas: 0,
@@ -143,11 +146,15 @@ export default function Perfil() {
         setValue('profissoes', result.profissoes);
         setValue('descricao', result.descricao);
         setValue('imagem', selectedFile);
+        setValue('plano', result.plano);
+        setSelectedPlan(result.plano);
+        setPrestador(result);
+        setCliente(result);
       } catch (error) {
         console.error('Erro ao buscar dados do cliente:', error);
       }
     },
-    [setValue],
+    [setValue, setCliente],
   );
 
   useEffect(() => {
@@ -187,7 +194,7 @@ export default function Perfil() {
     if (file) {
       setSelectedFile(file);
     } else {
-      setSelectedFile(null);
+      setSelectedFile(' ');
     }
   };
 
@@ -196,7 +203,11 @@ export default function Perfil() {
   };
 
   const handleRemoveImage = () => {
-    setValue('imagem', null);
+    setSelectedFile(' ');
+    setValue('imagem', ' ');
+    setPrestador((prevState) =>
+      prevState ? { ...prevState, imagem: ' ' } : undefined,
+    );
     setIsModalOpen(false);
   };
 
@@ -223,9 +234,8 @@ export default function Perfil() {
       formData.append('linkedin', data.linkedin || '');
       formData.append('descricao', data.descricao);
       formData.append('profissoes', JSON.stringify(data.profissoes || []));
-      if (selectedFile) {
-        formData.append('imagem', selectedFile);
-      }
+      formData.append('plano', selectedPlan);
+      formData.append('imagem', selectedFile || ' ');
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_URL_API}/prestador/${cliente.id}`,
@@ -240,6 +250,7 @@ export default function Perfil() {
 
       if (response.ok) {
         alert('Dados atualizados com sucesso!');
+        window.location.reload();
       } else {
         alert('Erro ao atualizar dados.');
       }
@@ -253,8 +264,7 @@ export default function Perfil() {
   };
 
   const handlePlanUpgrade = (plan: string) => {
-    // setCliente({ ...cliente, plano: plan });
-    console.log(plan);
+    setSelectedPlan(plan.toUpperCase());
     setIsPlanModalOpen(false);
   };
 
@@ -545,7 +555,12 @@ export default function Perfil() {
         <div className="bg-background rounded-lg border p-4 flex items-start space-x-4 col-span-2 md:col-span-1 h-fit">
           <Image
             src={
-              typeof cliente.imagem === 'string' ? cliente.imagem : ProfileImage
+              prestador &&
+              prestador.imagem &&
+              typeof prestador.imagem === 'string' &&
+              prestador.imagem !== ' '
+                ? prestador.imagem
+                : ProfileImage
             }
             alt="Foto do Perfil"
             width={150}
@@ -554,7 +569,9 @@ export default function Perfil() {
             onClick={handleImageClick}
           />
           <div className="space-y-2">
-            <h2 className="text-xl font-bold text-gray-800">{cliente.nome}</h2>
+            <h2 className="text-xl font-bold text-gray-800">
+              {prestador?.nome}
+            </h2>
             <div className="flex items-center space-x-2">
               {avaliacao.avaliacoes.length > 0 ? (
                 <>
@@ -583,9 +600,10 @@ export default function Perfil() {
               )}
             </div>
             <p className="text-gray-600 text-sm">
-              Plano: {cliente.plano ? cliente.plano : 'Gratuito'}
+              Plano:{' '}
+              {prestador?.plano !== 'GRATIS' ? prestador?.plano : 'Gratuito'}
             </p>
-            {cliente.plano !== 'ouro' && (
+            {prestador && prestador.plano !== 'OURO' && (
               <p
                 className="text-blue-600 text-sm font-semibold hover:underline cursor-pointer flex items-center"
                 onClick={() => setIsPlanModalOpen(true)}
@@ -646,7 +664,7 @@ export default function Perfil() {
                 </ul>
                 <button
                   className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
-                  onClick={() => handlePlanUpgrade('gratuito')}
+                  onClick={() => handlePlanUpgrade('GRATIS')}
                 >
                   Selecionar
                 </button>

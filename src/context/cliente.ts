@@ -7,21 +7,27 @@ type ClienteStore = {
   cliente: ClienteI;
   logaCliente: (clienteLogado: ClienteI) => void;
   deslogaCliente: () => void;
+  setCliente: (cliente: Partial<ClienteI>) => void;
 };
 
 export const useClienteStore = create<ClienteStore>()(
   persist<ClienteStore>(
-    (set) => ({
+    (set, get) => ({
       cliente: {} as ClienteI,
       logaCliente: (clienteLogado) => {
-        set({ cliente: clienteLogado }); 
+        set({ cliente: clienteLogado });
       },
       deslogaCliente: () => {
         set({ cliente: {} as ClienteI });
       },
+      setCliente: (cliente) => {
+        set((state) => ({
+          cliente: { ...state.cliente, ...cliente },
+        }));
+      },
     }),
     {
-      name: 'cliente-storage', // nome do storage (localStorage)
+      name: 'cliente-storage',
     } as PersistOptions<ClienteStore>,
   ),
 );

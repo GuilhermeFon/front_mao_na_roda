@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaRegStar, FaMedal } from 'react-icons/fa';
 import { Calendar } from '@/components/ui/calendar';
 import Modal from '@/components/Modal';
 
@@ -26,7 +26,7 @@ interface Prestador {
   profissoes: string[];
   avaliacoes: AvaliacaoItem[];
   mediaNotas: number;
-  plano?: 'bronze' | 'prata' | 'ouro' | null; // Adicionei o campo plano
+  plano?: 'OURO' | 'PRATA' | 'BRONZE' | null;
 }
 
 interface Avaliacao {
@@ -44,11 +44,6 @@ export default function ListaProfissionais() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [avaliacao, setAvaliacao] = useState<Avaliacao>({
-    mediaNotas: 0,
-    totalAvaliacoes: 0,
-    avaliacoes: [],
-  });
   const { cliente } = useClienteStore();
 
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
@@ -141,7 +136,11 @@ export default function ListaProfissionais() {
       return matchesSearchTerm && matchesCategory;
     })
     .sort((a, b) => {
-      const planoRank = { ouro: 3, prata: 2, bronze: 1, null: 0 };
+      if (b.mediaNotas !== a.mediaNotas) {
+        return b.mediaNotas - a.mediaNotas;
+      }
+
+      const planoRank = { OURO: 3, PRATA: 2, BRONZE: 1, null: 0 };
       const planoA = planoRank[a.plano ?? 'null'];
       const planoB = planoRank[b.plano ?? 'null'];
 
@@ -149,12 +148,17 @@ export default function ListaProfissionais() {
         return planoB - planoA;
       }
 
-      return b.mediaNotas - a.mediaNotas;
+      return b.avaliacoes.length - a.avaliacoes.length;
     });
 
   const handleConfirmReservation = async () => {
     if (!selectedDate || !selectedUserId) {
       console.error('Data ou usuário selecionado ausente.');
+      return;
+    }
+
+    if (cliente.tipo !== 'cliente') {
+      alert('Você precisa estar logado como cliente para agendar um serviço.');
       return;
     }
 
@@ -184,32 +188,6 @@ export default function ListaProfissionais() {
       console.error('Erro ao criar reserva:', error);
     }
   };
-
-  const fetchClienteAvaliacoes = useCallback(
-    async (clienteId: string) => {
-      if (!clienteId) {
-        console.error('Cliente ID is undefined');
-        return;
-      }
-
-      try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_URL_API}/avaliacao/prestador/${clienteId}`,
-        );
-        const result = await response.json();
-        setAvaliacao(result);
-      } catch (error) {
-        console.error('Erro ao buscar dados do cliente:', error);
-      }
-    },
-    [setAvaliacao],
-  );
-
-  useEffect(() => {
-    if (cliente && cliente.id) {
-      fetchClienteAvaliacoes(cliente.id);
-    }
-  }, [cliente.id, fetchClienteAvaliacoes]);
 
   return (
     <section className="container w-full mx-auto px-4 py-10 min-h-screen flex flex-col justify-between">
@@ -335,6 +313,19 @@ export default function ListaProfissionais() {
                 </button>
               </div>
             </div>
+            {profissional.plano && (
+              <div className="absolute top-4 right-4">
+                {profissional.plano === 'OURO' && (
+                  <FaMedal className="text-yellow-500 w-8 h-8" />
+                )}
+                {profissional.plano === 'PRATA' && (
+                  <FaMedal className="text-gray-400 w-8 h-8" />
+                )}
+                {profissional.plano === 'BRONZE' && (
+                  <FaMedal className="text-yellow-700 w-8 h-8" />
+                )}
+              </div>
+            )}
           </div>
         ))}
 
