@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Logo from '@/assets/icones/logo_azul_e_cinzas_e_nome.svg';
 import ProfileImage from '@/assets/profile.png';
@@ -12,6 +12,22 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [ConfigMenuOpen, setConfigMenuOpen] = useState(false);
   const { cliente, deslogaCliente } = useClienteStore();
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setConfigMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -73,7 +89,10 @@ export function Header() {
                 className="rounded-full min-w-10 min-h-10 max-w-10 max-h-10 object-cover cursor-pointer"
               />
               {ConfigMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div
+                  ref={menuRef}
+                  className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg"
+                >
                   {cliente.tipo === 'prestador' && (
                     <Link
                       href="/perfil"
