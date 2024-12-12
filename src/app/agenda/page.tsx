@@ -187,7 +187,7 @@ function ServiceManager() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL_API}/avaliacao/${prestadorId}`,
+        `${process.env.NEXT_PUBLIC_URL_API}/avaliacao/prestador/${prestadorId}`,
         {
           method: 'POST',
           headers: {
