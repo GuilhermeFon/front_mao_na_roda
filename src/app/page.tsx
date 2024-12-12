@@ -33,12 +33,12 @@ export default async function Home() {
               Encontre rapidamente os melhores especialistas para suas reformas
               e reparos, com a confiança e qualidade que você merece!
             </p>
-            <button
-              type="submit"
+            <Link
+              href="/servicos"
               className="bg-yellow-500 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600 transition-colors"
             >
               DESCUBRA AGORA!
-            </button>
+            </Link>
           </div>
 
           <div className="hidden lg:block">
@@ -179,7 +179,7 @@ export default async function Home() {
               Não perca tempo! Encontre quem entende do assunto!
             </h3>
             <Link
-              href="/servicos/servicoDetalhado"
+              href="/servicos"
               className="bg-[#1D69B7] py-2 px-6 rounded-lg hover:bg-[#082D53] transition-colors"
             >
               Encontre um profissional
