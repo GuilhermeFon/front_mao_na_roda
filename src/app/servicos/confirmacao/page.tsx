@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import React from 'react';
 import { BsEnvelopeCheckFill } from 'react-icons/bs';
 
 export default function confirmacao() {

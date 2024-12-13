@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function TermsOfUse() {
   return (
     <div className="bg-gray-50 min-h-screen">

@@ -1,11 +1,12 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { TiDeleteOutline } from 'react-icons/ti';
-import { FaCheckCircle, FaStar } from 'react-icons/fa';
-import { useClienteStore } from '@/context/cliente';
-import Image from 'next/image';
-import DefaultProfileImage from '@/assets/profile.png';
 
+import Image from 'next/image';
+import React, { useCallback, useEffect, useState } from 'react';
+import { FaCheckCircle, FaStar } from 'react-icons/fa';
+import { TiDeleteOutline } from 'react-icons/ti';
+
+import DefaultProfileImage from '@/assets/profile.png';
+import { useClienteStore } from '@/context/cliente';
 
 interface Service {
   id: number;
@@ -42,7 +43,7 @@ function ServiceManager() {
   );
   const [descricao, setDescricao] = useState<string>('');
 
-  const fetchServices = async () => {
+  const fetchServices = useCallback(async () => {
     if (!cliente || !cliente.id || !cliente.token) {
       console.error('Cliente information is missing');
       return;
@@ -71,11 +72,11 @@ function ServiceManager() {
     } catch (error) {
       console.error('Erro ao buscar serviços:', error);
     }
-  };
+  }, [cliente]);
 
   useEffect(() => {
     fetchServices();
-  }, [cliente]);
+  }, [cliente, fetchServices]);
 
   const updateReserva = async (
     reservaId: number,
@@ -105,9 +106,6 @@ function ServiceManager() {
         console.error('Erro ao atualizar reserva:', errorData);
         return;
       }
-
-      const updatedReserva = await response.json();
-      // Atualize o estado ou execute outras ações conforme necessário
     } catch (error) {
       console.error('Erro na requisição:', error);
     }
@@ -208,8 +206,6 @@ function ServiceManager() {
       if (!response.ok) {
         throw new Error('Erro ao criar avaliação');
       }
-
-      const result = await response.json();
     } catch (error) {
       console.error('Erro ao criar avaliação:', error);
     }

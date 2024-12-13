@@ -1,4 +1,5 @@
 // components/FeatureGrid.js
+import React from 'react';
 export default function FeatureGrid() {
   const features = [
     {

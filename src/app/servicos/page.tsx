@@ -1,14 +1,14 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useCallback } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar, FaMedal } from 'react-icons/fa';
-import { Calendar } from '@/components/ui/calendar';
-import Modal from '@/components/Modal';
 
 import ProfileImage from '@/assets/profile.png';
+import Modal from '@/components/Modal';
+import { Calendar } from '@/components/ui/calendar';
 import { useClienteStore } from '@/context/cliente';
-// Removed unused import: DateRange
 
 interface Profession {
   id: string;
@@ -27,12 +27,6 @@ interface Prestador {
   avaliacoes: AvaliacaoItem[];
   mediaNotas: number;
   plano?: 'OURO' | 'PRATA' | 'BRONZE' | null;
-}
-
-interface Avaliacao {
-  mediaNotas: number;
-  totalAvaliacoes: number;
-  avaliacoes: AvaliacaoItem[];
 }
 
 interface AvaliacaoItem {

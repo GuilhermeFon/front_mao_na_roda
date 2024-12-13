@@ -153,14 +153,14 @@ export default function Perfil() {
         console.error('Erro ao buscar dados do cliente:', error);
       }
     },
-    [setValue, setCliente],
+    [setValue, setCliente, selectedFile],
   );
 
   useEffect(() => {
     if (cliente && cliente.id) {
       fetchClienteData(cliente.id);
     }
-  }, [cliente.id, fetchClienteData]);
+  }, [cliente.id, fetchClienteData, cliente]);
 
   const fetchClienteAvaliacoes = useCallback(
     async (clienteId: string) => {
@@ -186,7 +186,7 @@ export default function Perfil() {
     if (cliente && cliente.id) {
       fetchClienteAvaliacoes(cliente.id);
     }
-  }, [cliente.id, fetchClienteAvaliacoes]);
+  }, [cliente.id, fetchClienteAvaliacoes, cliente]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;

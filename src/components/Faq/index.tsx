@@ -1,4 +1,7 @@
+import React from 'react';
+
 import AccordionItem from './components/AccordionItem';
+
 
 const Faq = () => {
   return (

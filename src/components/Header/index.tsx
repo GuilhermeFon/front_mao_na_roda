@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 
 import Logo from '@/assets/icones/logo_azul_e_cinzas_e_nome.svg';
