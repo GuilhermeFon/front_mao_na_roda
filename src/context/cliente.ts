@@ -12,7 +12,7 @@ type ClienteStore = {
 
 export const useClienteStore = create<ClienteStore>()(
   persist<ClienteStore>(
-    (set, get) => ({
+    (set) => ({
       cliente: {} as ClienteI,
       logaCliente: (clienteLogado) => {
         set({ cliente: clienteLogado });
