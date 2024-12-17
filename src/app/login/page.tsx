@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form';
 
 import { useClienteStore } from '@/context/cliente';
 
-
 interface LoginFormInputs {
   email: string;
   senha: string;
