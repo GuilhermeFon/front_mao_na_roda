@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 import InstagramImage from '@/assets/icones/instagram.svg';
 import LinkedinImage from '@/assets/icones/linkedin.svg';
@@ -22,7 +23,7 @@ export function Footer() {
             <p>Seu lar em boas mãos!</p>
           </div>
           <div className="flex space-x-2">
-            <a href="https://www.linkedin.com" target="_blank">
+            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
               <Image
                 src={LinkedinImage}
                 width={24}
@@ -30,7 +31,7 @@ export function Footer() {
                 alt="Linkedin"
               />
             </a>
-            <a href="https://www.instagram.com" target="_blank">
+            <a href="https://www.instagram.com" target="_blank" rel="noreferrer">
               <Image
                 src={InstagramImage}
                 width={24}

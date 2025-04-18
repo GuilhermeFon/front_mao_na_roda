@@ -1,6 +1,7 @@
 "use client"
 
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import PropTypes from 'prop-types';
 import * as React from "react"
 import { DayPicker } from "react-day-picker"
 
@@ -8,6 +9,7 @@ import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
+
 
 function Calendar({
   className,
@@ -61,6 +63,13 @@ function Calendar({
     />
   )
 }
+
+Calendar.propTypes = {
+  className: PropTypes.string,
+  classNames: PropTypes.object,
+  showOutsideDays: PropTypes.bool,
+};
+
 Calendar.displayName = "Calendar"
 
 export { Calendar }

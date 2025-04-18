@@ -1,6 +1,7 @@
 "use client"
 
 import * as PopoverPrimitive from "@radix-ui/react-popover"
+import PropTypes from "prop-types"
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -26,6 +27,13 @@ const PopoverContent = React.forwardRef<
     />
   </PopoverPrimitive.Portal>
 ))
+
 PopoverContent.displayName = PopoverPrimitive.Content.displayName
+
+PopoverContent.propTypes = {
+  className: PropTypes.string,
+  align: PropTypes.oneOf(["start", "center", "end"]),
+  sideOffset: PropTypes.number,
+}
 
 export { Popover, PopoverTrigger, PopoverContent }

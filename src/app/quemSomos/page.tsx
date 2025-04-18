@@ -1,5 +1,3 @@
-// pages/quem-somos.tsx
-
 import Image from "next/image";
 import React from "react";
 
@@ -8,7 +6,6 @@ import CasalImage from "@/assets/casal.png";
 const QuemSomos = () => {
 	return (
 		<div className="min-h-screen bg-background text-AzulEscuro">
-			{/* Cabeçalho com fundo azul */}
 			<header className="py-8 bg-[#082D53] text-white text-center">
 				<h1 className="text-4xl font-bold">Quem Somos</h1>
 				<div className=" text-white p-4 max-w-4xl mx-auto">
@@ -20,9 +17,7 @@ const QuemSomos = () => {
 				</div>
 			</header>
 
-			{/* Conteúdo principal */}
 			<main className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-				{/* Seção sobre a empresa */}
 				<section>
 					<h2 className="text-AzulEscuro font-semibold mb-2 text-sm uppercase">
 						Nossa História
@@ -47,8 +42,7 @@ const QuemSomos = () => {
 						futuro reserva. Junte-se a nós nessa jornada!
 					</p>
 				</section>
-
-				{/* Imagem da equipe */}
+				
 				<section className="flex flex-col items-center justify-center">
 					<div className="relative">
 						<Image

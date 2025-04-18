@@ -1,3 +1,5 @@
+import React from "react";
+
 import ServicoCard from "@/components/ServicoCard"; 
 
 export default function Home() {

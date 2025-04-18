@@ -1,14 +1,14 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useCallback } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import { FaStar, FaStarHalfAlt, FaRegStar, FaMedal } from 'react-icons/fa';
-import { Calendar } from '@/components/ui/calendar';
-import Modal from '@/components/Modal';
 
 import ProfileImage from '@/assets/profile.png';
+import Modal from '@/components/Modal';
+import { Calendar } from '@/components/ui/calendar';
 import { useClienteStore } from '@/context/cliente';
-// Removed unused import: DateRange
 
 interface Profession {
   id: string;
@@ -27,12 +27,6 @@ interface Prestador {
   avaliacoes: AvaliacaoItem[];
   mediaNotas: number;
   plano?: 'OURO' | 'PRATA' | 'BRONZE' | null;
-}
-
-interface Avaliacao {
-  mediaNotas: number;
-  totalAvaliacoes: number;
-  avaliacoes: AvaliacaoItem[];
 }
 
 interface AvaliacaoItem {
@@ -100,8 +94,7 @@ export default function ListaProfissionais() {
     { id: 'drywall', label: 'Instalador(a) de Drywall' },
     { id: 'teto', label: 'Instalador(a) de Teto Falso' },
     { id: 'pvc', label: 'Instalador(a) de Forro de PVC' },
-];
-
+  ];
 
   const [data, setData] = useState<Prestador[]>([]);
 
@@ -157,7 +150,11 @@ export default function ListaProfissionais() {
       return;
     }
 
-    if (cliente.tipo !== 'cliente') {
+    if (!cliente.token) {
+      alert('Você precisa estar logado para agendar um serviço.');
+      window.location.href = '/login';
+      return;
+    } else if (cliente.tipo !== 'cliente') {
       alert('Você precisa estar logado como cliente para agendar um serviço.');
       return;
     }

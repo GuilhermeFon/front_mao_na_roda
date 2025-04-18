@@ -1,5 +1,3 @@
-// pages/contato.tsx
-
 import Image from "next/image";
 import React from "react";
 
@@ -9,17 +7,13 @@ import Faq from "@/components/Faq";
 const Contato = () => {
 	return (
 		<div className="min-h-screen flex flex-col">
-			{/* Cabeçalho com fundo azul */}
 			<header className="bg-[#082D53] text-white py-8">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold">Contato</h1>
 				</div>
 			</header>
-
-			{/* Conteúdo principal */}
 			<main className="flex-grow bg-background">
 				<div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-					{/* Formulário de Contato */}
 					<section>
 						<h2 className="text-AzulEscuro font-semibold mb-2 text-sm uppercase">
 							Entre em contato
@@ -61,8 +55,6 @@ const Contato = () => {
 							</button>
 						</form>
 					</section>
-
-					{/* Imagem e Chamada */}
 					<section className="flex flex-col items-center justify-center">
 						<div className="relative">
 							<Image
