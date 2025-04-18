@@ -22,37 +22,37 @@ const Faq = dynamic(() => import('@/components/Faq'), { ssr: false });
 export default async function Home() {
   return (
     <main>
-      <section className="bg-[#082D53] text-white text-start">
-        <div className="container flex flex-col lg:flex-row justify-between items-center mx-auto px-2 pb-10 lg:pb-0 pt-10">
-          <div className="lg:mr-60 flex-grow">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-4">
+      <section className="bg-[#082D53] text-white">
+        <div className="container flex flex-col lg:flex-row justify-between items-center text-center lg:text-left mx-auto px-4 pt-6 pb-8 lg:pt-10 lg:pb-0">
+          <div className="flex-grow">
+            <h1 className="text-3xl lg:text-5xl font-bold mb-4">
               Conectando <span className="text-yellow-400"> você </span>
               aos profissionais ideais!
             </h1>
-            <p className="text-lg mb-8">
+            <p className="text-base lg:text-lg mb-6">
               Encontre rapidamente os melhores especialistas para suas reformas
               e reparos, com a confiança e qualidade que você merece!
             </p>
             <Link
               href="/servicos"
-              className="bg-yellow-500 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600 transition-colors"
+              className="bg-yellow-500 text-white py-3 px-8 rounded-lg font-semibold hover:bg-yellow-600 transition-colors w-full sm:w-auto"
             >
               DESCUBRA AGORA!
             </Link>
           </div>
 
-          <div className="hidden lg:block">
+          {/* Imagem ajustada para desktop e mobile */}
+          <div className="w-full mt-6 lg:mt-0 lg:w-auto lg:flex lg:justify-end">
             <Image
               src={ProfissionalImage}
               alt="Profissional"
               width={500}
               height={500}
-              className="object-cover"
+              className="object-cover w-3/4 mx-auto lg:mx-0 lg:w-[500px] h-auto rounded-lg"
             />
           </div>
         </div>
       </section>
-
       <section className="container px-2 py-20 mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">
           Tudo o que você precisa, em um só lugar!

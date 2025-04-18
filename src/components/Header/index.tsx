@@ -185,7 +185,7 @@ export function Header() {
                 </svg>
               </button>
             </div>
-            <ul className="flex flex-col space-y-4 p-4">
+            <ul className="flex flex-col space-y-4 p-4 bg-white text-black rounded-lg shadow-lg">
               <li>
                 <Link
                   href="/"
@@ -228,7 +228,7 @@ export function Header() {
                   <li>
                     <Link
                       href="/login"
-                      className="bg-background border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-400 text-center font-semibold py-2 px-4"
+                      className="block w-full mb-3 bg-white border border-yellow-400 rounded-lg hover:bg-yellow-100 text-yellow-500 text-center font-semibold py-2 px-4 transition-colors"
                       onClick={toggleMenu}
                     >
                       Entrar
@@ -237,7 +237,7 @@ export function Header() {
                   <li>
                     <Link
                       href="/cadastro"
-                      className="bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4"
+                      className="block w-full bg-yellow-500 rounded-lg hover:bg-yellow-600 text-white text-center font-semibold py-2 px-4 transition-colors"
                       onClick={toggleMenu}
                     >
                       Cadastre-se
